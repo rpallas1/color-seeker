@@ -9,62 +9,67 @@ import SwiftUI
 
 struct StatsView: View {
 		
+		@Environment(GlobalStates.self) var viewStates
+		
 		@State private var showSettings = false
 		
 		var body: some View {NavigationStack {
-						VStack {
-								ScrollView(.horizontal) {
-										// List of difficulties
-										HStack (spacing: 36) {
-												Text("Overall")
-														.foregroundStyle(.cyan)
-														.bold()
-												Text("Easy")
-												Text("Medium")
-												Text("Hard")
-												Text("Extreme")
-												Text("Survival")
-										}
-										.padding([.top, .horizontal])
+				
+				@Bindable var viewStates = viewStates
+				
+				VStack {
+						ScrollView(.horizontal) {
+								// List of difficulties
+								HStack (spacing: 36) {
+										Text("Overall")
+												.foregroundStyle(.cyan)
+												.bold()
+										Text("Easy")
+										Text("Medium")
+										Text("Hard")
+										Text("Extreme")
+										Text("Survival")
 								}
-								.scrollIndicators(.hidden)
-								
-								ScrollView(.horizontal) {
-										LazyHStack (spacing: 50) {
-												StatCategory()
-												StatCategory()
-												StatCategory()
-												StatCategory()
-												StatCategory()
-												StatCategory()
-										}
-										.scrollTargetLayout()
-								}
-								.scrollIndicators(.hidden)
-								.contentMargins(.horizontal, 16)
-								.scrollTargetBehavior(.viewAligned)
+								.padding([.top, .horizontal])
 						}
-						.navigationTitle("Stats")
-						.navigationBarTitleDisplayMode(.inline)
-						.toolbar {
-								ToolbarItem {
-										Button(action: {
-												showSettings = true
-										}, label: {
-												Image(systemName: "gear")
-														.foregroundStyle(Color("Primary Black"))
-										})
+						.scrollIndicators(.hidden)
+						
+						ScrollView(.horizontal) {
+								LazyHStack (spacing: 50) {
+										StatCategory()
+										StatCategory()
+										StatCategory()
+										StatCategory()
+										StatCategory()
+										StatCategory()
 								}
+								.scrollTargetLayout()
+						}
+						.scrollIndicators(.hidden)
+						.contentMargins(.horizontal, 16)
+						.scrollTargetBehavior(.viewAligned)
+				}
+				.navigationTitle("Stats")
+				.navigationBarTitleDisplayMode(.inline)
+				.toolbar {
+						ToolbarItem {
+								Button(action: {
+										showSettings.toggle()
+								}, label: {
+										Image(systemName: "gear")
+												.foregroundStyle(Color("Primary Black"))
+								})
 						}
 				}
-				.sheet(isPresented: $showSettings, content: {
-						SettingsView()
-								.presentationDragIndicator(.visible)
-				})
-
+		}
+		.sheet(isPresented: $showSettings, content: {
+				SettingsView()
+						.presentationDragIndicator(.visible)
+		})
+				
 		}
 }
 
-#Preview {
-		StatsView()
-}
+//#Preview {
+//		StatsView()
+//}

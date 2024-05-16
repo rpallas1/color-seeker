@@ -9,9 +9,12 @@ import SwiftUI
 
 struct AchievementsView: View {
 		
+		@Environment(GlobalStates.self) var viewStates
+		
 		@State private var showSettings = false
 		
 		var body: some View {
+								
 				NavigationStack {
 						VStack {
 								ScrollView(.horizontal) {
@@ -50,7 +53,7 @@ struct AchievementsView: View {
 						.toolbar {
 								ToolbarItem {
 										Button(action: {
-												showSettings = true
+												showSettings.toggle()
 										}, label: {
 												Image(systemName: "gear")
 														.foregroundStyle(Color("Primary Black"))
@@ -65,6 +68,6 @@ struct AchievementsView: View {
 		}
 }
 
-#Preview {
-		AchievementsView()
-}
+//#Preview {
+//		AchievementsView()
+//}

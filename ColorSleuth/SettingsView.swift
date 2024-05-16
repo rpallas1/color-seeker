@@ -10,12 +10,12 @@ import SwiftUI
 struct SettingsView: View {
 		
 		@Environment(\.dismiss) private var dismiss
-		
-		@State var haptics = false
-		@State var darkMode = false
-		@State var showHowTo = false
+		@Environment(GlobalStates.self) var settings
 		
     var body: some View {
+				
+				@Bindable var settings = settings
+				
 				NavigationStack {
 						VStack {
 								Form {
@@ -28,8 +28,8 @@ struct SettingsView: View {
 																		.presentationDragIndicator(.visible)
 														} label: {}
 												}
-												Toggle("Dark Mode", isOn: $haptics)
-												Toggle("Haptics", isOn: $darkMode)
+												Toggle("Dark Mode", isOn: $settings.darkMode)
+												Toggle("Haptics", isOn: $settings.haptics)
 										}
 										
 										Section {
@@ -50,9 +50,6 @@ struct SettingsView: View {
 												.bold()
 								})
 						}
-//						.sheet(isPresented: $showHowTo, content: {
-//								HowToPlayView()
-//						})
 				}
     }
 }

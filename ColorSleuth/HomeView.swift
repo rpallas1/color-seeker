@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct HomeView: View {
+		
+		@Environment(GlobalStates.self) var viewStates
 						
+		@State private var showGameplay = false
 		@State private var showSettings = false
 		
 		var body: some View {
+				
+				@Bindable var viewStates = viewStates
+				
 				NavigationStack {
 						VStack {
 								Text("Color Sleuth")
@@ -40,9 +46,10 @@ struct HomeView: View {
 								.padding(.bottom, 50)
 								
 								Spacer()
-								
+
 								Button(action: {
 										// TODO: Bring up difficulty options
+										viewStates.showGameplay = true
 								}, label: {
 										ZStack {
 												RoundedRectangle(cornerRadius: 100)
@@ -60,7 +67,7 @@ struct HomeView: View {
 						.toolbar {
 								ToolbarItem {
 										Button(action: {
-												showSettings = true
+												showSettings.toggle()
 										}, label: {
 												Image(systemName: "gear")
 														.foregroundStyle(Color("Primary Black"))
@@ -71,6 +78,9 @@ struct HomeView: View {
 				.sheet(isPresented: $showSettings, content: {
 						SettingsView()
 								.presentationDragIndicator(.visible)
+				})
+				.fullScreenCover(isPresented: $viewStates.showGameplay, content: {
+						GameplayView()
 				})
 		}
 }

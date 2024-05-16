@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct ColorSleuthApp: App {
+		
+		@State var viewStates = GlobalStates()
+		
     var body: some Scene {
         WindowGroup {
             MainView()
+								.environment(viewStates)
         }
     }
 }

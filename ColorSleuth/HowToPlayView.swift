@@ -55,16 +55,17 @@ struct HowToPlayView: View {
 						}
 						.navigationTitle("How to Play")
 						.navigationBarTitleDisplayMode(.inline)
-						.toolbar {
-								ToolbarItem(placement: .topBarTrailing) {
-										Button(action: {
-												dismiss()
-										}, label: {
-												Text("Done")
-														.bold()
-										})
-								}
-						}
+//						.toolbar {
+//								ToolbarItem(placement: .topBarTrailing) {
+//										Button(action: {
+//												// TODO: Set showSettings to false to dimiss
+//												dismiss()
+//										}, label: {
+//												Text("Done")
+//														.bold()
+//										})
+//								}
+//						}
 				}
     }
 }

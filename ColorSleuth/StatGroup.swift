@@ -8,17 +8,25 @@
 import SwiftUI
 
 struct StatGroup: View {
+		
+//		var stat: Stat
+		var section: String
+		var firstStatName: String
+		var firstStat: String
+		var secondStatName: String
+		var secondStat: String
+		
 		var body: some View {
 				VStack (alignment: .leading, spacing: 20) {
-						Text("Games")
+						Text(section)
 								.font(.title)
 								.bold()
 						
 						HStack {
-								Text("Games Played")
+								Text(firstStatName)
 										.padding(.leading)
 								Spacer()
-								Text("196")
+								Text(String(firstStat))
 						}
 						.padding()
 						.font(.title3)
@@ -28,10 +36,10 @@ struct StatGroup: View {
 						}
 						
 						HStack {
-								Text("Percent Correct")
+								Text(secondStatName)
 										.padding(.leading)
 								Spacer()
-								Text("100%")
+								Text(secondStat)
 						}
 						.padding()
 						.font(.title3)
@@ -45,8 +53,4 @@ struct StatGroup: View {
 				.padding(.top)
 				.containerRelativeFrame(.horizontal)
 		}
-}
-
-#Preview {
-		StatGroup()
 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct ColorSleuthApp: App {
@@ -16,6 +17,7 @@ struct ColorSleuthApp: App {
         WindowGroup {
             MainView()
 								.environment(viewStates)
+								.modelContainer(for: [Stat.self])
         }
     }
 }

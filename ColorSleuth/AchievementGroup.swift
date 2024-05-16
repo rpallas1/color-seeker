@@ -8,9 +8,18 @@
 import SwiftUI
 
 struct AchievementGroup: View {
+		
+		var section: String
+		var description1: String
+		var description2: String
+		var description3: String
+		var description4: String
+		var description5: String
+		var description6: String
+		
     var body: some View {
 				VStack (alignment: .leading, spacing: 20) {
-						Text("Games Played")
+						Text(section)
 								.font(.title)
 								.bold()
 						HStack {
@@ -18,21 +27,21 @@ struct AchievementGroup: View {
 										Image(systemName: "trophy.fill")
 												.foregroundStyle(.cyan)
 												.font(Font.system(size: 50))
-										Text("Play 25\nGames")
+										Text(description1)
 								}
 								Spacer()
 								VStack (spacing: 8) {
 										Image(systemName: "trophy.fill")
 												.foregroundStyle(.cyan)
 												.font(Font.system(size: 50))
-										Text("Play 100\nGames")
+										Text(description2)
 								}
 								Spacer()
 								VStack (spacing: 8) {
 										Image(systemName: "trophy")
 												.foregroundStyle(.gray)
 												.font(Font.system(size: 50))
-										Text("Play 250\nGames")
+										Text(description3)
 								}
 						}
 						.padding(.horizontal, 24)
@@ -42,21 +51,21 @@ struct AchievementGroup: View {
 										Image(systemName: "trophy")
 												.foregroundStyle(.gray)
 												.font(Font.system(size: 50))
-										Text("Play 500\nGames")
+										Text(description4)
 								}
 								Spacer()
 								VStack (spacing: 8) {
 										Image(systemName: "trophy")
 												.foregroundStyle(.gray)
 												.font(Font.system(size: 50))
-										Text("Play 1000\nGames")
+										Text(description5)
 								}
 								Spacer()
 								VStack (spacing: 8) {
 										Image(systemName: "trophy")
 												.foregroundStyle(.gray)
 												.font(Font.system(size: 50))
-										Text("Play 5000\nGames")
+										Text(description6)
 								}
 						}
 						.padding(.horizontal, 24)
@@ -64,8 +73,4 @@ struct AchievementGroup: View {
 				.padding(.top)
 				.multilineTextAlignment(.center)
     }
-}
-
-#Preview {
-    AchievementGroup()
 }

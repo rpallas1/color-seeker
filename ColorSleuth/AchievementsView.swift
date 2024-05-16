@@ -35,12 +35,12 @@ struct AchievementsView: View {
 								
 								ScrollView(.horizontal) {
 										LazyHStack (spacing: 50) {
-												AchievementCategory()
-												AchievementCategory()
-												AchievementCategory()
-												AchievementCategory()
-												AchievementCategory()
-												AchievementCategory()
+												AchievementCategory(difficulty: "Overall")
+												AchievementCategory(difficulty: "Easy")
+												AchievementCategory(difficulty: "Medium")
+												AchievementCategory(difficulty: "Hard")
+												AchievementCategory(difficulty: "Extreme")
+												AchievementCategory(difficulty: "Survival")
 										}
 										.scrollTargetLayout()
 								}

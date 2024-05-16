@@ -23,11 +23,10 @@ struct SettingsView: View {
 												HStack {
 														Text("How to Play")
 														Spacer()
-														Button(action: {
-																showHowTo = true
-														}, label: {
-																Image(systemName: "chevron.right")
-														})
+														NavigationLink {
+																HowToPlayView()
+																		.presentationDragIndicator(.visible)
+														} label: {}
 												}
 												Toggle("Dark Mode", isOn: $haptics)
 												Toggle("Haptics", isOn: $darkMode)
@@ -51,9 +50,9 @@ struct SettingsView: View {
 												.bold()
 								})
 						}
-						.sheet(isPresented: $showHowTo, content: {
-								HowToPlayView()
-						})
+//						.sheet(isPresented: $showHowTo, content: {
+//								HowToPlayView()
+//						})
 				}
     }
 }

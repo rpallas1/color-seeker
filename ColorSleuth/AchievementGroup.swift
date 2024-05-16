@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct AchievementSet: View {
+struct AchievementGroup: View {
     var body: some View {
 				VStack (alignment: .leading, spacing: 20) {
 						Text("Games Played")
-								.font(.title2)
+								.font(.title)
 								.bold()
 						HStack {
 								VStack (spacing: 8) {
@@ -61,10 +61,11 @@ struct AchievementSet: View {
 						}
 						.padding(.horizontal, 24)
 				}
-				.padding(.top, 30)
+				.padding(.top)
+				.multilineTextAlignment(.center)
     }
 }
 
 #Preview {
-    AchievementSet()
+    AchievementGroup()
 }

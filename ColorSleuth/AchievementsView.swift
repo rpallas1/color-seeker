@@ -10,40 +10,41 @@ import SwiftUI
 struct AchievementsView: View {
 		
 		@State private var showSettings = false
-		@State private var currentPage = 0
 		
 		var body: some View {
 				NavigationStack {
-						ScrollView(.horizontal) {
-								// List of difficulties
-								HStack (spacing: 36) {
-										Text("Overall")
-												.foregroundStyle(.cyan)
-												.bold()
-										Text("Easy")
-										Text("Medium")
-										Text("Hard")
-										Text("Extreme")
-										Text("Survival")
+						VStack {
+								ScrollView(.horizontal) {
+										// List of difficulties
+										HStack (spacing: 36) {
+												Text("Overall")
+														.foregroundStyle(.cyan)
+														.bold()
+												Text("Easy")
+												Text("Medium")
+												Text("Hard")
+												Text("Extreme")
+												Text("Survival")
+										}
+										.padding([.top, .horizontal])
 								}
-								.padding([.top, .horizontal])
-						}
-						.scrollIndicators(.hidden)
-						
-						ScrollView {
-								// List of achievements
-								VStack {
-										AchievementSet()
-										AchievementSet()
-										AchievementSet()
-										AchievementSet()
+								.scrollIndicators(.hidden)
+								
+								ScrollView(.horizontal) {
+										LazyHStack (spacing: 50) {
+												AchievementCategory()
+												AchievementCategory()
+												AchievementCategory()
+												AchievementCategory()
+												AchievementCategory()
+												AchievementCategory()
+										}
+										.scrollTargetLayout()
 								}
+								.scrollIndicators(.hidden)
+								.contentMargins(.horizontal, 16)
+								.scrollTargetBehavior(.viewAligned)
 						}
-						.padding(.horizontal)
-						.scrollIndicators(.hidden)
-						.sheet(isPresented: $showSettings, content: {
-								SettingsView()
-						})
 						.navigationTitle("Achievements")
 						.navigationBarTitleDisplayMode(.inline)
 						.toolbar {
@@ -52,12 +53,15 @@ struct AchievementsView: View {
 												showSettings = true
 										}, label: {
 												Image(systemName: "gear")
-														.foregroundStyle(.black)
+														.foregroundStyle(Color("Primary Black"))
 										})
 								}
 						}
-						
 				}
+				.sheet(isPresented: $showSettings, content: {
+						SettingsView()
+								.presentationDragIndicator(.visible)
+				})
 		}
 }
 

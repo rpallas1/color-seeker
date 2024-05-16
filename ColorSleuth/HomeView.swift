@@ -63,13 +63,14 @@ struct HomeView: View {
 												showSettings = true
 										}, label: {
 												Image(systemName: "gear")
-														.foregroundStyle(.black)
+														.foregroundStyle(Color("Primary Black"))
 										})
 								}
 						}
 				}
 				.sheet(isPresented: $showSettings, content: {
 						SettingsView()
+								.presentationDragIndicator(.visible)
 				})
 		}
 }

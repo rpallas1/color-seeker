@@ -56,14 +56,12 @@ struct HowToPlayView: View {
 						.navigationTitle("How to Play")
 						.navigationBarTitleDisplayMode(.inline)
 						.toolbar {
-								ToolbarItem(placement: .topBarLeading) {
+								ToolbarItem(placement: .topBarTrailing) {
 										Button(action: {
 												dismiss()
 										}, label: {
-												HStack {
-														Image(systemName: "chevron.left")
-														Text("Back")
-												}
+												Text("Done")
+														.bold()
 										})
 								}
 						}

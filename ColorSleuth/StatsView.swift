@@ -11,22 +11,39 @@ struct StatsView: View {
 		
 		@State private var showSettings = false
 		
-		var body: some View {
-				NavigationStack {
-						ScrollView {
-								VStack (spacing: 20) {
-										// List of Stat Cards
-										StatCard()
-										StatCard()
-										StatCard()
-										StatCard()
-										StatCard()
-										StatCard()
+		var body: some View {NavigationStack {
+						VStack {
+								ScrollView(.horizontal) {
+										// List of difficulties
+										HStack (spacing: 36) {
+												Text("Overall")
+														.foregroundStyle(.cyan)
+														.bold()
+												Text("Easy")
+												Text("Medium")
+												Text("Hard")
+												Text("Extreme")
+												Text("Survival")
+										}
+										.padding([.top, .horizontal])
 								}
-								.padding(.top, 30)
+								.scrollIndicators(.hidden)
+								
+								ScrollView(.horizontal) {
+										LazyHStack (spacing: 50) {
+												StatCategory()
+												StatCategory()
+												StatCategory()
+												StatCategory()
+												StatCategory()
+												StatCategory()
+										}
+										.scrollTargetLayout()
+								}
+								.scrollIndicators(.hidden)
+								.contentMargins(.horizontal, 16)
+								.scrollTargetBehavior(.viewAligned)
 						}
-						.padding(.horizontal)
-						.scrollIndicators(.hidden)
 						.navigationTitle("Stats")
 						.navigationBarTitleDisplayMode(.inline)
 						.toolbar {
@@ -35,15 +52,15 @@ struct StatsView: View {
 												showSettings = true
 										}, label: {
 												Image(systemName: "gear")
-														.foregroundStyle(.black)
+														.foregroundStyle(Color("Primary Black"))
 										})
 								}
 						}
-						.sheet(isPresented: $showSettings, content: {
-								SettingsView()
-						})
-
 				}
+				.sheet(isPresented: $showSettings, content: {
+						SettingsView()
+								.presentationDragIndicator(.visible)
+				})
 
 		}
 }

@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct MainView: View {
+		
+		@State var statCategories = [StatCategory]()
+		var dataService = DataService()
+		
     var body: some View {
 				TabView {
 						HomeView()
@@ -15,7 +19,7 @@ struct MainView: View {
 										Label("Home", systemImage: "house")
 								}
 						
-						StatsView()
+						StatsView(statCategories: statCategories)
 								.tabItem {
 										Label("Stats", systemImage: "square.stack.3d.up")
 								}
@@ -24,6 +28,9 @@ struct MainView: View {
 								.tabItem {
 										Label("Achievements", systemImage: "trophy")
 								}
+				}
+				.onAppear {
+						statCategories = dataService.getFileData()
 				}
     }
 }

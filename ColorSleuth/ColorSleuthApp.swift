@@ -17,7 +17,7 @@ struct ColorSleuthApp: App {
         WindowGroup {
             MainView()
 								.environment(viewStates)
-								.modelContainer(for: [Stat.self])
+								.modelContainer(for: [StatModel.self, RawStat.self])
         }
     }
 }

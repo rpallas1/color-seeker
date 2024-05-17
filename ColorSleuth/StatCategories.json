@@ -1,0 +1,69 @@
+[
+    {
+        "difficulty": "Overall",
+        "sections": [{ 
+            "name": "Games",
+            "stats": [{
+                "name": "Games Played",
+                "stat": 0},
+            {
+                "name": "Percent Correct",
+                "stat": 0
+            }]
+        },
+        {
+            "name": "Streaks",
+            "stats": [{
+                "name": "Longest Streak",
+                "stat": 0},
+            {
+                "name": "Current Streak",
+                "stat": 0
+            }]
+        },
+        {
+            "name": "Times",
+            "stats": [{
+                "name": "Best Time",
+                "stat": 0},
+            {
+                "name": "Average Time",
+                "stat": 0
+            }]
+        }]
+    },
+    {
+        "difficulty": "Easy",
+        "sections": [{ 
+            "name": "Games",
+            "stats": [{
+                "name": "Games Played",
+                "stat": 0},
+            {
+                "name": "Percent Correct",
+                "stat": 0
+            }]
+        },
+        {
+            "name": "Streaks",
+            "stats": [{
+                "name": "Longest Streak",
+                "stat": 0},
+            {
+                "name": "Current Streak",
+                "stat": 0
+            }]
+        },
+        {
+            "name": "Times",
+            "stats": [{
+                "name": "Best Time",
+                "stat": 0},
+            {
+                "name": "Average Time",
+                "stat": 0
+            }]
+        }] 
+    }
+]
+

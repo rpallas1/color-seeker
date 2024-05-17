@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AchievementGroup: View {
+struct AchievementGroupView: View {
 		
 		var section: String
 		var description1: String

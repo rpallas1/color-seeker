@@ -19,7 +19,7 @@ struct SettingsView: View {
 				NavigationStack {
 						VStack {
 								Form {
-										Section {
+										Section() {
 												HStack {
 														Text("How to Play")
 														Spacer()

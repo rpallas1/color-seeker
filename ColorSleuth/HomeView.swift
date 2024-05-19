@@ -9,10 +9,13 @@ import SwiftUI
 
 struct HomeView: View {
 		
+		@Environment(\.modelContext) var context
+
 		@Environment(GlobalStates.self) var viewStates
 						
 		@State private var showGameplay = false
 		@State private var showSettings = false
+		@State var selectedDifficulty = ""
 		
 		var body: some View {
 				
@@ -50,6 +53,7 @@ struct HomeView: View {
 								Button(action: {
 										// TODO: Bring up difficulty options
 										viewStates.showGameplay = true
+										selectedDifficulty = "Easy"
 								}, label: {
 										ZStack {
 												RoundedRectangle(cornerRadius: 100)
@@ -77,10 +81,9 @@ struct HomeView: View {
 				}
 				.sheet(isPresented: $showSettings, content: {
 						SettingsView()
-								.presentationDragIndicator(.visible)
 				})
 				.fullScreenCover(isPresented: $viewStates.showGameplay, content: {
-						GameplayView()
+						GameplayView(selectedDifficulty: selectedDifficulty)
 				})
 		}
 }

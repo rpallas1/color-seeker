@@ -13,7 +13,9 @@ struct StatsView: View {
 		@Environment(\.modelContext) var context
 		@Environment(GlobalStates.self) var viewStates
 		
-		var statCategories: [StatCategory]
+		@Query(sort: \StatModel.position)
+		private var sortedStats: [StatModel]
+		
 		@State private var showSettings = false
 		
 		var body: some View {NavigationStack {
@@ -22,10 +24,10 @@ struct StatsView: View {
 				
 				VStack {
 						ScrollView(.horizontal) {
-								// List of difficulties
+								// List of difficulties at the top
 								HStack (spacing: 36) {
-										ForEach(statCategories) { category in
-												Text(category.difficulty)
+										ForEach(sortedStats) { stat in
+												Text(stat.difficulty)
 														.foregroundStyle(.cyan)
 														.bold()
 										}
@@ -34,10 +36,11 @@ struct StatsView: View {
 						}
 						.scrollIndicators(.hidden)
 						
+						// List of all the stat sheets by difficulty
 						ScrollView(.horizontal) {
 								LazyHStack (spacing: 50) {
-										ForEach(statCategories) { category in
-												StatCategoryView(statCategory: category)
+										ForEach(sortedStats) { stat in
+												StatSheetView(statCategory: stat)
 										}
 								}
 								.scrollTargetLayout()
@@ -45,6 +48,7 @@ struct StatsView: View {
 						.scrollIndicators(.hidden)
 						.contentMargins(.horizontal, 16)
 						.scrollTargetBehavior(.viewAligned)
+						
 				}
 				.navigationTitle("Stats")
 				.navigationBarTitleDisplayMode(.inline)
@@ -61,7 +65,6 @@ struct StatsView: View {
 		}
 		.sheet(isPresented: $showSettings, content: {
 				SettingsView()
-						.presentationDragIndicator(.visible)
 		})
 				
 		}

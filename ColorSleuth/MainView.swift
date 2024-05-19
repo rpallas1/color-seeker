@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MainView: View {
 		
-		@State var statCategories = [StatCategory]()
-		var dataService = DataService()
+		@Environment(\.modelContext) var context
+		@Query private var allStats: [StatModel]
 		
     var body: some View {
 				TabView {
@@ -19,7 +20,7 @@ struct MainView: View {
 										Label("Home", systemImage: "house")
 								}
 						
-						StatsView(statCategories: statCategories)
+						StatsView()
 								.tabItem {
 										Label("Stats", systemImage: "square.stack.3d.up")
 								}
@@ -30,11 +31,18 @@ struct MainView: View {
 								}
 				}
 				.onAppear {
-						statCategories = dataService.getFileData()
+						if allStats.count == 0 {
+								context.insert(StatModel(difficuly: "Overall", position: 0))
+								context.insert(StatModel(difficuly: "Easy", position: 1))
+								context.insert(StatModel(difficuly: "Medium", position: 2))
+								context.insert(StatModel(difficuly: "Hard", position: 3))
+								context.insert(StatModel(difficuly: "Extreme", position: 4))
+								context.insert(StatModel(difficuly: "Survival", position: 5))
+								print(context.sqliteCommand)
+						} else {
+								print(allStats.count)
+
+						}
 				}
     }
-}
-
-#Preview {
-    MainView()
 }

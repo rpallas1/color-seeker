@@ -25,7 +25,6 @@ struct SettingsView: View {
 														Spacer()
 														NavigationLink {
 																HowToPlayView()
-																		.presentationDragIndicator(.visible)
 														} label: {}
 												}
 												Toggle("Dark Mode", isOn: $settings.darkMode)

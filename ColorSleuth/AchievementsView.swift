@@ -63,7 +63,6 @@ struct AchievementsView: View {
 				}
 				.sheet(isPresented: $showSettings, content: {
 						SettingsView()
-								.presentationDragIndicator(.visible)
 				})
 		}
 }

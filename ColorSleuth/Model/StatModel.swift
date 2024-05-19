@@ -11,63 +11,35 @@ import SwiftData
 @Model
 class StatModel {
 		
-		var difficulty: String
-		var rawStats: [RawStat]
+		@Attribute(.unique) var difficulty: String
+		@Attribute(.unique) var position: Int
+		var gamesPlayed: Int = 0
+		var gamesStarted: Int = 0
+		var gamesFailed: Int = 0
+		var gamesFinished: Int = 0
+		var correctTaps: Int = 0
+		var totalTaps: Int = 0
+		var currentStreak: Int = 0
+		var bestStreak: Int = 0
+		var totalTime: Int = 0
+		var bestTime: Int = 0
+		var averageTime: Int = 0
+		var percentCorrect: Double = 0.0
 		
-		init(difficulty: String, rawStats: [RawStat]) {
-				self.difficulty = difficulty
-				self.rawStats = rawStats
+		init(difficuly: String, position: Int) {
+				self.difficulty = difficuly
+				self.position = position
 		}
 }
 
-@Model
-class RawStat {
-		
-		var gamesPlayed: Int
-		var gamesStarted: Int
-		var gamesFailed: Int
-		var gamesFinished: Int
-		var correctTaps: Int
-		var currentStreak: Int
-		var bestStreak: Int
-		var totalTime: Int
-		var bestTime: Int
-		var averageTime: Int
-		var percentCorrect: Double
-		
-		init(gamesPlayed: Int, gamesStarted: Int, gamesFailed: Int, gamesFinished: Int, correctTaps: Int, currentStreak: Int, bestStreak: Int, totalTime: Int, bestTime: Int, averageTime: Int, percentCorrect: Double) {
-				self.gamesPlayed = gamesPlayed
-				self.gamesStarted = gamesStarted
-				self.gamesFailed = gamesFailed
-				self.gamesFinished = gamesFinished
-				self.correctTaps = correctTaps
-				self.currentStreak = currentStreak
-				self.bestStreak = bestStreak
-				self.totalTime = totalTime
-				self.bestTime = bestTime
-				self.averageTime = averageTime
-				self.percentCorrect = percentCorrect
-		}
-
-}
-
-struct calcStats {
-		
-		func calcAverageTime(totalTime: Int, gamesPlayed: Int) -> Int {
-				
-				return totalTime / gamesPlayed
-		}
-		
-		func calcBestStreak() {
-				
-		}
-		
-		func calcBestTime() {
-				
-		}
-		
-		func calcPercentCorrect() {
-				
+extension ModelContext {
+		var sqliteCommand: String {
+				if let url = container.configurations.first?.url.path(percentEncoded: false) {
+						"sqlite3 \"\(url)\""
+				} else {
+						"No SQLite database found."
+				}
 		}
 }
+
 

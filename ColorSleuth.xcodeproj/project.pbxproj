@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC72DB4C2BFBD783000A32C7 /* DifficultyMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC72DB4B2BFBD783000A32C7 /* DifficultyMenuView.swift */; };
 		BC7B53FC2BF677BB001F74B5 /* PauseGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B53FB2BF677BB001F74B5 /* PauseGameView.swift */; };
 		BC7B53FE2BF677D1001F74B5 /* RoundFinishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B53FD2BF677D1001F74B5 /* RoundFinishedView.swift */; };
 		BC7B54002BF677F2001F74B5 /* GameplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B53FF2BF677F2001F74B5 /* GameplayView.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC72DB4B2BFBD783000A32C7 /* DifficultyMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyMenuView.swift; sourceTree = "<group>"; };
 		BC7B53FB2BF677BB001F74B5 /* PauseGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseGameView.swift; sourceTree = "<group>"; };
 		BC7B53FD2BF677D1001F74B5 /* RoundFinishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundFinishedView.swift; sourceTree = "<group>"; };
 		BC7B53FF2BF677F2001F74B5 /* GameplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayView.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				BCE3C7182BF5212B00CB2EAE /* ColorSleuthApp.swift */,
 				BCE3C71A2BF5212B00CB2EAE /* MainView.swift */,
 				BCE3C72C2BF523D500CB2EAE /* HomeView.swift */,
+				BC72DB4B2BFBD783000A32C7 /* DifficultyMenuView.swift */,
 				BCE3C7282BF522F900CB2EAE /* StatsView.swift */,
 				BCE3C73A2BF673FF00CB2EAE /* StatSheetView.swift */,
 				BCE3C72A2BF5230300CB2EAE /* AchievementsView.swift */,
@@ -210,6 +213,7 @@
 				BCE3C7372BF55E5C00CB2EAE /* AchievementGroupView.swift in Sources */,
 				BC7B53FE2BF677D1001F74B5 /* RoundFinishedView.swift in Sources */,
 				BC7B54002BF677F2001F74B5 /* GameplayView.swift in Sources */,
+				BC72DB4C2BFBD783000A32C7 /* DifficultyMenuView.swift in Sources */,
 				BC7B54122BF7E005001F74B5 /* StatHelper.swift in Sources */,
 				BCE3C72D2BF523D500CB2EAE /* HomeView.swift in Sources */,
 				BCE3C73B2BF673FF00CB2EAE /* StatSheetView.swift in Sources */,

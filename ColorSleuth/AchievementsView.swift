@@ -66,7 +66,3 @@ struct AchievementsView: View {
 				})
 		}
 }
-
-//#Preview {
-//		AchievementsView()
-//}

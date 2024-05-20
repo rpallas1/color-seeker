@@ -10,7 +10,6 @@ import SwiftUI
 struct HomeView: View {
 		
 		@Environment(\.modelContext) var context
-
 		@Environment(GlobalStates.self) var viewStates
 						
 		@State private var showGameplay = false
@@ -22,52 +21,38 @@ struct HomeView: View {
 				@Bindable var viewStates = viewStates
 				
 				NavigationStack {
-						VStack {
-								Text("Color Sleuth")
-										.font(.largeTitle)
-										.bold()
-								
-								Spacer()
-								
-								Grid {
-										GridRow {
-												RoundedRectangle(cornerRadius: 12)
-														.frame(width: 136, height: 136)
-												RoundedRectangle(cornerRadius: 12)
-														.frame(width: 136, height: 136)
-														.opacity(0.7)
-										}
+						ZStack {
+								VStack {
+										Text("Color Sleuth")
+												.font(.largeTitle)
+												.bold()
 										
-										GridRow {
-												RoundedRectangle(cornerRadius: 12)
-														.frame(width: 136, height: 136)
-												RoundedRectangle(cornerRadius: 12)
-														.frame(width: 136, height: 136)
-										}
-								}
-								.foregroundStyle(.orange)
-								.padding(.bottom, 50)
-								
-								Spacer()
-
-								Button(action: {
-										// TODO: Bring up difficulty options
-										viewStates.showGameplay = true
-										selectedDiff = .extreme
+										Spacer()
 										
-								}, label: {
-										ZStack {
-												RoundedRectangle(cornerRadius: 100)
-														.frame(width: 239, height: 50)
-														.foregroundStyle(.cyan)
+										Grid {
+												GridRow {
+														RoundedRectangle(cornerRadius: 12)
+																.frame(width: 136, height: 136)
+														RoundedRectangle(cornerRadius: 12)
+																.frame(width: 136, height: 136)
+																.opacity(0.7)
+												}
 												
-												Text("New Game")
-														.foregroundStyle(.white)
-														.font(.title2)
-														.bold()
+												GridRow {
+														RoundedRectangle(cornerRadius: 12)
+																.frame(width: 136, height: 136)
+														RoundedRectangle(cornerRadius: 12)
+																.frame(width: 136, height: 136)
+												}
 										}
-								})
-								.padding(.bottom, 20)
+										.foregroundStyle(.orange)
+										.padding(.bottom, 50)
+										
+										Spacer()
+										
+										DifficultyMenuView(selectedDiff: $selectedDiff)
+
+								}
 						}
 						.toolbar {
 								ToolbarItem {
@@ -87,16 +72,4 @@ struct HomeView: View {
 						GameplayView(selectedDiff: selectedDiff)
 				})
 		}
-}
-
-enum Difficulty {
-		case easy
-		case medium
-		case hard
-		case extreme
-		case survival
-}
-
-#Preview {
-		HomeView()
 }

@@ -15,7 +15,7 @@ struct HomeView: View {
 						
 		@State private var showGameplay = false
 		@State private var showSettings = false
-		@State var selectedDifficulty = ""
+		@State private var selectedDiff: Difficulty = .easy
 		
 		var body: some View {
 				
@@ -53,7 +53,8 @@ struct HomeView: View {
 								Button(action: {
 										// TODO: Bring up difficulty options
 										viewStates.showGameplay = true
-										selectedDifficulty = "Easy"
+										selectedDiff = .extreme
+										
 								}, label: {
 										ZStack {
 												RoundedRectangle(cornerRadius: 100)
@@ -83,9 +84,17 @@ struct HomeView: View {
 						SettingsView()
 				})
 				.fullScreenCover(isPresented: $viewStates.showGameplay, content: {
-						GameplayView(selectedDifficulty: selectedDifficulty)
+						GameplayView(selectedDiff: selectedDiff)
 				})
 		}
+}
+
+enum Difficulty {
+		case easy
+		case medium
+		case hard
+		case extreme
+		case survival
 }
 
 #Preview {

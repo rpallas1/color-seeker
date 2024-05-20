@@ -11,7 +11,7 @@ struct GameplayView: View {
 		
 		@Environment(GlobalStates.self) var viewStates
 		
-		var selectedDifficulty: String
+		var selectedDiff: Difficulty
 
 		@State private var showSettings: Bool = false
 		@State private var showEndRound = false
@@ -68,7 +68,7 @@ struct GameplayView: View {
 																.opacity(0.7)
 																.onTapGesture {
 																		// TODO: Create StatModel instance or add to if already exists for difficulty
-																		gameplay.difficulty = selectedDifficulty
+																		gameplay.difficulty = selectedDiff
 																		gameplay.score += 1
 																		
 																		viewStates.showEndRound = true
@@ -112,7 +112,7 @@ struct GameplayView: View {
 								}
 								
 								if viewStates.showEndRound {
-										RoundFinishedView(selectedDifficulty: selectedDifficulty, currentGame: gameplay)
+										RoundFinishedView(selectedDiff: selectedDiff, currentGame: gameplay)
 								}
 						}
 				}
@@ -122,4 +122,3 @@ struct GameplayView: View {
 				})
 		}
 }
-

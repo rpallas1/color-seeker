@@ -56,7 +56,7 @@ struct SettingsView: View {
 								})
 						}
 						.confirmationDialog("Reseting data includes all stats and achievements. Are you sure you want to reset all game data? ", isPresented: $showConfirmation, titleVisibility: .visible) {
-								Button("Delete Game Data") {
+								Button("Delete Game Data", role: .destructive) {
 										
 										do {
 												try context.delete(model: StatModel.self)

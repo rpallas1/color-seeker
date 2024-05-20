@@ -11,16 +11,16 @@ import SwiftData
 struct RoundFinishedView: View {
 		
 		@Environment(GlobalStates.self) var viewStates
-		@Environment(\.modelContext) var context
+		@Environment(\.modelContext) private var context
 		@Environment(\.dismiss) var dismiss
 		
 		@Query(filter: #Predicate<StatModel> { stat in
-				stat.difficulty == "Easy"
+				stat.difficulty == "Medium"
 		})
 		private var difficultyStat: [StatModel]
 		
 		@State private var showHome = false
-		var selectedDifficulty: String
+		var selectedDiff: Difficulty
 		var currentGame: GameplayModel
 		
     var body: some View {
@@ -43,5 +43,38 @@ struct RoundFinishedView: View {
 						}
 				}
     }
+		
+		
+		init(selectedDiff: Difficulty, currentGame: GameplayModel) {
+				// Query only for the difficulty that was played in the current game
+				if selectedDiff == Difficulty.easy {
+						_difficultyStat = Query(filter: #Predicate<StatModel> { stat in
+								stat.difficulty == "Easy"
+						})
+				}
+				else if selectedDiff == Difficulty.medium {
+						_difficultyStat = Query(filter: #Predicate<StatModel> { stat in
+								stat.difficulty == "Medium"
+						})
+				}
+				else if selectedDiff == Difficulty.hard {
+						_difficultyStat = Query(filter: #Predicate<StatModel> { stat in
+								stat.difficulty == "Hard"
+						})
+				}
+				else if selectedDiff == Difficulty.extreme {
+						_difficultyStat = Query(filter: #Predicate<StatModel> { stat in
+								stat.difficulty == "Extreme"
+						})
+				}
+				else if selectedDiff == Difficulty.survival {
+						_difficultyStat = Query(filter: #Predicate<StatModel> { stat in
+								stat.difficulty == "Survival"
+						})
+				}
+				
+				self.currentGame = currentGame
+				self.selectedDiff = selectedDiff
+		}
 }
 

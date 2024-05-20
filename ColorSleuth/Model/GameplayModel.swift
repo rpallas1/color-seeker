@@ -9,7 +9,7 @@ import Foundation
 
 class GameplayModel {
 		
-		var difficulty: String = ""
+		var difficulty: Difficulty = .medium
 		var score: Int = 0
 		var wonRound: Bool = false
 		// Start and end time or timer variable

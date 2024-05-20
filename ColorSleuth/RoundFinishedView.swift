@@ -19,7 +19,6 @@ struct RoundFinishedView: View {
 		})
 		private var difficultyStat: [StatModel]
 		
-//		var selectedDiff: Difficulty
 		var currentGame: GameplayModel
 		@State private var showHome = false
 
@@ -46,7 +45,7 @@ struct RoundFinishedView: View {
     }
 		
 		
-		init(selectedDiff: Difficulty, currentGame: GameplayModel) {
+		init(currentGame: GameplayModel) {
 				// Query only for the difficulty that was played in the current game
 				if currentGame.difficulty == Difficulty.easy {
 						_difficultyStat = Query(filter: #Predicate<StatModel> { stat in
@@ -75,7 +74,6 @@ struct RoundFinishedView: View {
 				}
 				
 				self.currentGame = currentGame
-//				self.selectedDiff = selectedDiff
 		}
 }
 

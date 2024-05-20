@@ -12,13 +12,11 @@ struct GameplayView: View {
 		
 		@Environment(GlobalStates.self) var viewStates
 		
-//		var selectedDiff: Difficulty
 		var currentGame: GameplayModel
 
 		@State private var showSettings: Bool = false
 		@State private var showEndRound = false
 		var updateStats: StatHelper = StatHelper()
-//		var gameplay: GameplayModel = GameplayModel()
 		
 		var body: some View {
 				
@@ -77,7 +75,6 @@ struct GameplayView: View {
 																.opacity(0.7)
 																.onTapGesture {
 																		// TODO: Create StatModel instance or add to if already exists for difficulty
-//																		gameplay.score += 1
 																		currentGame.score += 1
 																		
 																		withAnimation {
@@ -120,23 +117,15 @@ struct GameplayView: View {
 
 								
 								if viewStates.showPause {
-//										PauseGameView(currentGame: gameplay)
-										PauseGameView()
+										PauseGameView(currentGame: currentGame)
 								}
 								
 								if viewStates.showEndRound {
-//										RoundFinishedView(selectedDiff: selectedDiff, currentGame: gameplay)
-//												.transition(.push(from: .bottom))
 										RoundFinishedView(currentGame: currentGame)
 												.transition(.push(from: .bottom))
 								}
 						}
 				}
-//				.onAppear {
-//						print(gameplay.difficulty.rawValue)
-//						gameplay.difficulty = selectedDiff
-//						print(gameplay.difficulty.rawValue)
-//				}
 				.sheet(isPresented: $showSettings, content: {
 						SettingsView()
 								.presentationDragIndicator(.visible)

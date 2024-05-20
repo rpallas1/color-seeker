@@ -11,12 +11,12 @@ struct PauseGameView: View {
 		
 		@Environment(GlobalStates.self) var viewStates
 		
-//		var currentGame: GameplayModel
+		var currentGame: GameplayModel
 		
 		var body: some View {
 				
 				@Bindable var viewStates = viewStates
-				
+								
 				GroupBox {
 						VStack {
 								HStack {
@@ -24,8 +24,7 @@ struct PauseGameView: View {
 												HStack {
 														Text("Difficulty:")
 																.bold()
-//														Text(currentGame.difficulty.rawValue)
-														Text("SS")
+														Text(currentGame.difficulty.rawValue)
 												}
 												HStack {
 														Text("Time:")

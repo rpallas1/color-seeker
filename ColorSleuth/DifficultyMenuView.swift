@@ -12,8 +12,7 @@ struct DifficultyMenuView: View {
 		
 		@Environment(GlobalStates.self) var viewStates
 		
-//		@Binding var selectedDiff: Difficulty
-		var currentGame: GameplayModel
+		@Binding var currentGame: GameplayModel
 		
     var body: some View {
 				

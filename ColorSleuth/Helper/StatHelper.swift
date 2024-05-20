@@ -10,8 +10,9 @@ import SwiftUI
 import SwiftData
 
 struct StatHelper {
-		
 
+		
+		
 
 }
 

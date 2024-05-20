@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class StatModel {
+class StatModel: Identifiable {
 		
 		@Attribute(.unique) var difficulty: String
 		@Attribute(.unique) var position: Int

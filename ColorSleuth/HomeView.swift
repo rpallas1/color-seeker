@@ -6,15 +6,19 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct HomeView: View {
 		
 		@Environment(\.modelContext) var context
 		@Environment(GlobalStates.self) var viewStates
+		
+//		@Query var currentGames: [GameplayModel]
+		var currentGame = GameplayModel(difficulty: .easy)
 						
 		@State private var showGameplay = false
 		@State private var showSettings = false
-		@State private var selectedDiff: Difficulty = .easy
+//		@State private var selectedDiff: Difficulty = .easy
 		
 		var body: some View {
 				
@@ -50,8 +54,8 @@ struct HomeView: View {
 										
 										Spacer()
 										
-										DifficultyMenuView(selectedDiff: $selectedDiff)
-
+//										DifficultyMenuView(selectedDiff: $selectedDiff)
+										DifficultyMenuView(currentGame: currentGame)
 								}
 						}
 						.toolbar {
@@ -69,7 +73,14 @@ struct HomeView: View {
 						SettingsView()
 				})
 				.fullScreenCover(isPresented: $viewStates.showGameplay, content: {
-						GameplayView(selectedDiff: selectedDiff)
+						GameplayView(currentGame: currentGame)
+//						if currentGames.count == 1 {
+//								ForEach(currentGames) { game in
+//										GameplayView(currentGame: game)
+//								}
+//						} else {
+//								Text("Error: Returned more than one current game")
+//						}
 				})
 		}
 }

@@ -42,12 +42,5 @@ extension ModelContext {
 		}
 }
 
-enum Difficulty {
-		case easy
-		case medium
-		case hard
-		case extreme
-		case survival
-}
 
 

@@ -6,17 +6,19 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct GameplayView: View {
 		
 		@Environment(GlobalStates.self) var viewStates
 		
-		var selectedDiff: Difficulty
+//		var selectedDiff: Difficulty
+		var currentGame: GameplayModel
 
 		@State private var showSettings: Bool = false
 		@State private var showEndRound = false
 		var updateStats: StatHelper = StatHelper()
-		var gameplay: GameplayModel = GameplayModel()
+//		var gameplay: GameplayModel = GameplayModel()
 		
 		var body: some View {
 				
@@ -27,6 +29,15 @@ struct GameplayView: View {
 								VStack {
 										HStack {
 												Spacer()
+												
+												VStack (alignment: .leading) {
+														Text("Difficulty:")
+																.bold()
+														Text(currentGame.difficulty.rawValue)
+												}
+												
+												Spacer()
+												
 												VStack {
 														Text("Score")
 																.bold()
@@ -39,7 +50,6 @@ struct GameplayView: View {
 																}
 												}
 												
-												Spacer()
 												Spacer()
 												
 												VStack {
@@ -55,7 +65,6 @@ struct GameplayView: View {
 												}
 												Spacer()
 										}
-										.padding(.horizontal, 30)
 										
 										Spacer()
 										
@@ -68,10 +77,12 @@ struct GameplayView: View {
 																.opacity(0.7)
 																.onTapGesture {
 																		// TODO: Create StatModel instance or add to if already exists for difficulty
-																		gameplay.difficulty = selectedDiff
-																		gameplay.score += 1
+//																		gameplay.score += 1
+																		currentGame.score += 1
 																		
-																		viewStates.showEndRound = true
+																		withAnimation {
+																				viewStates.showEndRound = true
+																		}
 																}
 												}
 												
@@ -99,26 +110,37 @@ struct GameplayView: View {
 										
 										ToolbarItem(placement: .topBarLeading) {
 												Button(action: {
-														viewStates.showPause.toggle()
+																viewStates.showPause.toggle()
 												}, label: {
 														Image(systemName: viewStates.showPause ? "play.fill" : "pause.fill")
 																.foregroundStyle(Color("Primary Black"))
 												})
 										}
 								}
+
 								
 								if viewStates.showPause {
+//										PauseGameView(currentGame: gameplay)
 										PauseGameView()
 								}
 								
 								if viewStates.showEndRound {
-										RoundFinishedView(selectedDiff: selectedDiff, currentGame: gameplay)
+//										RoundFinishedView(selectedDiff: selectedDiff, currentGame: gameplay)
+//												.transition(.push(from: .bottom))
+										RoundFinishedView(currentGame: currentGame)
+												.transition(.push(from: .bottom))
 								}
 						}
 				}
+//				.onAppear {
+//						print(gameplay.difficulty.rawValue)
+//						gameplay.difficulty = selectedDiff
+//						print(gameplay.difficulty.rawValue)
+//				}
 				.sheet(isPresented: $showSettings, content: {
 						SettingsView()
 								.presentationDragIndicator(.visible)
 				})
+
 		}
 }

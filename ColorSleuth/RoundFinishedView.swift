@@ -19,9 +19,10 @@ struct RoundFinishedView: View {
 		})
 		private var difficultyStat: [StatModel]
 		
-		@State private var showHome = false
-		var selectedDiff: Difficulty
+//		var selectedDiff: Difficulty
 		var currentGame: GameplayModel
+		@State private var showHome = false
+
 		
     var body: some View {
 				
@@ -47,34 +48,34 @@ struct RoundFinishedView: View {
 		
 		init(selectedDiff: Difficulty, currentGame: GameplayModel) {
 				// Query only for the difficulty that was played in the current game
-				if selectedDiff == Difficulty.easy {
+				if currentGame.difficulty == Difficulty.easy {
 						_difficultyStat = Query(filter: #Predicate<StatModel> { stat in
 								stat.difficulty == "Easy"
 						})
 				}
-				else if selectedDiff == Difficulty.medium {
+				else if currentGame.difficulty == Difficulty.medium {
 						_difficultyStat = Query(filter: #Predicate<StatModel> { stat in
 								stat.difficulty == "Medium"
 						})
 				}
-				else if selectedDiff == Difficulty.hard {
+				else if currentGame.difficulty == Difficulty.hard {
 						_difficultyStat = Query(filter: #Predicate<StatModel> { stat in
 								stat.difficulty == "Hard"
 						})
 				}
-				else if selectedDiff == Difficulty.extreme {
+				else if currentGame.difficulty == Difficulty.extreme {
 						_difficultyStat = Query(filter: #Predicate<StatModel> { stat in
 								stat.difficulty == "Extreme"
 						})
 				}
-				else if selectedDiff == Difficulty.survival {
+				else if currentGame.difficulty == Difficulty.survival {
 						_difficultyStat = Query(filter: #Predicate<StatModel> { stat in
 								stat.difficulty == "Survival"
 						})
 				}
 				
 				self.currentGame = currentGame
-				self.selectedDiff = selectedDiff
+//				self.selectedDiff = selectedDiff
 		}
 }
 

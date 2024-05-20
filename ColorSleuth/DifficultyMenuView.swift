@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct DifficultyMenuView: View {
 		
 		@Environment(GlobalStates.self) var viewStates
 		
-		@Binding var selectedDiff: Difficulty
+//		@Binding var selectedDiff: Difficulty
+		var currentGame: GameplayModel
 		
     var body: some View {
 				
@@ -20,35 +22,35 @@ struct DifficultyMenuView: View {
 				Menu {
 						Button(action: {
 								viewStates.showGameplay = true
-								selectedDiff = .easy
+								currentGame.difficulty = .easy
 						}, label: {
 								Text("Easy")
 						})
 						
 						Button(action: {
 								viewStates.showGameplay = true
-								selectedDiff = .medium
+								currentGame.difficulty = .medium
 						}, label: {
 								Text("Medium")
 						})
 						
 						Button(action: {
 								viewStates.showGameplay = true
-								selectedDiff = .hard
+								currentGame.difficulty = .hard
 						}, label: {
 								Text("Hard")
 						})
 						
 						Button(action: {
 								viewStates.showGameplay = true
-								selectedDiff = .medium
+								currentGame.difficulty = .medium
 						}, label: {
 								Text("Extreme")
 						})
 						
 						Button(action: {
 								viewStates.showGameplay = true
-								selectedDiff = .survival
+								currentGame.difficulty = .survival
 						}, label: {
 								Text("Survival")
 						})

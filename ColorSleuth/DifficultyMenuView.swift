@@ -18,54 +18,61 @@ struct DifficultyMenuView: View {
 				
 				@Bindable var viewStates = viewStates
 				
-				Menu {
-						Button(action: {
-								viewStates.showGameplay = true
-								currentGame.difficulty = .easy
-						}, label: {
-								Text("Easy")
-						})
-						
-						Button(action: {
-								viewStates.showGameplay = true
-								currentGame.difficulty = .medium
-						}, label: {
-								Text("Medium")
-						})
-						
-						Button(action: {
-								viewStates.showGameplay = true
-								currentGame.difficulty = .hard
-						}, label: {
-								Text("Hard")
-						})
-						
-						Button(action: {
-								viewStates.showGameplay = true
-								currentGame.difficulty = .extreme
-						}, label: {
-								Text("Extreme")
-						})
-						
-						Button(action: {
-								viewStates.showGameplay = true
-								currentGame.difficulty = .survival
-						}, label: {
-								Text("Survival")
-						})
-				} label: {
-						ZStack {
-								RoundedRectangle(cornerRadius: 100)
-										.frame(width: 239, height: 50)
-										.foregroundStyle(.cyan)
+				NavigationStack {
+						Menu {
+								Button(action: {
+										viewStates.showGameplay = true
+										currentGame.difficulty = .easy
+								}, label: {
+										Text("Easy")
+								})
 								
-								Text("New Game")
-										.foregroundStyle(.white)
-										.font(.title2)
-										.bold()
+								Button(action: {
+										viewStates.showGameplay = true
+										currentGame.difficulty = .medium
+								}, label: {
+										Text("Medium")
+								})
+								
+								Button(action: {
+										viewStates.showGameplay = true
+										currentGame.difficulty = .hard
+								}, label: {
+										Text("Hard")
+								})
+								
+								Button(action: {
+										viewStates.showGameplay = true
+										currentGame.difficulty = .extreme
+								}, label: {
+										Text("Extreme")
+								})
+								
+								Button(action: {
+										viewStates.showGameplay = true
+										currentGame.difficulty = .survival
+								}, label: {
+										Text("Survival")
+								})
+						} label: {
+								ZStack {
+										RoundedRectangle(cornerRadius: 100)
+												.frame(width: 239, height: 50)
+												.foregroundStyle(.cyan)
+										
+										Text("New Game")
+												.foregroundStyle(.white)
+												.font(.title2)
+												.bold()
+								}
+						}
+						.padding(.bottom, 20)
+						.menuOrder(.fixed)
+						.navigationDestination(isPresented: $viewStates.showGameplay) {
+								GameplayView(currentGame: currentGame)
+										.navigationBarBackButtonHidden()
+										.toolbar(.hidden, for: .tabBar)
 						}
 				}
-				.padding(.bottom, 20)
-				.menuOrder(.fixed)
     }
 }

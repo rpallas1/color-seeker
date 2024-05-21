@@ -30,20 +30,78 @@ struct RoundFinishedView: View {
     var body: some View {
 				
 				@Bindable var viewStates = viewStates
-
-				Button(action: {
-						viewStates.showGameplay = false
-						viewStates.showEndRound = false
-				}, label: {
-						Text("play Again")
-				})
+				
+				VStack (spacing: 16) {
+						
+						if currentGame.wonRound {
+								Text("Round Complete")
+										.font(.largeTitle)
+										.bold()
+						} else {
+								Text("Round Failed")
+										.font(.largeTitle)
+										.bold()
+						}
+						
+						Text("100%")
+								.font(.title)
+						
+						VStack (spacing: 4) {
+								Text("Difficulty")
+										.bold()
+								Text(currentGame.difficulty.rawValue)
+						}
+						.font(.title2)
+						
+						VStack (spacing: 4) {
+								Text("Time")
+										.bold()
+								Text("00:02")
+						}
+						.font(.title2)
+						
+						VStack (spacing: 4) {
+								Text("Score")
+										.bold()
+								Text(String(currentGame.score))
+						}
+						.font(.title2)
+						
+						Button(action: {
+								viewStates.showGameplay = false
+								viewStates.showEndRound = false
+						}, label: {
+								ZStack {
+										RoundedRectangle(cornerRadius: 100)
+												.frame(width: 239, height: 50)
+												.foregroundStyle(.cyan)
+										
+										Text("Play Again")
+												.foregroundStyle(.white)
+												.font(.title2)
+												.bold()
+								}
+						})
+				}
+				.padding()
+				.padding(.horizontal, 20)
+				.background {
+						RoundedRectangle(cornerRadius: 8)
+								.foregroundStyle(Color("Primary Gray"))
+								.shadow(radius: 6)
+				}
 				.onAppear {
 						if difficultyStat.count == 1 && overallStat.count == 1 {
 								let stat = difficultyStat[0]
 								let overallStat = overallStat[0]
+								
+								// Update difficulty stat
 								stat.gamesPlayed += 1
 								stat.currentStreak += 1
 								overallStat.gamesPlayed += 1
+								
+								// Rest current game
+								currentGame.score = 0
 						} else {
 								print("Error: Returned more than 1 stat difficulty or overall stat")
 						}

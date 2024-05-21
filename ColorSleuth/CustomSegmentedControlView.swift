@@ -19,7 +19,8 @@ struct CustomSegmentedControlView: View {
 										ForEach(0..<segments.count, id: \.self) { index in
 												Text(segments[index].difficulty)
 														.foregroundStyle(selectedTab == index ? Color.cyan : Color.black)
-														.fontWeight(selectedTab == index ? .bold : .regular)
+//														.fontWeight(selectedTab == index ? .bold : .regular)
+														.bold()
 														.onTapGesture {
 																withAnimation {
 																		selectedTab = index

@@ -68,8 +68,5 @@ struct HomeView: View {
 				.sheet(isPresented: $showSettings, content: {
 						SettingsView()
 				})
-				.fullScreenCover(isPresented: $viewStates.showGameplay, content: {
-						GameplayView(currentGame: currentGame)
-				})
 		}
 }

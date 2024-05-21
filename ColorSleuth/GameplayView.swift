@@ -115,7 +115,6 @@ struct GameplayView: View {
 										}
 								}
 
-								
 								if viewStates.showPause {
 										PauseGameView(currentGame: currentGame)
 								}
@@ -130,6 +129,5 @@ struct GameplayView: View {
 						SettingsView()
 								.presentationDragIndicator(.visible)
 				})
-
 		}
 }

@@ -16,7 +16,7 @@ struct PauseGameView: View {
 		var body: some View {
 				
 				@Bindable var viewStates = viewStates
-								
+				
 				GroupBox {
 						VStack {
 								HStack {

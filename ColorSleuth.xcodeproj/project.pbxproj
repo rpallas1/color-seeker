@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC5E20832BFD129A00979123 /* CustomSegmentedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5E20822BFD129A00979123 /* CustomSegmentedControlView.swift */; };
 		BC72DB4C2BFBD783000A32C7 /* DifficultyMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC72DB4B2BFBD783000A32C7 /* DifficultyMenuView.swift */; };
 		BC7B53FC2BF677BB001F74B5 /* PauseGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B53FB2BF677BB001F74B5 /* PauseGameView.swift */; };
 		BC7B53FE2BF677D1001F74B5 /* RoundFinishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B53FD2BF677D1001F74B5 /* RoundFinishedView.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC5E20822BFD129A00979123 /* CustomSegmentedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControlView.swift; sourceTree = "<group>"; };
 		BC72DB4B2BFBD783000A32C7 /* DifficultyMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyMenuView.swift; sourceTree = "<group>"; };
 		BC7B53FB2BF677BB001F74B5 /* PauseGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseGameView.swift; sourceTree = "<group>"; };
 		BC7B53FD2BF677D1001F74B5 /* RoundFinishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundFinishedView.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				BC72DB4B2BFBD783000A32C7 /* DifficultyMenuView.swift */,
 				BCE3C7282BF522F900CB2EAE /* StatsView.swift */,
 				BCE3C73A2BF673FF00CB2EAE /* StatSheetView.swift */,
+				BC5E20822BFD129A00979123 /* CustomSegmentedControlView.swift */,
 				BCE3C72A2BF5230300CB2EAE /* AchievementsView.swift */,
 				BCE3C7382BF5816500CB2EAE /* AchievementCategoryView.swift */,
 				BCE3C7362BF55E5C00CB2EAE /* AchievementGroupView.swift */,
@@ -202,6 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCE3C7352BF5509F00CB2EAE /* HowToPlayView.swift in Sources */,
+				BC5E20832BFD129A00979123 /* CustomSegmentedControlView.swift in Sources */,
 				BC7B54042BF6A708001F74B5 /* StatModel.swift in Sources */,
 				BCE3C7332BF54C5100CB2EAE /* SettingsView.swift in Sources */,
 				BC7B54022BF69691001F74B5 /* GlobalStates.swift in Sources */,

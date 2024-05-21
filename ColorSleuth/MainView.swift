@@ -12,7 +12,7 @@ struct MainView: View {
 		
 		@Environment(\.modelContext) var context
 		@Query private var allStats: [StatModel]
-		
+				
 		private var statHelper = StatHelper()
 		
     var body: some View {
@@ -37,7 +37,6 @@ struct MainView: View {
 								initStats()
 								print(context.sqliteCommand)
 						} else {
-								print(allStats.count)
 								print(context.sqliteCommand)
 						}
 				}

@@ -42,7 +42,7 @@ struct DifficultyMenuView: View {
 						
 						Button(action: {
 								viewStates.showGameplay = true
-								currentGame.difficulty = .medium
+								currentGame.difficulty = .extreme
 						}, label: {
 								Text("Extreme")
 						})

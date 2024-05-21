@@ -23,17 +23,16 @@ struct RoundFinishedView: View {
 		})
 		private var overallStat: [StatModel]
 		
-		var currentGame: GameplayModel
+		@State var currentGame: GameplayModel
 		@State private var showHome = false
-
+		private var calc = CalcStats()
 		
     var body: some View {
 				
 				@Bindable var viewStates = viewStates
 				
 				VStack (spacing: 16) {
-						
-						if currentGame.wonRound {
+						if calc.didPassRound(score: currentGame.score) {
 								Text("Round Complete")
 										.font(.largeTitle)
 										.bold()
@@ -43,7 +42,7 @@ struct RoundFinishedView: View {
 										.bold()
 						}
 						
-						Text("100%")
+						Text("\(calc.percentCorrect(score: currentGame.score))%")
 								.font(.title)
 						
 						VStack (spacing: 4) {
@@ -95,13 +94,29 @@ struct RoundFinishedView: View {
 								let stat = difficultyStat[0]
 								let overallStat = overallStat[0]
 								
-								// Update difficulty stat
-								stat.gamesPlayed += 1
-								stat.currentStreak += 1
 								overallStat.gamesPlayed += 1
+								stat.gamesPlayed += 1
 								
-								// Rest current game
-								currentGame.score = 0
+								if calc.resetStreak(currentGame: currentGame) {
+										stat.currentStreak = 0
+										overallStat.currentStreak = 0
+								} else {
+										stat.currentStreak += 1
+										overallStat.currentStreak += 1
+								}
+								
+								print("Before: \(stat.gamesWon)")
+								print("CurrentGame: \(currentGame.score)")
+								if calc.didPassRound(score: currentGame.score) {
+										print("Conditional: \(currentGame.score)")
+										stat.gamesWon += 1
+										overallStat.gamesWon += 1
+								}
+								
+								stat.bestStreak = calc.bestStreak(currentStreak: stat.currentStreak, bestStreak: stat.bestStreak)
+								overallStat.bestStreak = calc.bestStreak(currentStreak: overallStat.currentStreak, bestStreak: overallStat.bestStreak)
+								
+ 								currentGame.score = 0
 						} else {
 								print("Error: Returned more than 1 stat difficulty or overall stat")
 						}

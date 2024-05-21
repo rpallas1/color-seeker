@@ -38,6 +38,20 @@ struct StatSheetView: View {
 										}
 										
 										HStack {
+												Text("Games Won")
+														.padding(.leading)
+												Spacer()
+												Text(statCategory.gamesWon == 0 ? "-" : String(statCategory.gamesWon))
+												
+										}
+										.padding()
+										.font(.title3)
+										.background {
+												RoundedRectangle(cornerRadius: 15)
+														.foregroundStyle(Color("Primary Gray"))
+										}
+										
+										HStack {
 												Text("Win Rate")
 														.padding(.leading)
 												Spacer()

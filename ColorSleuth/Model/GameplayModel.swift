@@ -11,7 +11,9 @@ class GameplayModel {
 		
 		var difficulty: Difficulty = .easy
 		var score: Int = 0
-		var wonRound: Bool = true
+		var wonRound: Bool = false
+		var time: Int = 0
+		var percentCorrect: Int = 0
 		// Start and end time or timer variable
 }
 

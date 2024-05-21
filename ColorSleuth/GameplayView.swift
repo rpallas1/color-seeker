@@ -16,7 +16,6 @@ struct GameplayView: View {
 
 		@State private var showSettings: Bool = false
 		@State private var showEndRound = false
-		var updateStats: StatHelper = StatHelper()
 		
 		var body: some View {
 				
@@ -70,6 +69,12 @@ struct GameplayView: View {
 												GridRow {
 														RoundedRectangle(cornerRadius: 12)
 																.frame(width: 136, height: 136)
+																.onTapGesture {
+																		// TODO: Create StatModel instance or add to if already exists for difficulty
+																		withAnimation {
+																				viewStates.showEndRound = true
+																		}
+																}
 														RoundedRectangle(cornerRadius: 12)
 																.frame(width: 136, height: 136)
 																.opacity(0.7)
@@ -86,8 +91,20 @@ struct GameplayView: View {
 												GridRow {
 														RoundedRectangle(cornerRadius: 12)
 																.frame(width: 136, height: 136)
+																.onTapGesture {
+																		// TODO: Create StatModel instance or add to if already exists for difficulty
+																		withAnimation {
+																				viewStates.showEndRound = true
+																		}
+																}
 														RoundedRectangle(cornerRadius: 12)
 																.frame(width: 136, height: 136)
+																.onTapGesture {
+																		// TODO: Create StatModel instance or add to if already exists for difficulty
+																		withAnimation {
+																				viewStates.showEndRound = true
+																		}
+																}
 												}
 										}
 										.foregroundStyle(.orange)

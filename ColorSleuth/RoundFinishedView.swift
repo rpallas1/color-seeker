@@ -18,6 +18,10 @@ struct RoundFinishedView: View {
 				stat.difficulty == "Medium"
 		})
 		private var difficultyStat: [StatModel]
+		@Query(filter: #Predicate<StatModel> { stat in
+				stat.difficulty == "Overall"
+		})
+		private var overallStat: [StatModel]
 		
 		var currentGame: GameplayModel
 		@State private var showHome = false
@@ -34,12 +38,14 @@ struct RoundFinishedView: View {
 						Text("play Again")
 				})
 				.onAppear {
-						if difficultyStat.count == 1 {
+						if difficultyStat.count == 1 && overallStat.count == 1 {
 								let stat = difficultyStat[0]
+								let overallStat = overallStat[0]
 								stat.gamesPlayed += 1
 								stat.currentStreak += 1
+								overallStat.gamesPlayed += 1
 						} else {
-								print("Error: Returned more than 1 stat difficulty")
+								print("Error: Returned more than 1 stat difficulty or overall stat")
 						}
 				}
     }

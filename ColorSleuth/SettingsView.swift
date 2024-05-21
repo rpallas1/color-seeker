@@ -15,6 +15,9 @@ struct SettingsView: View {
 		@Environment(\.modelContext) private var context
 		
 		@Query private var allStats: [StatModel]
+		@Query(sort: \StatModel.position)
+		private var sortedStats: [StatModel]
+		
 		@State private var showConfirmation = false
 		private var statHelper = StatHelper()
 		
@@ -41,7 +44,8 @@ struct SettingsView: View {
 												Button("Reset Game Data") {
 														showConfirmation = true
 												}
-												.foregroundStyle(.red)
+												.foregroundStyle(sortedStats[0].gamesPlayed == 0 ? .gray : .red)
+												.disabled(sortedStats[0].gamesPlayed == 0)
 										}
 								}
 						}

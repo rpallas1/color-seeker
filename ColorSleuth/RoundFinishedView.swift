@@ -130,8 +130,6 @@ struct RoundFinishedView: View {
 								if calc.didPassRound(currentGame: currentGame) {
 										stat.bestTime = calc.bestTime(currentTime: currentGame.elapsedTime, bestTime: stat.bestTime)
 										stat.bestTimeString = calc.formatTime(elapsedTime: stat.bestTime)
-										overallStat.bestTime = calc.bestTime(currentTime: currentGame.elapsedTime, bestTime: overallStat.bestTime)
-										overallStat.bestTimeString = calc.formatTime(elapsedTime: overallStat.bestTime)
 								}
 								
 								stat.averageTime = calc.averageTime(gamesPlayed: stat.gamesPlayed, totalTime: stat.totalTime)

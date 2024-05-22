@@ -34,9 +34,10 @@ struct GameplayView: View {
 										HStack {
 												Spacer()
 												
-												VStack (alignment: .leading) {
-														Text("Difficulty:")
+												VStack {
+														Text("Difficulty")
 																.bold()
+																.foregroundStyle(.cyan)
 														Text(currentGame.difficulty.rawValue)
 												}
 												
@@ -45,13 +46,8 @@ struct GameplayView: View {
 												VStack {
 														Text("Score")
 																.bold()
+																.foregroundStyle(.cyan)
 														Text("\(String(currentGame.score))/\(currentGame.totalRounds)")
-																.foregroundStyle(.white)
-																.padding(.horizontal)
-																.background {
-																		RoundedRectangle(cornerRadius: 8)
-																				.foregroundStyle(.cyan)
-																}
 												}
 												
 												Spacer()
@@ -59,14 +55,12 @@ struct GameplayView: View {
 												VStack {
 														Text("Time")
 																.bold()
+																.foregroundStyle(.cyan)
 														Text(formattedTime(currentGame: currentGame, elapsedTime: elapsedTime))
-																.foregroundStyle(.white)
-																.padding(.horizontal)
-																.background {
-																		RoundedRectangle(cornerRadius: 8)
-																				.foregroundStyle(.cyan)
-																}
 												}
+												.frame(maxWidth: 60)
+
+												
 												Spacer()
 										}
 										
@@ -77,7 +71,6 @@ struct GameplayView: View {
 														RoundedRectangle(cornerRadius: 12)
 																.frame(width: 136, height: 136)
 																.onTapGesture {
-																		// TODO: Create StatModel instance or add to if already exists for difficulty
 																		stopTimer()
 																		currentGame.elapsedTime = elapsedTime
 																		withAnimation {
@@ -88,7 +81,6 @@ struct GameplayView: View {
 																.frame(width: 136, height: 136)
 																.opacity(0.7)
 																.onTapGesture {
-																		// TODO: Create StatModel instance or add to if already exists for difficulty
 																		currentGame.score += 1
 																		stopTimer()
 																		currentGame.elapsedTime = elapsedTime
@@ -102,7 +94,6 @@ struct GameplayView: View {
 														RoundedRectangle(cornerRadius: 12)
 																.frame(width: 136, height: 136)
 																.onTapGesture {
-																		// TODO: Create StatModel instance or add to if already exists for difficulty
 																		stopTimer()
 																		currentGame.elapsedTime = elapsedTime
 																		withAnimation {
@@ -112,7 +103,6 @@ struct GameplayView: View {
 														RoundedRectangle(cornerRadius: 12)
 																.frame(width: 136, height: 136)
 																.onTapGesture {
-																		// TODO: Create StatModel instance or add to if already exists for difficulty
 																		stopTimer()
 																		currentGame.elapsedTime = elapsedTime
 																		withAnimation {

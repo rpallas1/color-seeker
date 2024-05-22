@@ -52,9 +52,13 @@ struct CalcStats {
 		}
 		
 		func bestTime(currentTime: TimeInterval, bestTime: Double) -> Double {
-				if currentTime < bestTime || bestTime == 0 {
+				if Double(currentTime) < 1 {
+						return 1
+				}
+				else if Double(currentTime) < bestTime || bestTime == 0 {
 						return Double(currentTime)
-				} else {
+				} 
+				else {
 						return bestTime
 				}
 		}

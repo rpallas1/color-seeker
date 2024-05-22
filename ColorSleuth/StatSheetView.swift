@@ -121,17 +121,19 @@ struct StatSheetView: View {
 												.font(.title)
 												.bold()
 										
-										HStack {
-												Text("Best Time")
-														.padding(.leading)
-												Spacer()
-												Text(statCategory.bestTimeString == "" ? "-" : String(statCategory.bestTimeString))
-										}
-										.padding()
-										.font(.title3)
-										.background {
-												RoundedRectangle(cornerRadius: 15)
-														.foregroundStyle(Color("Primary Gray"))
+										if statCategory.difficulty != "Overall" {
+												HStack {
+														Text("Best Time")
+																.padding(.leading)
+														Spacer()
+														Text(statCategory.bestTimeString == "" ? "-" : String(statCategory.bestTimeString))
+												}
+												.padding()
+												.font(.title3)
+												.background {
+														RoundedRectangle(cornerRadius: 15)
+																.foregroundStyle(Color("Primary Gray"))
+												}
 										}
 										
 										HStack {
@@ -152,6 +154,7 @@ struct StatSheetView: View {
 								.containerRelativeFrame(.horizontal)
 						}
 				}
+				.padding(.bottom, 24)
 				.scrollIndicators(.hidden)
 				.containerRelativeFrame(.horizontal)
 		}

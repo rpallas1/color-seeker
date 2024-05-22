@@ -16,7 +16,7 @@ struct CalcStats {
 		}
 		
 		func didPassRound(currentGame: GameplayModel) -> Bool {
-				if currentGame.score > Int(Double(currentGame.totalRounds) / 2) {
+				if currentGame.score >= Int(Double(currentGame.totalRounds) / 2) {
 						return true
 				} else {
 						return false

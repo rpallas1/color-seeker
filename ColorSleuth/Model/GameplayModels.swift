@@ -17,7 +17,7 @@ class GameplayModel {
 		var elapsedTimeString: String = ""
 		var elapsedTime: TimeInterval = 0
 		var percentCorrect: Int = 0
-		var totalRounds: Int = 3
+		var totalRounds: Int = 20
 		var gridSize: GridSize = .small
 }
 

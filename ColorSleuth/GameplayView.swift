@@ -19,6 +19,8 @@ struct GameplayView: View {
 		@State private var showSettings: Bool = false
 		@State private var showEndRound = false
 		@State var gridArray: [SquareObject]
+		@State private var numOfRows: Int = 2
+		@State private var numOfColumns: Int = 2
 		
 		@State private var timeString: String = ""
 		@State private var timer: Timer?
@@ -69,34 +71,30 @@ struct GameplayView: View {
 										
 										Spacer()
 										
-										Grid {
-												ForEach(0..<currentGame.gridSize.rawValue, id: \.self) { i in
-														GridRow {
-																ForEach(0..<currentGame.gridSize.rawValue, id: \.self) { j in
-																		RoundedRectangle(cornerRadius: gridArray[i + j].cornerRadius)
-																				.frame(width: gridArray[i + j].size, height: gridArray[i + j].size)
-																				.foregroundStyle(gridArray[i + j].color)
-																				.onTapGesture {
-																						currentGame.totalTaps += 1
-																						if gridArray[i + j].isAnswer == true {
-																								currentGame.score += 1
-																						}
-																						
-																						if currentGame.totalTaps < currentGame.totalRounds {
-																								// Rebuild grid if game not over
-																								gridArray = game.buildGrid(currentGame: currentGame)
-																						} else {
-																								// Stop game when all rounds are complete
-																								stopTimer()
-																								currentGame.elapsedTime = elapsedTime
-																								
-																								withAnimation {
-																										viewStates.showEndRound = true
-																								}
-																						}
+										LazyVGrid(columns: Array(repeating: GridItem(.fixed(gridArray[0].size)), count: currentGame.gridSize.rawValue)) {
+												ForEach(0..<currentGame.gridSize.rawValue * currentGame.gridSize.rawValue, id: \.self) { i in
+														RoundedRectangle(cornerRadius: gridArray[i].cornerRadius)
+																.frame(width: gridArray[i].size, height: gridArray[i].size)
+																.foregroundStyle(gridArray[i].color)
+																.onTapGesture {
+																		currentGame.totalTaps += 1
+																		if gridArray[i].isAnswer == true {
+																				currentGame.score += 1
+																		}
+																		
+																		if currentGame.totalTaps < currentGame.totalRounds {
+																				// Rebuild grid if game not over
+																				gridArray = game.buildGrid(currentGame: currentGame)
+																		} else {
+																				// Stop game when all rounds are complete
+																				stopTimer()
+																				currentGame.elapsedTime = elapsedTime
+																				
+																				withAnimation {
+																						viewStates.showEndRound = true
 																				}
+																		}
 																}
-														}
 												}
 										}
 										.padding(.bottom, 30)

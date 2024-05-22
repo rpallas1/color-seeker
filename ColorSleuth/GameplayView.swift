@@ -12,10 +12,17 @@ struct GameplayView: View {
 		
 		@Environment(GlobalStates.self) var viewStates
 		
-		var currentGame: GameplayModel
+		@State var currentGame: GameplayModel
 
 		@State private var showSettings: Bool = false
 		@State private var showEndRound = false
+		
+		@State private var timeString: String = ""
+		@State private var timer: Timer?
+		@State private var startTime: Date?
+		@State private var elapsedTime: TimeInterval = 0
+		@State private var pausedTime: TimeInterval = 0
+		@State private var isPaused: Bool = false
 		
 		var body: some View {
 				
@@ -52,7 +59,7 @@ struct GameplayView: View {
 												VStack {
 														Text("Time")
 																.bold()
-														Text("00:02")
+														Text(formattedTime(currentGame: currentGame, elapsedTime: elapsedTime))
 																.foregroundStyle(.white)
 																.padding(.horizontal)
 																.background {
@@ -71,6 +78,8 @@ struct GameplayView: View {
 																.frame(width: 136, height: 136)
 																.onTapGesture {
 																		// TODO: Create StatModel instance or add to if already exists for difficulty
+																		stopTimer()
+																		currentGame.elapsedTime = elapsedTime
 																		withAnimation {
 																				viewStates.showEndRound = true
 																		}
@@ -81,7 +90,8 @@ struct GameplayView: View {
 																.onTapGesture {
 																		// TODO: Create StatModel instance or add to if already exists for difficulty
 																		currentGame.score += 1
-																		
+																		stopTimer()
+																		currentGame.elapsedTime = elapsedTime
 																		withAnimation {
 																				viewStates.showEndRound = true
 																		}
@@ -93,6 +103,8 @@ struct GameplayView: View {
 																.frame(width: 136, height: 136)
 																.onTapGesture {
 																		// TODO: Create StatModel instance or add to if already exists for difficulty
+																		stopTimer()
+																		currentGame.elapsedTime = elapsedTime
 																		withAnimation {
 																				viewStates.showEndRound = true
 																		}
@@ -101,6 +113,8 @@ struct GameplayView: View {
 																.frame(width: 136, height: 136)
 																.onTapGesture {
 																		// TODO: Create StatModel instance or add to if already exists for difficulty
+																		stopTimer()
+																		currentGame.elapsedTime = elapsedTime
 																		withAnimation {
 																				viewStates.showEndRound = true
 																		}
@@ -134,6 +148,12 @@ struct GameplayView: View {
 
 								if viewStates.showPause {
 										PauseGameView(currentGame: currentGame)
+												.onAppear {
+														pauseResumeTimer()
+												}
+												.onDisappear {
+														pauseResumeTimer()
+												}
 								}
 								
 								if viewStates.showEndRound {
@@ -145,5 +165,66 @@ struct GameplayView: View {
 				.sheet(isPresented: $showSettings, content: {
 						SettingsView()
 				})
+				.onAppear {
+						startTimer()
+				}
+		}
+		
+		func formattedTime(currentGame: GameplayModel, elapsedTime: TimeInterval) -> String {
+				let minutes = Int(elapsedTime) / 60
+				let seconds = Int(elapsedTime) % 60
+				currentGame.elapsedTimeString = String(format: "%02d:%02d", minutes, seconds)
+				return currentGame.elapsedTimeString
+		}
+
+		func startTimer() {
+				if isPaused {
+						// Resume timer
+						startTime = Date().addingTimeInterval(-pausedTime)
+						isPaused = false
+				} else {
+						// Start new timer
+						startTime = Date()
+						elapsedTime = 0
+						pausedTime = 0
+				}
+				
+				timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+						let dateFormatter = DateFormatter()
+						dateFormatter.timeStyle = .medium
+						self.timeString = dateFormatter.string(from: Date())
+
+						if let start = self.startTime {
+								self.elapsedTime = Date().timeIntervalSince(start)
+						}
+				}
+				timer?.fire()
+		}
+
+		func stopTimer() {
+				timer?.invalidate()
+				timer = nil
+
+				if let start = startTime {
+						elapsedTime = Date().timeIntervalSince(start)
+				}
+				startTime = nil
+				pausedTime = 0
+				isPaused = false
+		}
+
+		func pauseResumeTimer() {
+				if isPaused {
+						// Resume timer
+						startTimer()
+				} else {
+						// Pause timer
+						if let start = startTime {
+								pausedTime = Date().timeIntervalSince(start)
+						}
+						timer?.invalidate()
+						timer = nil
+						isPaused = true
+				}
 		}
 }

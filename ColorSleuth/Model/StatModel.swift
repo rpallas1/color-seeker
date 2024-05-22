@@ -24,8 +24,10 @@ class StatModel: Identifiable {
 		var currentStreak: Int = 0
 		var bestStreak: Int = 0
 		var totalTime: Int = 0
-		var bestTime: Int = 0
-		var averageTime: Int = 0
+		var bestTime: TimeInterval = 0
+		var bestTimeString: String = ""
+		var averageTime: TimeInterval = 0
+		var averageTimeString: String = ""
 		var percentCorrect: Int = 0
 		
 		init(difficuly: String, position: Int) {

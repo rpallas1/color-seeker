@@ -29,7 +29,7 @@ struct PauseGameView: View {
 												HStack {
 														Text("Time:")
 																.bold()
-														Text("00:02")
+														Text(currentGame.elapsedTimeString)
 												}
 												HStack {
 														Text("Score:")

@@ -56,7 +56,7 @@ struct RoundFinishedView: View {
 						VStack (spacing: 4) {
 								Text("Time")
 										.bold()
-								Text("00:02")
+								Text(currentGame.elapsedTimeString)
 						}
 						.font(.title2)
 						
@@ -92,6 +92,9 @@ struct RoundFinishedView: View {
 				}
 				.onAppear {
 						if difficultyStat.count == 1 && overallStat.count == 1 {
+								
+								print(currentGame.elapsedTime)
+								
 								let stat = difficultyStat[0]
 								let overallStat = overallStat[0]
 								
@@ -121,6 +124,13 @@ struct RoundFinishedView: View {
 								
 								stat.bestStreak = calc.bestStreak(currentStreak: stat.currentStreak, bestStreak: stat.bestStreak)
 								overallStat.bestStreak = calc.bestStreak(currentStreak: overallStat.currentStreak, bestStreak: overallStat.bestStreak)
+								
+								if calc.didPassRound(currentGame: currentGame) {
+										stat.bestTime = calc.bestTime(currentTime: currentGame.elapsedTime, bestTime: stat.bestTime)
+										stat.bestTimeString = calc.formatTime(elapsedTime: stat.bestTime)
+										overallStat.bestTime = calc.bestTime(currentTime: currentGame.elapsedTime, bestTime: overallStat.bestTime)
+										overallStat.bestTimeString = calc.formatTime(elapsedTime: overallStat.bestTime)
+								}
 								
  								currentGame.score = 0
 						} else {

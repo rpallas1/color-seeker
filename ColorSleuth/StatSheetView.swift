@@ -125,7 +125,7 @@ struct StatSheetView: View {
 												Text("Best Time")
 														.padding(.leading)
 												Spacer()
-												Text(statCategory.bestTime == 0 ? "-" : String(statCategory.bestTime))
+												Text(statCategory.bestTimeString == "" ? "-" : String(statCategory.bestTimeString))
 										}
 										.padding()
 										.font(.title3)
@@ -138,7 +138,7 @@ struct StatSheetView: View {
 												Text("Average Time")
 														.padding(.leading)
 												Spacer()
-												Text(statCategory.averageTime == 0 ? "-" : String(statCategory.averageTime))
+												Text(statCategory.averageTimeString == "" ? "-" : String(statCategory.averageTimeString))
 										}
 										.padding()
 										.font(.title3)

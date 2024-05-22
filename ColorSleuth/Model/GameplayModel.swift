@@ -12,10 +12,10 @@ class GameplayModel {
 		var difficulty: Difficulty = .easy
 		var score: Int = 0
 		var wonRound: Bool = false
-		var time: Int = 0
+		var elapsedTimeString: String = ""
+		var elapsedTime: TimeInterval = 0
 		var percentCorrect: Int = 0
 		var totalRounds: Int = 1
-		// Start and end time or timer variable
 }
 
 enum Difficulty: String {

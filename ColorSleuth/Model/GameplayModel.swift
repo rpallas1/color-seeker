@@ -14,6 +14,7 @@ class GameplayModel {
 		var wonRound: Bool = false
 		var time: Int = 0
 		var percentCorrect: Int = 0
+		var totalRounds: Int = 1
 		// Start and end time or timer variable
 }
 

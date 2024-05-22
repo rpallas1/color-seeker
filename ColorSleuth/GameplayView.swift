@@ -38,7 +38,7 @@ struct GameplayView: View {
 												VStack {
 														Text("Score")
 																.bold()
-														Text("0/2")
+														Text("\(String(currentGame.score))/\(currentGame.totalRounds)")
 																.foregroundStyle(.white)
 																.padding(.horizontal)
 																.background {
@@ -52,7 +52,7 @@ struct GameplayView: View {
 												VStack {
 														Text("Time")
 																.bold()
-														Text("00:41")
+														Text("00:02")
 																.foregroundStyle(.white)
 																.padding(.horizontal)
 																.background {
@@ -144,7 +144,6 @@ struct GameplayView: View {
 				}
 				.sheet(isPresented: $showSettings, content: {
 						SettingsView()
-								.presentationDragIndicator(.visible)
 				})
 		}
 }

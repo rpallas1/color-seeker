@@ -12,9 +12,7 @@ struct MainView: View {
 		
 		@Environment(\.modelContext) var context
 		@Query private var allStats: [StatModel]
-				
-		private var statHelper = StatHelper()
-		
+						
     var body: some View {
 				TabView {
 						HomeView()

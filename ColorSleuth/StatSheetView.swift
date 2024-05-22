@@ -28,7 +28,6 @@ struct StatSheetView: View {
 														.padding(.leading)
 												Spacer()
 												Text(statCategory.gamesPlayed == 0 ? "-" : String(statCategory.gamesPlayed))
-												
 										}
 										.padding()
 										.font(.title3)
@@ -42,7 +41,19 @@ struct StatSheetView: View {
 														.padding(.leading)
 												Spacer()
 												Text(statCategory.gamesWon == 0 ? "-" : String(statCategory.gamesWon))
-												
+										}
+										.padding()
+										.font(.title3)
+										.background {
+												RoundedRectangle(cornerRadius: 15)
+														.foregroundStyle(Color("Primary Gray"))
+										}
+										
+										HStack {
+												Text("Perfect Games")
+														.padding(.leading)
+												Spacer()
+												Text(statCategory.perfectGames == 0 ? "-" : String(statCategory.perfectGames))
 										}
 										.padding()
 										.font(.title3)
@@ -55,8 +66,7 @@ struct StatSheetView: View {
 												Text("Win Rate")
 														.padding(.leading)
 												Spacer()
-												Text(statCategory.percentCorrect == 0 ? "-" : String(statCategory.percentCorrect))
-												
+												Text(statCategory.percentCorrect == 0 ? "0%" : "\(String(statCategory.percentCorrect))%")
 										}
 										.padding()
 										.font(.title3)
@@ -80,7 +90,6 @@ struct StatSheetView: View {
 														.padding(.leading)
 												Spacer()
 												Text(statCategory.currentStreak == 0 ? "-" : String(statCategory.currentStreak))
-												
 										}
 										.padding()
 										.font(.title3)
@@ -94,7 +103,6 @@ struct StatSheetView: View {
 														.padding(.leading)
 												Spacer()
 												Text(statCategory.bestStreak == 0 ? "-" : String(statCategory.bestStreak))
-												
 										}
 										.padding()
 										.font(.title3)
@@ -118,7 +126,6 @@ struct StatSheetView: View {
 														.padding(.leading)
 												Spacer()
 												Text(statCategory.bestTime == 0 ? "-" : String(statCategory.bestTime))
-												
 										}
 										.padding()
 										.font(.title3)
@@ -132,7 +139,6 @@ struct StatSheetView: View {
 														.padding(.leading)
 												Spacer()
 												Text(statCategory.averageTime == 0 ? "-" : String(statCategory.averageTime))
-												
 										}
 										.padding()
 										.font(.title3)

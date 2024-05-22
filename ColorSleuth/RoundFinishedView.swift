@@ -18,6 +18,7 @@ struct RoundFinishedView: View {
 				stat.difficulty == "Medium"
 		})
 		private var difficultyStat: [StatModel]
+		
 		@Query(filter: #Predicate<StatModel> { stat in
 				stat.difficulty == "Overall"
 		})
@@ -32,7 +33,7 @@ struct RoundFinishedView: View {
 				@Bindable var viewStates = viewStates
 				
 				VStack (spacing: 16) {
-						if calc.didPassRound(score: currentGame.score) {
+						if calc.didPassRound(currentGame: currentGame) {
 								Text("Round Complete")
 										.font(.largeTitle)
 										.bold()
@@ -42,7 +43,7 @@ struct RoundFinishedView: View {
 										.bold()
 						}
 						
-						Text("\(calc.percentCorrect(score: currentGame.score))%")
+						Text("\(calc.percentCorrect(currentGame: currentGame))%")
 								.font(.title)
 						
 						VStack (spacing: 4) {
@@ -62,7 +63,7 @@ struct RoundFinishedView: View {
 						VStack (spacing: 4) {
 								Text("Score")
 										.bold()
-								Text(String(currentGame.score))
+								Text("\(String(currentGame.score))/\(currentGame.totalRounds)")
 						}
 						.font(.title2)
 						
@@ -85,7 +86,7 @@ struct RoundFinishedView: View {
 				.padding()
 				.padding(.horizontal, 20)
 				.background {
-						RoundedRectangle(cornerRadius: 8)
+						RoundedRectangle(cornerRadius: 12)
 								.foregroundStyle(Color("Primary Gray"))
 								.shadow(radius: 6)
 				}
@@ -97,6 +98,16 @@ struct RoundFinishedView: View {
 								overallStat.gamesPlayed += 1
 								stat.gamesPlayed += 1
 								
+								if calc.didPassRound(currentGame: currentGame) {
+										stat.gamesWon += 1
+										overallStat.gamesWon += 1
+								}
+								
+								if calc.isPerfectRound(currentGame: currentGame) {
+										stat.perfectGames += 1
+										overallStat.perfectGames += 1
+								}
+								
 								if calc.resetStreak(currentGame: currentGame) {
 										stat.currentStreak = 0
 										overallStat.currentStreak = 0
@@ -105,13 +116,8 @@ struct RoundFinishedView: View {
 										overallStat.currentStreak += 1
 								}
 								
-								print("Before: \(stat.gamesWon)")
-								print("CurrentGame: \(currentGame.score)")
-								if calc.didPassRound(score: currentGame.score) {
-										print("Conditional: \(currentGame.score)")
-										stat.gamesWon += 1
-										overallStat.gamesWon += 1
-								}
+								stat.percentCorrect = calc.winRate(stat: stat)
+								overallStat.percentCorrect = calc.winRate(stat: overallStat)
 								
 								stat.bestStreak = calc.bestStreak(currentStreak: stat.currentStreak, bestStreak: stat.bestStreak)
 								overallStat.bestStreak = calc.bestStreak(currentStreak: overallStat.currentStreak, bestStreak: overallStat.bestStreak)

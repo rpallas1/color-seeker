@@ -18,8 +18,7 @@ struct CustomSegmentedControlView: View {
 								HStack (spacing: 36) {
 										ForEach(0..<segments.count, id: \.self) { index in
 												Text(segments[index].difficulty)
-														.foregroundStyle(selectedTab == index ? Color.cyan : Color.black)
-//														.fontWeight(selectedTab == index ? .bold : .regular)
+														.foregroundStyle(selectedTab == index ? Color.cyan : Color("Primary Black"))
 														.bold()
 														.onTapGesture {
 																withAnimation {

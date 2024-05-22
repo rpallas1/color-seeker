@@ -19,7 +19,6 @@ struct SettingsView: View {
 		private var sortedStats: [StatModel]
 		
 		@State private var showConfirmation = false
-		private var statHelper = StatHelper()
 		
     var body: some View {
 				

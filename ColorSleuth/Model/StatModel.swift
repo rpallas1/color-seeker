@@ -15,6 +15,7 @@ class StatModel: Identifiable {
 		@Attribute(.unique) var position: Int
 		var gamesPlayed: Int = 0
 		var gamesWon: Int = 0
+		var perfectGames: Int = 0
 		var gamesStarted: Int = 0
 		var gamesFailed: Int = 0
 		var gamesFinished: Int = 0

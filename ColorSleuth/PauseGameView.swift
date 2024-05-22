@@ -29,12 +29,12 @@ struct PauseGameView: View {
 												HStack {
 														Text("Time:")
 																.bold()
-														Text("00:41")
+														Text("00:02")
 												}
 												HStack {
 														Text("Score:")
 																.bold()
-														Text("5/20")
+														Text("\(String(currentGame.score))/\(currentGame.totalRounds)")
 												}
 										}
 										.padding(.bottom, 32)

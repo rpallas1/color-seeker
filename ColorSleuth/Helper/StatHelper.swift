@@ -9,24 +9,17 @@ import Foundation
 import SwiftUI
 import SwiftData
 
-struct StatHelper {
-
-		
-		
-
-}
-
 struct CalcStats {
 		
-		func percentCorrect(score: Int) -> Int {
-				return (score / 1) * 100
+		func percentCorrect(currentGame: GameplayModel) -> Int {
+				return Int((Double(currentGame.score) / Double(currentGame.totalRounds)) * 100)
 		}
 		
-		func didPassRound(score: Int) -> Bool {
-				if score == 0 {
-						return false
-				} else {
+		func didPassRound(currentGame: GameplayModel) -> Bool {
+				if currentGame.score > Int(Double(currentGame.totalRounds) / 2) {
 						return true
+				} else {
+						return false
 				}
 		}
 		
@@ -44,5 +37,17 @@ struct CalcStats {
 				} else {
 						return false
 				}
+		}
+		
+		func isPerfectRound(currentGame: GameplayModel) -> Bool {
+				if currentGame.score == currentGame.totalRounds {
+						return true
+				} else {
+						return false
+				}
+		}
+		
+		func winRate(stat: StatModel) -> Int {
+				return Int((Double(stat.gamesWon) / Double(stat.gamesPlayed)) * 100)
 		}
 }

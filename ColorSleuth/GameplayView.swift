@@ -5,6 +5,7 @@
 //  Created by Ryan Pallas on 5/16/24.
 //
 
+import Foundation
 import SwiftUI
 import SwiftData
 
@@ -13,9 +14,11 @@ struct GameplayView: View {
 		@Environment(GlobalStates.self) var viewStates
 		
 		@State var currentGame: GameplayModel
-
+		@State private var game = GameHelper()
+		
 		@State private var showSettings: Bool = false
 		@State private var showEndRound = false
+		@State var gridArray: [SquareObject]
 		
 		@State private var timeString: String = ""
 		@State private var timer: Timer?
@@ -59,7 +62,7 @@ struct GameplayView: View {
 														Text(formattedTime(currentGame: currentGame, elapsedTime: elapsedTime))
 												}
 												.frame(maxWidth: 60)
-
+												
 												
 												Spacer()
 										}
@@ -67,52 +70,73 @@ struct GameplayView: View {
 										Spacer()
 										
 										Grid {
-												GridRow {
-														RoundedRectangle(cornerRadius: 12)
-																.frame(width: 136, height: 136)
-																.onTapGesture {
-																		stopTimer()
-																		currentGame.elapsedTime = elapsedTime
-																		withAnimation {
-																				viewStates.showEndRound = true
-																		}
+												ForEach(0..<currentGame.gridSize.rawValue, id: \.self) { i in
+														GridRow {
+																ForEach(0..<currentGame.gridSize.rawValue, id: \.self) { j in
+																		RoundedRectangle(cornerRadius: gridArray[i + j].cornerRadius)
+																				.frame(width: gridArray[i + j].size, height: gridArray[i + j].size)
+																				.foregroundStyle(gridArray[i + j].color)
+																				.onTapGesture {
+																						stopTimer()
+																						currentGame.elapsedTime = elapsedTime
+																						withAnimation {
+																								viewStates.showEndRound = true
+																						}
+																				}
 																}
-														RoundedRectangle(cornerRadius: 12)
-																.frame(width: 136, height: 136)
-																.opacity(0.7)
-																.onTapGesture {
-																		currentGame.score += 1
-																		stopTimer()
-																		currentGame.elapsedTime = elapsedTime
-																		withAnimation {
-																				viewStates.showEndRound = true
-																		}
-																}
-												}
-												
-												GridRow {
-														RoundedRectangle(cornerRadius: 12)
-																.frame(width: 136, height: 136)
-																.onTapGesture {
-																		stopTimer()
-																		currentGame.elapsedTime = elapsedTime
-																		withAnimation {
-																				viewStates.showEndRound = true
-																		}
-																}
-														RoundedRectangle(cornerRadius: 12)
-																.frame(width: 136, height: 136)
-																.onTapGesture {
-																		stopTimer()
-																		currentGame.elapsedTime = elapsedTime
-																		withAnimation {
-																				viewStates.showEndRound = true
-																		}
-																}
+														}
 												}
 										}
-										.foregroundStyle(.orange)
-										.padding(.bottom, 50)
+										
+										
+										
+										//										Grid {
+										//												GridRow {
+										//														RoundedRectangle(cornerRadius: 12)
+										//																.frame(width: 136, height: 136)
+										//																.onTapGesture {
+										//																		stopTimer()
+										//																		currentGame.elapsedTime = elapsedTime
+										//																		withAnimation {
+										//																				viewStates.showEndRound = true
+										//																		}
+										//																}
+										//														RoundedRectangle(cornerRadius: 12)
+										//																.frame(width: 136, height: 136)
+										//																.opacity(0.7)
+										//																.onTapGesture {
+										//																		currentGame.score += 1
+										//																		stopTimer()
+										//																		currentGame.elapsedTime = elapsedTime
+										//																		withAnimation {
+										//																				viewStates.showEndRound = true
+										//																		}
+										//																}
+										//												}
+										//
+										//												GridRow {
+										//														RoundedRectangle(cornerRadius: 12)
+										//																.frame(width: 136, height: 136)
+										//																.onTapGesture {
+										//																		stopTimer()
+										//																		currentGame.elapsedTime = elapsedTime
+										//																		withAnimation {
+										//																				viewStates.showEndRound = true
+										//																		}
+										//																}
+										//														RoundedRectangle(cornerRadius: 12)
+										//																.frame(width: 136, height: 136)
+										//																.onTapGesture {
+										//																		stopTimer()
+										//																		currentGame.elapsedTime = elapsedTime
+										//																		withAnimation {
+										//																				viewStates.showEndRound = true
+										//																		}
+										//																}
+										//												}
+										//										}
+										//										.foregroundStyle(.orange)
+										//										.padding(.bottom, 50)
 										
 										Spacer()
 								}
@@ -128,14 +152,14 @@ struct GameplayView: View {
 										
 										ToolbarItem(placement: .topBarLeading) {
 												Button(action: {
-																viewStates.showPause.toggle()
+														viewStates.showPause.toggle()
 												}, label: {
 														Image(systemName: viewStates.showPause ? "play.fill" : "pause.fill")
 																.foregroundStyle(Color("Primary Black"))
 												})
 										}
 								}
-
+								
 								if viewStates.showPause {
 										PauseGameView(currentGame: currentGame)
 												.onAppear {
@@ -157,8 +181,11 @@ struct GameplayView: View {
 				})
 				.onAppear {
 						startTimer()
+						//						game.buildGrid(currentGame: currentGame)
 				}
 		}
+		
+		
 		
 		func formattedTime(currentGame: GameplayModel, elapsedTime: TimeInterval) -> String {
 				let minutes = Int(elapsedTime) / 60
@@ -166,7 +193,7 @@ struct GameplayView: View {
 				currentGame.elapsedTimeString = String(format: "%02d:%02d", minutes, seconds)
 				return currentGame.elapsedTimeString
 		}
-
+		
 		func startTimer() {
 				if isPaused {
 						// Resume timer
@@ -183,18 +210,18 @@ struct GameplayView: View {
 						let dateFormatter = DateFormatter()
 						dateFormatter.timeStyle = .medium
 						self.timeString = dateFormatter.string(from: Date())
-
+						
 						if let start = self.startTime {
 								self.elapsedTime = Date().timeIntervalSince(start)
 						}
 				}
 				timer?.fire()
 		}
-
+		
 		func stopTimer() {
 				timer?.invalidate()
 				timer = nil
-
+				
 				if let start = startTime {
 						elapsedTime = Date().timeIntervalSince(start)
 				}
@@ -202,7 +229,7 @@ struct GameplayView: View {
 				pausedTime = 0
 				isPaused = false
 		}
-
+		
 		func pauseResumeTimer() {
 				if isPaused {
 						// Resume timer

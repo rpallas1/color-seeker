@@ -13,6 +13,7 @@ struct DifficultyMenuView: View {
 		@Environment(GlobalStates.self) var viewStates
 		
 		@Binding var currentGame: GameplayModel
+		@State private var game = GameHelper()
 		
     var body: some View {
 				
@@ -23,6 +24,7 @@ struct DifficultyMenuView: View {
 								Button(action: {
 										viewStates.showGameplay = true
 										currentGame.difficulty = .easy
+										currentGame.gridSize = .small
 								}, label: {
 										Text("Easy")
 								})
@@ -30,6 +32,7 @@ struct DifficultyMenuView: View {
 								Button(action: {
 										viewStates.showGameplay = true
 										currentGame.difficulty = .medium
+										currentGame.gridSize = .small
 								}, label: {
 										Text("Medium")
 								})
@@ -37,6 +40,7 @@ struct DifficultyMenuView: View {
 								Button(action: {
 										viewStates.showGameplay = true
 										currentGame.difficulty = .hard
+										currentGame.gridSize = .medium
 								}, label: {
 										Text("Hard")
 								})
@@ -44,6 +48,7 @@ struct DifficultyMenuView: View {
 								Button(action: {
 										viewStates.showGameplay = true
 										currentGame.difficulty = .extreme
+										currentGame.gridSize = .large
 								}, label: {
 										Text("Extreme")
 								})
@@ -51,6 +56,7 @@ struct DifficultyMenuView: View {
 								Button(action: {
 										viewStates.showGameplay = true
 										currentGame.difficulty = .survival
+										currentGame.gridSize = .large
 								}, label: {
 										Text("Survival")
 								})
@@ -69,7 +75,8 @@ struct DifficultyMenuView: View {
 						.padding(.bottom, 20)
 						.menuOrder(.fixed)
 						.navigationDestination(isPresented: $viewStates.showGameplay) {
-								GameplayView(currentGame: currentGame)
+								GameplayView(currentGame: currentGame, gridArray: game.buildGrid(currentGame: currentGame)
+)
 										.navigationBarBackButtonHidden()
 										.toolbar(.hidden, for: .tabBar)
 						}

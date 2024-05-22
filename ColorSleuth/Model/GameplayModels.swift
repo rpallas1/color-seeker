@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class GameplayModel {
 		
@@ -16,6 +17,22 @@ class GameplayModel {
 		var elapsedTime: TimeInterval = 0
 		var percentCorrect: Int = 0
 		var totalRounds: Int = 1
+		var gridSize: GridSize = .small
+}
+
+class SquareObject {
+		
+		var color: Color
+		var isAnswer: Bool
+		var size: CGFloat
+		var cornerRadius: CGFloat
+		
+		init(color: Color, isAnswer: Bool, size: CGFloat, cornerRadius: CGFloat) {
+				self.color = color
+				self.isAnswer = isAnswer
+				self.size = size
+				self.cornerRadius = cornerRadius
+		}
 }
 
 enum Difficulty: String {
@@ -24,4 +41,10 @@ enum Difficulty: String {
 		case hard = "Hard"
 		case extreme = "Extreme"
 		case survival = "Survival"
+}
+
+enum GridSize: Int {
+		case small = 2
+		case medium = 3
+		case large = 4
 }

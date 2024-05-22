@@ -51,19 +51,19 @@ struct CalcStats {
 				return Int((Double(stat.gamesWon) / Double(stat.gamesPlayed)) * 100)
 		}
 		
-		func bestTime(currentTime: TimeInterval, bestTime: TimeInterval) -> TimeInterval {
+		func bestTime(currentTime: TimeInterval, bestTime: Double) -> Double {
 				if currentTime < bestTime || bestTime == 0 {
-						return currentTime
+						return Double(currentTime)
 				} else {
 						return bestTime
 				}
 		}
 		
-		func averageTime() {
-				
+		func averageTime(gamesPlayed: Int, totalTime: TimeInterval) -> Double {
+				return Double(totalTime) / Double(gamesPlayed)
 		}
 		
-		func formatTime(elapsedTime: TimeInterval) -> String {
+		func formatTime(elapsedTime: Double) -> String {
 				let minutes = Int(elapsedTime) / 60
 				let seconds = Int(elapsedTime) % 60
 				return String(format: "%02d:%02d", minutes, seconds)

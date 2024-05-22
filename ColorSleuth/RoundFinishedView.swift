@@ -91,15 +91,17 @@ struct RoundFinishedView: View {
 								.shadow(radius: 6)
 				}
 				.onAppear {
+						//Update all stats
 						if difficultyStat.count == 1 && overallStat.count == 1 {
-								
-								print(currentGame.elapsedTime)
-								
+																
 								let stat = difficultyStat[0]
 								let overallStat = overallStat[0]
 								
-								overallStat.gamesPlayed += 1
 								stat.gamesPlayed += 1
+								overallStat.gamesPlayed += 1
+						
+								stat.totalTime += currentGame.elapsedTime
+								overallStat.totalTime += currentGame.elapsedTime
 								
 								if calc.didPassRound(currentGame: currentGame) {
 										stat.gamesWon += 1
@@ -131,6 +133,11 @@ struct RoundFinishedView: View {
 										overallStat.bestTime = calc.bestTime(currentTime: currentGame.elapsedTime, bestTime: overallStat.bestTime)
 										overallStat.bestTimeString = calc.formatTime(elapsedTime: overallStat.bestTime)
 								}
+								
+								stat.averageTime = calc.averageTime(gamesPlayed: stat.gamesPlayed, totalTime: stat.totalTime)
+								stat.averageTimeString = calc.formatTime(elapsedTime: stat.averageTime)
+								overallStat.averageTime = calc.averageTime(gamesPlayed: overallStat.gamesPlayed, totalTime: overallStat.totalTime)
+								overallStat.averageTimeString = calc.formatTime(elapsedTime: overallStat.averageTime)
 								
  								currentGame.score = 0
 						} else {

@@ -23,10 +23,10 @@ class StatModel: Identifiable {
 		var totalTaps: Int = 0
 		var currentStreak: Int = 0
 		var bestStreak: Int = 0
-		var totalTime: Int = 0
-		var bestTime: TimeInterval = 0
+		var totalTime: TimeInterval = 0
+		var bestTime: Double = 0
 		var bestTimeString: String = ""
-		var averageTime: TimeInterval = 0
+		var averageTime: Double = 0
 		var averageTimeString: String = ""
 		var percentCorrect: Int = 0
 		

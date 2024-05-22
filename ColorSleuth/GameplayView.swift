@@ -77,66 +77,29 @@ struct GameplayView: View {
 																				.frame(width: gridArray[i + j].size, height: gridArray[i + j].size)
 																				.foregroundStyle(gridArray[i + j].color)
 																				.onTapGesture {
-																						stopTimer()
-																						currentGame.elapsedTime = elapsedTime
-																						withAnimation {
-																								viewStates.showEndRound = true
+																						currentGame.totalTaps += 1
+																						if gridArray[i + j].isAnswer == true {
+																								currentGame.score += 1
+																						}
+																						
+																						if currentGame.totalTaps < currentGame.totalRounds {
+																								// Rebuild grid if game not over
+																								gridArray = game.buildGrid(currentGame: currentGame)
+																						} else {
+																								// Stop game when all rounds are complete
+																								stopTimer()
+																								currentGame.elapsedTime = elapsedTime
+																								
+																								withAnimation {
+																										viewStates.showEndRound = true
+																								}
 																						}
 																				}
 																}
 														}
 												}
 										}
-										
-										
-										
-										//										Grid {
-										//												GridRow {
-										//														RoundedRectangle(cornerRadius: 12)
-										//																.frame(width: 136, height: 136)
-										//																.onTapGesture {
-										//																		stopTimer()
-										//																		currentGame.elapsedTime = elapsedTime
-										//																		withAnimation {
-										//																				viewStates.showEndRound = true
-										//																		}
-										//																}
-										//														RoundedRectangle(cornerRadius: 12)
-										//																.frame(width: 136, height: 136)
-										//																.opacity(0.7)
-										//																.onTapGesture {
-										//																		currentGame.score += 1
-										//																		stopTimer()
-										//																		currentGame.elapsedTime = elapsedTime
-										//																		withAnimation {
-										//																				viewStates.showEndRound = true
-										//																		}
-										//																}
-										//												}
-										//
-										//												GridRow {
-										//														RoundedRectangle(cornerRadius: 12)
-										//																.frame(width: 136, height: 136)
-										//																.onTapGesture {
-										//																		stopTimer()
-										//																		currentGame.elapsedTime = elapsedTime
-										//																		withAnimation {
-										//																				viewStates.showEndRound = true
-										//																		}
-										//																}
-										//														RoundedRectangle(cornerRadius: 12)
-										//																.frame(width: 136, height: 136)
-										//																.onTapGesture {
-										//																		stopTimer()
-										//																		currentGame.elapsedTime = elapsedTime
-										//																		withAnimation {
-										//																				viewStates.showEndRound = true
-										//																		}
-										//																}
-										//												}
-										//										}
-										//										.foregroundStyle(.orange)
-										//										.padding(.bottom, 50)
+										.padding(.bottom, 30)
 										
 										Spacer()
 								}
@@ -178,10 +141,15 @@ struct GameplayView: View {
 				}
 				.sheet(isPresented: $showSettings, content: {
 						SettingsView()
+								.onAppear {
+										pauseResumeTimer()
+								}
+								.onDisappear {
+										pauseResumeTimer()
+								}
 				})
 				.onAppear {
 						startTimer()
-						//						game.buildGrid(currentGame: currentGame)
 				}
 		}
 		

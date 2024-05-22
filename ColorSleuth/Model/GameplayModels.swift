@@ -12,11 +12,12 @@ class GameplayModel {
 		
 		var difficulty: Difficulty = .easy
 		var score: Int = 0
+		var totalTaps: Int = 0
 		var wonRound: Bool = false
 		var elapsedTimeString: String = ""
 		var elapsedTime: TimeInterval = 0
 		var percentCorrect: Int = 0
-		var totalRounds: Int = 1
+		var totalRounds: Int = 3
 		var gridSize: GridSize = .small
 }
 

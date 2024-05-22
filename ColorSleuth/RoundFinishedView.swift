@@ -138,6 +138,7 @@ struct RoundFinishedView: View {
 								overallStat.averageTimeString = calc.formatTime(elapsedTime: overallStat.averageTime)
 								
  								currentGame.score = 0
+								currentGame.totalTaps = 0
 						} else {
 								print("Error: Returned more than 1 stat difficulty or overall stat")
 						}

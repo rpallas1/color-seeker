@@ -14,10 +14,11 @@ struct GameplayView: View {
 		@Environment(GlobalStates.self) var viewStates
 		
 		@State var currentGame: GameplayModel
-		@State private var game = GameHelper()
 		
+		@State private var game = GameHelper()
 		@State private var showSettings: Bool = false
 		@State private var showEndRound = false
+		@State private var isAnswer = false
 		@State var gridArray: [SquareObject]
 		@State private var numOfRows: Int = 2
 		@State private var numOfColumns: Int = 2
@@ -28,9 +29,7 @@ struct GameplayView: View {
 		@State private var elapsedTime: TimeInterval = 0
 		@State private var pausedTime: TimeInterval = 0
 		@State private var isPaused: Bool = false
-		
-		@State private var isAnswer = false
-		
+				
 		var body: some View {
 				
 				@Bindable var viewStates = viewStates

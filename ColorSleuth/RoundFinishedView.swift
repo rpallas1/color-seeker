@@ -122,6 +122,14 @@ struct RoundFinishedView: View {
 								stat.percentCorrect = calc.winRate(stat: stat)
 								overallStat.percentCorrect = calc.winRate(stat: overallStat)
 								
+								stat.totalTaps += currentGame.totalTaps
+								stat.correctTaps += currentGame.score
+								stat.accuracy = calc.accuracy(stat: stat)
+								overallStat.totalTaps += currentGame.totalTaps
+								overallStat.correctTaps += currentGame.score
+								overallStat.accuracy = calc.accuracy(stat: overallStat)
+								
+								
 								stat.bestStreak = calc.bestStreak(currentStreak: stat.currentStreak, bestStreak: stat.bestStreak)
 								overallStat.bestStreak = calc.bestStreak(currentStreak: overallStat.currentStreak, bestStreak: overallStat.bestStreak)
 								

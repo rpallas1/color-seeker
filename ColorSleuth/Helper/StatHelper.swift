@@ -15,6 +15,10 @@ struct CalcStats {
 				return Int((Double(currentGame.score) / Double(currentGame.totalRounds)) * 100)
 		}
 		
+		func accuracy(stat: StatModel) -> Int {
+				return Int((Double(stat.correctTaps) / Double(stat.totalTaps)) * 100)
+		}
+		
 		func didPassRound(currentGame: GameplayModel) -> Bool {
 				if currentGame.score >= Int(Double(currentGame.totalRounds) / 2) {
 						return true

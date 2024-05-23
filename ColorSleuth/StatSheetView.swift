@@ -28,6 +28,7 @@ struct StatSheetView: View {
 														.padding(.leading)
 												Spacer()
 												Text(statCategory.gamesPlayed == 0 ? "-" : String(statCategory.gamesPlayed))
+														.bold()
 										}
 										.padding()
 										.font(.title3)
@@ -41,6 +42,7 @@ struct StatSheetView: View {
 														.padding(.leading)
 												Spacer()
 												Text(statCategory.gamesWon == 0 ? "-" : String(statCategory.gamesWon))
+														.bold()
 										}
 										.padding()
 										.font(.title3)
@@ -54,6 +56,7 @@ struct StatSheetView: View {
 														.padding(.leading)
 												Spacer()
 												Text(statCategory.perfectGames == 0 ? "-" : String(statCategory.perfectGames))
+														.bold()
 										}
 										.padding()
 										.font(.title3)
@@ -66,13 +69,30 @@ struct StatSheetView: View {
 												Text("Win Rate")
 														.padding(.leading)
 												Spacer()
-												Text(statCategory.percentCorrect == 0 ? "0%" : "\(String(statCategory.percentCorrect))%")
+												Text(statCategory.percentCorrect == 0 ? "-" : "\(String(statCategory.percentCorrect))%")
+														.bold()
 										}
 										.padding()
 										.font(.title3)
 										.background {
 												RoundedRectangle(cornerRadius: 15)
 														.foregroundStyle(Color("Primary Gray"))
+										}
+										
+										if statCategory.difficulty != "Survival" {
+												HStack {
+														Text("Accuracy")
+																.padding(.leading)
+														Spacer()
+														Text(statCategory.accuracy == 0 ? "-" : "\(String(statCategory.accuracy))%")
+																.bold()
+												}
+												.padding()
+												.font(.title3)
+												.background {
+														RoundedRectangle(cornerRadius: 15)
+																.foregroundStyle(Color("Primary Gray"))
+												}
 										}
 								}
 								.padding(.horizontal, 24)
@@ -86,10 +106,11 @@ struct StatSheetView: View {
 												.bold()
 										
 										HStack {
-												Text("Current Streak")
+												Text("Current Win Streak")
 														.padding(.leading)
 												Spacer()
 												Text(statCategory.currentStreak == 0 ? "-" : String(statCategory.currentStreak))
+														.bold()
 										}
 										.padding()
 										.font(.title3)
@@ -99,10 +120,11 @@ struct StatSheetView: View {
 										}
 										
 										HStack {
-												Text("Longest Streak")
+												Text("Longest Win Streak")
 														.padding(.leading)
 												Spacer()
 												Text(statCategory.bestStreak == 0 ? "-" : String(statCategory.bestStreak))
+														.bold()
 										}
 										.padding()
 										.font(.title3)
@@ -127,6 +149,7 @@ struct StatSheetView: View {
 																.padding(.leading)
 														Spacer()
 														Text(statCategory.bestTimeString == "" ? "-" : String(statCategory.bestTimeString))
+																.bold()
 												}
 												.padding()
 												.font(.title3)
@@ -141,6 +164,7 @@ struct StatSheetView: View {
 														.padding(.leading)
 												Spacer()
 												Text(statCategory.averageTimeString == "" ? "-" : String(statCategory.averageTimeString))
+														.bold()
 										}
 										.padding()
 										.font(.title3)

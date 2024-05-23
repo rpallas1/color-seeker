@@ -15,8 +15,9 @@ struct GameHelper {
 				var gridLayout = [SquareObject]()
 				let gridSize = currentGame.gridSize.rawValue * currentGame.gridSize.rawValue
 				let randIndex = Int.random(in: 0..<gridSize)
-				let randColor: Color = setRandomColor()
-				let adjustedColor: Color = setAdjustedColor(color: randColor)
+				let rgbColor = setRandomColor()
+				let randColor: Color = buildColor(colorValues: rgbColor)
+				let adjustedColor: Color = setAdjustedColor(color: rgbColor, difficulty: currentGame.difficulty)
 				
 				for i in 0..<gridSize {
 						gridLayout.append(assignSquareValues(gridSize: gridSize, currentIndex: i, randIndex: randIndex, randColor: randColor, adjustedColor: adjustedColor))
@@ -52,16 +53,66 @@ struct GameHelper {
 				}
 		}
 		
-		func setRandomColor() -> Color {
+		func setRandomColor() -> rgbColor {
 				let red: Double = Double.random(in: 0...255)
 				let green: Double = Double.random(in: 0...255)
 				let blue: Double = Double.random(in: 0...255)
 				
-				return Color(red: red/255, green: green/255, blue: blue/255)
+				return rgbColor(red: red, green: green, blue: blue)
 		}
 		
-		func setAdjustedColor(color: Color) -> Color {
+		func setAdjustedColor(color: rgbColor, difficulty: Difficulty) -> Color {
 				// Depends on the difficulty of how much to adjust (harder = smaller change, easy = larger change)
-				return .blue
+				
+				var increaseValue: Bool {
+						if Int.random(in: 0...1) == 0 {
+								// 0 means increase
+								return true
+						} else {
+								// 1 means decrease
+								return false
+						}
+				}
+				
+				var adjustedBy: Double {
+						switch difficulty {
+						case .easy:
+								return 70
+						case .medium:
+								return 60
+						case .hard:
+								return 40
+						case .extreme:
+								return 25
+						default:
+								return 0
+						}
+				}
+				
+				var red = color.red
+				var green = color.green
+				var blue = color.blue
+				
+				if increaseValue {
+						red += adjustedBy
+						green += adjustedBy
+						blue += adjustedBy
+				} else {
+						red -= adjustedBy
+						green -= adjustedBy
+						blue -= adjustedBy
+				}
+				
+				return buildColor(colorValues: rgbColor(red: red, green: green, blue: blue))
 		}
+		
+		private func buildColor(colorValues: rgbColor) -> Color {
+				return Color(red: colorValues.red/255, green: colorValues.green/255, blue: colorValues.blue/255)
+		}
+}
+
+struct rgbColor {
+		var red: Double
+		var green: Double
+		var blue: Double
 }

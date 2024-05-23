@@ -29,6 +29,8 @@ struct GameplayView: View {
 		@State private var pausedTime: TimeInterval = 0
 		@State private var isPaused: Bool = false
 		
+		@State private var isAnswer = false
+		
 		var body: some View {
 				
 				@Bindable var viewStates = viewStates
@@ -80,6 +82,9 @@ struct GameplayView: View {
 																		currentGame.totalTaps += 1
 																		if gridArray[i].isAnswer == true {
 																				currentGame.score += 1
+																				isAnswer = true
+																		} else {
+																				isAnswer = false
 																		}
 																		
 																		if currentGame.totalTaps < currentGame.totalRounds {
@@ -94,6 +99,9 @@ struct GameplayView: View {
 																						viewStates.showEndRound = true
 																				}
 																		}
+																}
+																.sensoryFeedback(trigger: currentGame.totalTaps) { oldValue, newValue in
+																		return isAnswer == true ? .impact() : .error
 																}
 												}
 										}

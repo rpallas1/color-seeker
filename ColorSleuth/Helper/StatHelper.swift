@@ -31,14 +31,6 @@ struct CalcStats {
 				}
 		}
 		
-		func resetStreak (currentGame: GameplayModel) -> Bool {
-				if currentGame.score < 1 {
-						return true
-				} else {
-						return false
-				}
-		}
-		
 		func isPerfectRound(currentGame: GameplayModel) -> Bool {
 				if currentGame.score == currentGame.totalRounds {
 						return true

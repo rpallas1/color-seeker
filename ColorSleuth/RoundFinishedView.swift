@@ -106,19 +106,17 @@ struct RoundFinishedView: View {
 								if calc.didPassRound(currentGame: currentGame) {
 										stat.gamesWon += 1
 										overallStat.gamesWon += 1
+										
+										stat.currentStreak += 1
+										overallStat.currentStreak += 1
+								} else {
+										stat.currentStreak = 0
+										overallStat.currentStreak = 0
 								}
 								
 								if calc.isPerfectRound(currentGame: currentGame) {
 										stat.perfectGames += 1
 										overallStat.perfectGames += 1
-								}
-								
-								if calc.resetStreak(currentGame: currentGame) {
-										stat.currentStreak = 0
-										overallStat.currentStreak = 0
-								} else {
-										stat.currentStreak += 1
-										overallStat.currentStreak += 1
 								}
 								
 								stat.percentCorrect = calc.winRate(stat: stat)

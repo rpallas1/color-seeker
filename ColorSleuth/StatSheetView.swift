@@ -158,4 +158,6 @@ struct StatSheetView: View {
 				.scrollIndicators(.hidden)
 				.containerRelativeFrame(.horizontal)
 		}
+		
+		// TODO: init
 }

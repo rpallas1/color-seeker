@@ -16,9 +16,7 @@ class StatModel: Identifiable {
 		var gamesPlayed: Int = 0
 		var gamesWon: Int = 0
 		var perfectGames: Int = 0
-		var gamesStarted: Int = 0
-		var gamesFailed: Int = 0
-		var gamesFinished: Int = 0
+		var percentCorrect: Int = 0
 		var correctTaps: Int = 0
 		var totalTaps: Int = 0
 		var accuracy: Int = 0
@@ -29,7 +27,6 @@ class StatModel: Identifiable {
 		var bestTimeString: String = ""
 		var averageTime: Double = 0
 		var averageTimeString: String = ""
-		var percentCorrect: Int = 0
 		
 		init(difficuly: String, position: Int) {
 				self.difficulty = difficuly

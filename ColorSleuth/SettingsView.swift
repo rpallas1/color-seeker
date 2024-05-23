@@ -11,7 +11,7 @@ import SwiftData
 struct SettingsView: View {
 		
 		@Environment(\.dismiss) private var dismiss
-		@Environment(GlobalStates.self) var settings
+		@Environment(Settings.self) var settings
 		@Environment(\.modelContext) private var context
 		
 		@Query private var allStats: [StatModel]
@@ -35,8 +35,17 @@ struct SettingsView: View {
 																HowToPlayView()
 														} label: {}
 												}
-												Toggle("Dark Mode", isOn: $settings.darkMode)
+												
+												Picker("Color Scheme", selection: $settings.colorScheme) {
+														ForEach(Settings.ColorSchemeOption.allCases) { option in
+																Text(option.rawValue.capitalized)
+																		.tag(option)
+														}
+												}
+												.pickerStyle(.menu)
+												
 												Toggle("Haptics", isOn: $settings.haptics)
+												
 										}
 										
 										Section {
@@ -50,6 +59,7 @@ struct SettingsView: View {
 						}
 						.navigationTitle("Settings")
 						.navigationBarTitleDisplayMode(.inline)
+						.preferredColorScheme(settings.colorScheme.colorScheme)
 						.toolbar {
 								Button(action: {
 										dismiss()

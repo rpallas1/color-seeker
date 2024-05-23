@@ -15,17 +15,19 @@ class GlobalStates {
 		var showPause = false
 		var showGameplay = false
 		var showEndRound = false
-		
-		// Settings
-		var haptics = false
 }
 
 @Observable
 class Settings {
-		var haptics = false
 		var colorScheme: ColorSchemeOption {
 				didSet {
 						saveColorScheme()
+				}
+		}
+		
+		var hapticsEnabled: Bool {
+				didSet {
+						saveHapticsEnabled()
 				}
 		}
 		
@@ -50,6 +52,7 @@ class Settings {
 		
 		init() {
 				self.colorScheme = Settings.loadColorScheme()
+				self.hapticsEnabled = Settings.loadHapticsEnabled()
 		}
 		
 		private func saveColorScheme() {
@@ -62,5 +65,16 @@ class Settings {
 						return colorScheme
 				}
 				return .system
+		}
+		
+		private func saveHapticsEnabled() {
+				UserDefaults.standard.set(hapticsEnabled, forKey: "hapticsEnabled")
+		}
+		
+		private static func loadHapticsEnabled() -> Bool {
+				if UserDefaults.standard.object(forKey: "hapticsEnabled") == nil {
+						return true
+				}
+				return UserDefaults.standard.bool(forKey: "hapticsEnabled")
 		}
 }

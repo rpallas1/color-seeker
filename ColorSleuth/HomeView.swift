@@ -54,19 +54,6 @@ struct HomeView: View {
 										DifficultyMenuView(currentGame: $currentGame)
 								}
 						}
-						.toolbar {
-								ToolbarItem {
-										Button(action: {
-												showSettings.toggle()
-										}, label: {
-												Image(systemName: "gear")
-														.foregroundStyle(Color("Primary Black"))
-										})
-								}
-						}
 				}
-				.sheet(isPresented: $showSettings, content: {
-						SettingsView()
-				})
 		}
 }

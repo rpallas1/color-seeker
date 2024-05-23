@@ -12,11 +12,13 @@ import SwiftData
 struct GameplayView: View {
 		
 		@Environment(GlobalStates.self) var viewStates
+		@Environment(Settings.self) var settings
 		
 		@State var currentGame: GameplayModel
 		
 		@State private var game = GameHelper()
 		@State private var showSettings: Bool = false
+		@State private var selectedColorScheme: Settings.ColorSchemeOption = .system
 		@State private var showEndRound = false
 		@State private var isAnswer = false
 		@State var gridArray: [SquareObject]
@@ -100,7 +102,10 @@ struct GameplayView: View {
 																		}
 																}
 																.sensoryFeedback(trigger: currentGame.totalTaps) { oldValue, newValue in
-																		return isAnswer == true ? .impact() : .error
+																		if settings.hapticsEnabled {
+																				return isAnswer == true ? .impact() : .error
+																		}
+																		return .none
 																}
 												}
 										}

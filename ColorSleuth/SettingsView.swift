@@ -20,14 +20,14 @@ struct SettingsView: View {
 		
 		@State private var showConfirmation = false
 		
-    var body: some View {
+		var body: some View {
 				
 				@Bindable var settings = settings
 				
 				NavigationStack {
 						VStack {
 								Form {
-										Section() {
+										Section {
 												HStack {
 														Text("How to Play")
 														Spacer()
@@ -44,7 +44,7 @@ struct SettingsView: View {
 												}
 												.pickerStyle(.menu)
 												
-												Toggle("Haptics", isOn: $settings.haptics)
+												Toggle("Haptics", isOn: $settings.hapticsEnabled)
 												
 										}
 										
@@ -81,9 +81,9 @@ struct SettingsView: View {
 								}
 						}
 				}
-    }
+		}
 		
-		func initStats() {
+		private func initStats() {
 				context.insert(StatModel(difficuly: "Overall", position: 0))
 				context.insert(StatModel(difficuly: "Easy", position: 1))
 				context.insert(StatModel(difficuly: "Medium", position: 2))

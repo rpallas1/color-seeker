@@ -84,8 +84,8 @@ struct GameHelper {
 								return 40
 						case .extreme:
 								return 25
-						default:
-								return 0
+						case .survival:
+								return 15
 						}
 				}
 				

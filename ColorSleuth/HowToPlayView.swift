@@ -18,7 +18,7 @@ struct HowToPlayView: View {
 								
 								Text("Tap the color that's different")
 								Text("See how fast you can complete a round")
-								Text("Get at least 50% correct to complete a round")
+								Text("Get at least 80% correct to complete a round")
 								Text("The harder the difficulty, the more similar the colors are")
 								
 								ZStack {

@@ -76,7 +76,6 @@ struct RoundFinishedView: View {
 						
 						Button(action: {
 								viewStates.showGameplay = false
-								viewStates.showEndRound = false
 						}, label: {
 								ZStack {
 										RoundedRectangle(cornerRadius: 100)
@@ -116,9 +115,6 @@ struct RoundFinishedView: View {
 								if currentGame.difficulty == .survival {
 										stat.highScore = calc.highScore(currentScore: currentGame.score, highScore: stat.highScore)
 										stat.averageScore = calc.averageScore(correctTaps: stat.correctTaps, gamesPlayed: stat.gamesPlayed)
-										
-										stat.bestTimeTapRatio = calc.bestTimeTapRatio(currentGame: currentGame, bestRatio: stat.bestTimeTapRatio)
-										stat.bestTimeTapRatioString = calc.formatRatioTime(elapsedTime: stat.bestTimeTapRatio)
 										
 										stat.avgTimeTapRatio = calc.avgTimeTapRatio(stats: stat)
 										stat.avgTimeTapRatioString = calc.formatRatioTime(elapsedTime: stat.avgTimeTapRatio)

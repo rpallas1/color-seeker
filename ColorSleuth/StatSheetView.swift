@@ -196,20 +196,6 @@ struct StatSheetView: View {
 										
 										if statCategory.difficulty == "Survival" {
 												HStack {
-														Text("Best Time to Tap")
-																.padding(.leading)
-														Spacer()
-														Text(statCategory.bestTimeTapRatioString == "" ? "-" : statCategory.bestTimeTapRatioString)
-																.bold()
-												}
-												.padding()
-												.font(.title3)
-												.background {
-														RoundedRectangle(cornerRadius: 15)
-																.foregroundStyle(Color("Primary Gray"))
-												}
-												
-												HStack {
 														Text("Average Time to Tap")
 																.padding(.leading)
 														Spacer()

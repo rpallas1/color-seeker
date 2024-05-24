@@ -16,51 +16,69 @@ struct PauseGameView: View {
 		var body: some View {
 				
 				@Bindable var viewStates = viewStates
-				
-				GroupBox {
-						VStack {
-								HStack {
-										VStack (alignment: .leading, spacing: 24) {
-												HStack {
-														Text("Difficulty:")
-																.bold()
-														Text(currentGame.difficulty.rawValue)
+//				ZStack {
+//						Color.black.opacity(0.4)
+//								.ignoresSafeArea()
+						
+						GroupBox {
+								VStack {
+										HStack {
+												VStack (alignment: .leading, spacing: 24) {
+														HStack {
+																Text("Difficulty:")
+																		.bold()
+																Text(currentGame.difficulty.rawValue)
+														}
+														HStack {
+																Text("Time:")
+																		.bold()
+																Text(currentGame.elapsedTimeString)
+														}
+														HStack {
+																Text("Score:")
+																		.bold()
+																
+																if currentGame.difficulty == .survival {
+																		Text("\(String(currentGame.score))")
+																} else {
+																		Text("\(String(currentGame.score))/\(currentGame.totalRounds)")
+																}
+														}
 												}
-												HStack {
-														Text("Time:")
-																.bold()
-														Text(currentGame.elapsedTimeString)
-												}
-												HStack {
-														Text("Score:")
-																.bold()
-														Text("\(String(currentGame.score))/\(currentGame.totalRounds)")
-												}
+												.padding(.bottom, 32)
+												.font(.title)
 										}
-										.padding(.bottom, 32)
-										.font(.title)
-								}
-								.padding(.trailing, 100)
-								
-								VStack (spacing: 16) {
-										Button(action: {
-												viewStates.showGameplay = false
-												viewStates.showPause = false
-										}, label: {
-												Text("Quit")
-										})
+										.padding(.trailing, 100)
 										
-										Button(action: {
-												viewStates.showPause = false
-										}, label: {
-												Text("Resume")
-														.padding(.horizontal, 48)
-														.bold()
-										})
-										.buttonStyle(.bordered)
+										VStack (spacing: 16) {
+												Button(action: {
+														viewStates.showGameplay = false
+														
+														// Reset current game values when game quit
+														currentGame.score = 0
+														currentGame.totalTaps = 0
+														currentGame.totalRounds = 20
+												}, label: {
+														Text("Quit")
+												})
+												
+												Button(action: {
+														withAnimation {
+																viewStates.showPause = false
+														}
+														
+												}, label: {
+														Text("Resume")
+																.padding(.horizontal, 48)
+																.bold()
+												})
+												.buttonStyle(.bordered)
+										}
+										.font(.largeTitle)
 								}
-								.font(.largeTitle)
 						}
-				}
+//						.zIndex(2)
+//				}
+				
 		}
 }

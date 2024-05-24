@@ -13,6 +13,8 @@ struct GameHelper {
 		
 		func buildGrid(currentGame: GameplayModel) -> [SquareObject] {
 				var gridLayout = [SquareObject]()
+				
+				// TODO: Randomize for when on survival
 				let gridSize = currentGame.gridSize.rawValue * currentGame.gridSize.rawValue
 				let randIndex = Int.random(in: 0..<gridSize)
 				let rgbColor = setRandomColor()
@@ -27,21 +29,23 @@ struct GameHelper {
 		
 		func assignSquareValues(gridSize: Int, currentIndex: Int, randIndex: Int, randColor: Color, adjustedColor: Color) -> SquareObject {
 				var size: CGFloat {
-						if gridSize == 4 {
+						switch gridSize {
+						case 4:
 								return 136
-						} else if gridSize == 9 {
+						case 9:
 								return 100
-						} else {
+						default:
 								return 85
 						}
 				}
 				
 				var radius: CGFloat {
-						if gridSize == 4 {
+						switch gridSize {
+						case 4:
 								return 12
-						} else if gridSize == 9 {
+						case 9:
 								return 10
-						} else {
+						default:
 								return 6
 						}
 				}
@@ -62,14 +66,10 @@ struct GameHelper {
 		}
 		
 		func setAdjustedColor(color: rgbColor, difficulty: Difficulty) -> Color {
-				// Depends on the difficulty of how much to adjust (harder = smaller change, easy = larger change)
-				
 				var increaseValue: Bool {
 						if Int.random(in: 0...1) == 0 {
-								// 0 means increase
 								return true
 						} else {
-								// 1 means decrease
 								return false
 						}
 				}
@@ -79,12 +79,13 @@ struct GameHelper {
 						case .easy:
 								return 70
 						case .medium:
-								return 60
+								return 52
 						case .hard:
 								return 30
 						case .extreme:
-								return 21
+								return 14
 						case .survival:
+								// TODO: Return random number from these 4 options
 								return 14
 						}
 				}

@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import SwiftData
 
 struct GameplayView: View {
 		
@@ -20,8 +19,6 @@ struct GameplayView: View {
 		@State private var showSettings: Bool = false
 		@State private var isAnswer = false
 		@State var gridArray: [SquareObject]
-		@State private var numOfRows: Int = 2
-		@State private var numOfColumns: Int = 2
 		
 		@State private var timeString: String = ""
 		@State private var timer: Timer?
@@ -101,9 +98,14 @@ struct GameplayView: View {
 																				}
 																		}
 																		
-																		if currentGame.totalTaps < currentGame.totalRounds || currentGame.difficulty == .survival {
+																		if currentGame.totalTaps < currentGame.totalRounds ||
+																				(currentGame.difficulty == .survival && isAnswer == true) {
 																				// Rebuild grid if game not over
-																				gridArray = game.buildGrid(currentGame: currentGame)
+																				if currentGame.difficulty == .survival {
+																						gridArray = game.buildGrid(currentGame: currentGame)
+																				} else {
+																						gridArray = game.buildGrid(currentGame: currentGame)
+																				}
 																		}
 																		else {
 																				// Stop game when all rounds are complete
@@ -127,6 +129,7 @@ struct GameplayView: View {
 										
 										Spacer()
 								}
+								.disabled(viewStates.showPause)
 								.toolbar {
 										ToolbarItem {
 												Button(action: {
@@ -139,45 +142,56 @@ struct GameplayView: View {
 										
 										ToolbarItem(placement: .topBarLeading) {
 												Button(action: {
-														viewStates.showPause.toggle()
+														withAnimation {
+																viewStates.showPause.toggle()
+														}
 												}, label: {
 														Image(systemName: viewStates.showPause ? "play.fill" : "pause.fill")
 																.foregroundStyle(Color("Primary Black"))
 												})
 										}
 								}
+								.blur(radius: viewStates.showPause ? 3 : 0)
 								
 								if viewStates.showPause {
 										PauseGameView(currentGame: currentGame)
+												.animation(.easeInOut(duration: 0.3), value: viewStates.showPause)
 												.onAppear {
 														pauseResumeTimer()
 												}
 												.onDisappear {
 														pauseResumeTimer()
 												}
-								}
-								
-								if viewStates.showEndRound {
-										RoundFinishedView(currentGame: currentGame)
-												.transition(.push(from: .bottom))
+												.zIndex(2)
 								}
 						}
+				}
+				.animation(.easeInOut(duration: 0.3), value: viewStates.showPause)
+				.onAppear {
+						startTimer()
 				}
 				.sheet(isPresented: $showSettings, content: {
 						SettingsView()
 								.onAppear {
-										pauseResumeTimer()
+										if viewStates.showPause == false {
+												pauseResumeTimer()
+										}
 								}
 								.onDisappear {
-										pauseResumeTimer()
+										if viewStates.showPause == false {
+												pauseResumeTimer()
+										}
 								}
 				})
-				.onAppear {
-						startTimer()
+				.fullScreenCover(isPresented: $viewStates.showEndRound, content: {
+						RoundFinishedView(currentGame: currentGame)
+								.transition(.push(from: .bottom))
+				})
+				.onDisappear {
+						viewStates.showEndRound = false
+						viewStates.showPause = false
 				}
 		}
-		
-		
 		
 		func formattedTime(currentGame: GameplayModel, elapsedTime: TimeInterval) -> String {
 				let minutes = Int(elapsedTime) / 60

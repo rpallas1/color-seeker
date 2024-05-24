@@ -20,7 +20,7 @@ struct CalcStats {
 		}
 		
 		func didPassRound(currentGame: GameplayModel) -> Bool {
-				if currentGame.score >= Int(Double(currentGame.totalRounds) / 2) {
+				if percentCorrect(currentGame: currentGame) >= currentGame.percentNeeded {
 						return true
 				} else {
 						return false
@@ -45,8 +45,6 @@ struct CalcStats {
 		
 		func averageScore(correctTaps: Int, gamesPlayed: Int) -> Int{
 				return correctTaps / gamesPlayed
-				
-//				return 1
 		}
 		
 		func isPerfectRound(currentGame: GameplayModel) -> Bool {
@@ -75,18 +73,6 @@ struct CalcStats {
 		
 		func averageTime(gamesPlayed: Int, totalTime: TimeInterval) -> Double {
 				return Double(totalTime) / Double(gamesPlayed)
-		}
-		
-		func bestTimeTapRatio(currentGame: GameplayModel, bestRatio: Double) -> Double {
-				var currentRatio: Double {
-						return Double(currentGame.elapsedTime) / Double(currentGame.score)
-				}
-				
-				if currentRatio < bestRatio || bestRatio == 0 {
-						return currentRatio
-				} else {
-						return bestRatio
-				}
 		}
 		
 		func avgTimeTapRatio(stats: StatModel) -> Double {

@@ -16,7 +16,6 @@ struct MainView: View {
 		@Query private var allStats: [StatModel]
 		@State var selection = Tabs.home
 		@State private var showSettings = false
-		@State private var selectedColorScheme: Settings.ColorSchemeOption = .system
 
     var body: some View {
 				NavigationStack {

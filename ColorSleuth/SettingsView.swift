@@ -52,8 +52,10 @@ struct SettingsView: View {
 												Button("Reset Game Data") {
 														showConfirmation = true
 												}
-												.foregroundStyle(sortedStats[0].gamesPlayed == 0 ? .gray : .red)
-												.disabled(sortedStats[0].gamesPlayed == 0)
+//												.foregroundStyle(sortedStats[0].gamesPlayed == 0 ? .gray : .red)
+//												.disabled(sortedStats[0].gamesPlayed == 0)
+												.foregroundStyle(disableRest(stats: sortedStats) ? .gray : .red)
+												.disabled(disableRest(stats: sortedStats))
 										}
 								}
 						}
@@ -90,5 +92,13 @@ struct SettingsView: View {
 				context.insert(StatModel(difficuly: "Hard", position: 3))
 				context.insert(StatModel(difficuly: "Extreme", position: 4))
 				context.insert(StatModel(difficuly: "Survival", position: 5))
+		}
+		
+		private func disableRest(stats: [StatModel]) -> Bool {
+				if stats[0].gamesPlayed == 0 && stats[5].gamesPlayed == 0 {
+						return true
+				}
+				
+				return false
 		}
 }

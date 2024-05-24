@@ -18,8 +18,6 @@ struct GameplayView: View {
 		
 		@State private var game = GameHelper()
 		@State private var showSettings: Bool = false
-		@State private var selectedColorScheme: Settings.ColorSchemeOption = .system
-		@State private var showEndRound = false
 		@State private var isAnswer = false
 		@State var gridArray: [SquareObject]
 		@State private var numOfRows: Int = 2
@@ -119,7 +117,7 @@ struct GameplayView: View {
 																}
 																.sensoryFeedback(trigger: currentGame.totalTaps) { oldValue, newValue in
 																		if settings.hapticsEnabled {
-																				return isAnswer == true ? .impact() : .error
+																				return isAnswer == true ? .impact(intensity: 0.55) : .error
 																		}
 																		return .none
 																}

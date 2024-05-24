@@ -28,7 +28,7 @@ struct RoundFinishedView: View {
 		@State private var showHome = false
 		private var calc = CalcStats()
 		
-    var body: some View {
+		var body: some View {
 				
 				@Bindable var viewStates = viewStates
 				
@@ -100,69 +100,80 @@ struct RoundFinishedView: View {
 				.onAppear {
 						//Update all stats
 						if difficultyStat.count == 1 && overallStat.count == 1 {
-																
+								
 								let stat = difficultyStat[0]
 								let overallStat = overallStat[0]
 								
+								// ROOT STATS
 								stat.gamesPlayed += 1
-								overallStat.gamesPlayed += 1
-						
 								stat.totalTime += currentGame.elapsedTime
-								overallStat.totalTime += currentGame.elapsedTime
-								
-								if calc.didPassRound(currentGame: currentGame) {
-										stat.gamesWon += 1
-										overallStat.gamesWon += 1
-										
-										stat.currentStreak += 1
-										overallStat.currentStreak += 1
-								} else {
-										stat.currentStreak = 0
-										overallStat.currentStreak = 0
-								}
-								
-								if calc.isPerfectRound(currentGame: currentGame) {
-										stat.perfectGames += 1
-										overallStat.perfectGames += 1
-								}
-								
-								if currentGame.difficulty == .survival {
-										stat.highScore = calc.highScore(currentScore: currentGame.score, highScore: stat.highScore)
-								}
-								
-								stat.percentCorrect = calc.winRate(stat: stat)
-								overallStat.percentCorrect = calc.winRate(stat: overallStat)
-								
 								stat.totalTaps += currentGame.totalTaps
 								stat.correctTaps += currentGame.score
-								stat.accuracy = calc.accuracy(stat: stat)
-								overallStat.totalTaps += currentGame.totalTaps
-								overallStat.correctTaps += currentGame.score
-								overallStat.accuracy = calc.accuracy(stat: overallStat)
-								
-								
-								stat.bestStreak = calc.bestStreak(currentStreak: stat.currentStreak, bestStreak: stat.bestStreak)
-								overallStat.bestStreak = calc.bestStreak(currentStreak: overallStat.currentStreak, bestStreak: overallStat.bestStreak)
-								
-								if calc.didPassRound(currentGame: currentGame) {
-										stat.bestTime = calc.bestTime(currentTime: currentGame.elapsedTime, bestTime: stat.bestTime)
-										stat.bestTimeString = calc.formatTime(elapsedTime: stat.bestTime)
-								}
 								
 								stat.averageTime = calc.averageTime(gamesPlayed: stat.gamesPlayed, totalTime: stat.totalTime)
 								stat.averageTimeString = calc.formatTime(elapsedTime: stat.averageTime)
-								overallStat.averageTime = calc.averageTime(gamesPlayed: overallStat.gamesPlayed, totalTime: overallStat.totalTime)
-								overallStat.averageTimeString = calc.formatTime(elapsedTime: overallStat.averageTime)
 								
+								if currentGame.difficulty == .survival {
+										stat.highScore = calc.highScore(currentScore: currentGame.score, highScore: stat.highScore)
+										stat.averageScore = calc.averageScore(correctTaps: stat.correctTaps, gamesPlayed: stat.gamesPlayed)
+										
+										stat.bestTimeTapRatio = calc.bestTimeTapRatio(currentGame: currentGame, bestRatio: stat.bestTimeTapRatio)
+										stat.bestTimeTapRatioString = calc.formatRatioTime(elapsedTime: stat.bestTimeTapRatio)
+										
+										stat.avgTimeTapRatio = calc.avgTimeTapRatio(stats: stat)
+										stat.avgTimeTapRatioString = calc.formatRatioTime(elapsedTime: stat.avgTimeTapRatio)
+								}
+								
+								if currentGame.difficulty != .survival {
+										// ROOT STATS
+										overallStat.gamesPlayed += 1
+										overallStat.totalTime += currentGame.elapsedTime
+										overallStat.totalTaps += currentGame.totalTaps
+										overallStat.correctTaps += currentGame.score
+										
+										if calc.didPassRound(currentGame: currentGame) {
+												stat.gamesWon += 1
+												overallStat.gamesWon += 1
+												
+												stat.currentStreak += 1
+												overallStat.currentStreak += 1
+										} else {
+												stat.currentStreak = 0
+												overallStat.currentStreak = 0
+										}
+										
+										if calc.isPerfectRound(currentGame: currentGame) {
+												stat.perfectGames += 1
+												overallStat.perfectGames += 1
+										}
+										
+										stat.percentCorrect = calc.winRate(stat: stat)
+										overallStat.percentCorrect = calc.winRate(stat: overallStat)
+										
+										stat.accuracy = calc.accuracy(stat: stat)
+										overallStat.accuracy = calc.accuracy(stat: overallStat)
+										
+										stat.bestStreak = calc.bestStreak(currentStreak: stat.currentStreak, bestStreak: stat.bestStreak)
+										overallStat.bestStreak = calc.bestStreak(currentStreak: overallStat.currentStreak, bestStreak: overallStat.bestStreak)
+										
+										if calc.didPassRound(currentGame: currentGame) {
+												stat.bestTime = calc.bestTime(currentTime: currentGame.elapsedTime, bestTime: stat.bestTime)
+												stat.bestTimeString = calc.formatTime(elapsedTime: stat.bestTime)
+										}
+										
+										overallStat.averageTime = calc.averageTime(gamesPlayed: overallStat.gamesPlayed, totalTime: overallStat.totalTime)
+										overallStat.averageTimeString = calc.formatTime(elapsedTime: overallStat.averageTime)
+								}
+
 								// Reset current game values
- 								currentGame.score = 0
+								currentGame.score = 0
 								currentGame.totalTaps = 0
 								currentGame.totalRounds = 20
 						} else {
 								print("Error: Returned more than 1 stat difficulty or overall stat")
 						}
 				}
-    }
+		}
 		
 		
 		init(currentGame: GameplayModel) {

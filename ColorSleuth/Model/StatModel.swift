@@ -17,6 +17,7 @@ class StatModel: Identifiable {
 		var gamesWon: Int = 0
 		var perfectGames: Int = 0
 		var highScore: Int = 0
+		var averageScore: Int = 0
 		var percentCorrect: Int = 0
 		var correctTaps: Int = 0
 		var totalTaps: Int = 0
@@ -26,6 +27,10 @@ class StatModel: Identifiable {
 		var totalTime: TimeInterval = 0
 		var bestTime: Double = 0
 		var bestTimeString: String = ""
+		var bestTimeTapRatio: Double = 0
+		var bestTimeTapRatioString: String = ""
+		var avgTimeTapRatio: Double = 0
+		var avgTimeTapRatioString: String = ""
 		var averageTime: Double = 0
 		var averageTimeString: String = ""
 		

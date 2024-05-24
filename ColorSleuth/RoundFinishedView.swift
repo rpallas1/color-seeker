@@ -33,18 +33,20 @@ struct RoundFinishedView: View {
 				@Bindable var viewStates = viewStates
 				
 				VStack (spacing: 16) {
-						if calc.didPassRound(currentGame: currentGame) {
-								Text("Round Complete")
-										.font(.largeTitle)
-										.bold()
-						} else {
-								Text("Round Failed")
-										.font(.largeTitle)
-										.bold()
+						if currentGame.difficulty != .survival {
+								if calc.didPassRound(currentGame: currentGame) {
+										Text("Round Complete")
+												.font(.largeTitle)
+												.bold()
+								} else {
+										Text("Round Failed")
+												.font(.largeTitle)
+												.bold()
+								}
+								
+								Text("\(calc.percentCorrect(currentGame: currentGame))%")
+										.font(.title)
 						}
-						
-						Text("\(calc.percentCorrect(currentGame: currentGame))%")
-								.font(.title)
 						
 						VStack (spacing: 4) {
 								Text("Difficulty")
@@ -63,7 +65,12 @@ struct RoundFinishedView: View {
 						VStack (spacing: 4) {
 								Text("Score")
 										.bold()
-								Text("\(String(currentGame.score))/\(currentGame.totalRounds)")
+								
+								if currentGame.difficulty == .survival {
+										Text(String(currentGame.score))
+								} else {
+										Text("\(String(currentGame.score))/\(currentGame.totalRounds)")
+								}
 						}
 						.font(.title2)
 						
@@ -119,6 +126,10 @@ struct RoundFinishedView: View {
 										overallStat.perfectGames += 1
 								}
 								
+								if currentGame.difficulty == .survival {
+										stat.highScore = calc.highScore(currentScore: currentGame.score, highScore: stat.highScore)
+								}
+								
 								stat.percentCorrect = calc.winRate(stat: stat)
 								overallStat.percentCorrect = calc.winRate(stat: overallStat)
 								
@@ -143,8 +154,10 @@ struct RoundFinishedView: View {
 								overallStat.averageTime = calc.averageTime(gamesPlayed: overallStat.gamesPlayed, totalTime: overallStat.totalTime)
 								overallStat.averageTimeString = calc.formatTime(elapsedTime: overallStat.averageTime)
 								
+								// Reset current game values
  								currentGame.score = 0
 								currentGame.totalTaps = 0
+								currentGame.totalRounds = 20
 						} else {
 								print("Error: Returned more than 1 stat difficulty or overall stat")
 						}

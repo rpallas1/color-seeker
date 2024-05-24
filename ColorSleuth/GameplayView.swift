@@ -55,7 +55,12 @@ struct GameplayView: View {
 														Text("Score")
 																.bold()
 																.foregroundStyle(.cyan)
-														Text("\(String(currentGame.score))/\(currentGame.totalRounds)")
+														
+														if currentGame.difficulty == .survival {
+																Text(String(currentGame.score))
+														} else {
+																Text("\(String(currentGame.score))/\(currentGame.totalRounds)")
+														}
 												}
 												
 												Spacer()
@@ -86,12 +91,23 @@ struct GameplayView: View {
 																				isAnswer = true
 																		} else {
 																				isAnswer = false
+																				
+																				// End game since they made one mistake in survival mode
+																				if currentGame.difficulty == .survival {
+																						stopTimer()
+																						currentGame.elapsedTime = elapsedTime
+																						
+																						withAnimation {
+																								viewStates.showEndRound = true
+																						}
+																				}
 																		}
 																		
-																		if currentGame.totalTaps < currentGame.totalRounds {
+																		if currentGame.totalTaps < currentGame.totalRounds || currentGame.difficulty == .survival {
 																				// Rebuild grid if game not over
 																				gridArray = game.buildGrid(currentGame: currentGame)
-																		} else {
+																		}
+																		else {
 																				// Stop game when all rounds are complete
 																				stopTimer()
 																				currentGame.elapsedTime = elapsedTime

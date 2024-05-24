@@ -81,11 +81,11 @@ struct GameHelper {
 						case .medium:
 								return 60
 						case .hard:
-								return 40
+								return 30
 						case .extreme:
-								return 25
+								return 21
 						case .survival:
-								return 15
+								return 14
 						}
 				}
 				

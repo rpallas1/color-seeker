@@ -16,6 +16,7 @@ class StatModel: Identifiable {
 		var gamesPlayed: Int = 0
 		var gamesWon: Int = 0
 		var perfectGames: Int = 0
+		var highScore: Int = 0
 		var percentCorrect: Int = 0
 		var correctTaps: Int = 0
 		var totalTaps: Int = 0

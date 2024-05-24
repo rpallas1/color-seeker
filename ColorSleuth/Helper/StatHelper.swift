@@ -35,6 +35,14 @@ struct CalcStats {
 				}
 		}
 		
+		func highScore(currentScore: Int, highScore: Int) -> Int {
+				if currentScore > highScore {
+						return currentScore
+				} else {
+						return highScore
+				}
+		}
+		
 		func isPerfectRound(currentGame: GameplayModel) -> Bool {
 				if currentGame.score == currentGame.totalRounds {
 						return true

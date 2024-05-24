@@ -57,6 +57,9 @@ struct DifficultyMenuView: View {
 										viewStates.showGameplay = true
 										currentGame.difficulty = .survival
 										currentGame.gridSize = .large
+										
+										// Will go on until a mistake is made
+										currentGame.totalRounds = -1
 								}, label: {
 										Text("Survival")
 								})

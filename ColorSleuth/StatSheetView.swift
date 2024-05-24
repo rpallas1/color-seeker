@@ -37,18 +37,34 @@ struct StatSheetView: View {
 														.foregroundStyle(Color("Primary Gray"))
 										}
 										
-										HStack {
-												Text("Games Won")
-														.padding(.leading)
-												Spacer()
-												Text(statCategory.gamesWon == 0 ? "-" : String(statCategory.gamesWon))
-														.bold()
-										}
-										.padding()
-										.font(.title3)
-										.background {
-												RoundedRectangle(cornerRadius: 15)
-														.foregroundStyle(Color("Primary Gray"))
+										if statCategory.difficulty == "Survival" {
+												HStack {
+														Text("Highest Score")
+																.padding(.leading)
+														Spacer()
+														Text(statCategory.highScore == 0 ? "-" : String(statCategory.highScore))
+																.bold()
+												}
+												.padding()
+												.font(.title3)
+												.background {
+														RoundedRectangle(cornerRadius: 15)
+																.foregroundStyle(Color("Primary Gray"))
+												}
+										} else {
+												HStack {
+														Text("Games Won")
+																.padding(.leading)
+														Spacer()
+														Text(statCategory.gamesWon == 0 ? "-" : String(statCategory.gamesWon))
+																.bold()
+												}
+												.padding()
+												.font(.title3)
+												.background {
+														RoundedRectangle(cornerRadius: 15)
+																.foregroundStyle(Color("Primary Gray"))
+												}
 										}
 										
 										HStack {

@@ -14,9 +14,18 @@ struct GameHelper {
 		func buildGrid(currentGame: GameplayModel) -> [SquareObject] {
 				var gridLayout = [SquareObject]()
 				
-				// TODO: Randomize for when on survival
-				let gridSize = currentGame.gridSize.rawValue * currentGame.gridSize.rawValue
+				let randSize: Int = Int.random(in: 2...4)
+				let randGridSize = randSize * randSize
+				let normalGridSize = currentGame.gridSize.rawValue * currentGame.gridSize.rawValue
+				var gridSize: Int {
+						if currentGame.difficulty == .survival {
+								return randGridSize
+						} else {
+								return normalGridSize
+						}
+				}
 				let randIndex = Int.random(in: 0..<gridSize)
+				
 				let rgbColor = setRandomColor()
 				let randColor: Color = buildColor(colorValues: rgbColor)
 				let adjustedColor: Color = setAdjustedColor(color: rgbColor, difficulty: currentGame.difficulty)
@@ -39,6 +48,17 @@ struct GameHelper {
 						}
 				}
 				
+				var sqrtSize: Int {
+						switch gridSize {
+						case 4:
+								return 2
+						case 9:
+								return 3
+						default:
+								return 4
+						}
+				}
+				
 				var radius: CGFloat {
 						switch gridSize {
 						case 4:
@@ -51,9 +71,9 @@ struct GameHelper {
 				}
 				
 				if currentIndex == randIndex {
-						return SquareObject(color: adjustedColor, isAnswer: true, size: size, cornerRadius: radius)
+						return SquareObject(color: adjustedColor, isAnswer: true, size: size, sqrtSize: sqrtSize, cornerRadius: radius)
 				} else {
-						return SquareObject(color: randColor, isAnswer: false, size: size, cornerRadius: radius)
+						return SquareObject(color: randColor, isAnswer: false, size: size, sqrtSize: sqrtSize, cornerRadius: radius)
 				}
 		}
 		
@@ -66,6 +86,9 @@ struct GameHelper {
 		}
 		
 		func setAdjustedColor(color: rgbColor, difficulty: Difficulty) -> Color {
+				let numbers: [Double] = [60, 50, 40, 30, 30, 20, 20, 14, 14]
+				let randNum = numbers.randomElement()!
+		
 				var increaseValue: Bool {
 						if Int.random(in: 0...1) == 0 {
 								return true
@@ -85,8 +108,7 @@ struct GameHelper {
 						case .extreme:
 								return 14
 						case .survival:
-								// TODO: Return random number from these 4 options
-								return 14
+								return randNum
 						}
 				}
 				

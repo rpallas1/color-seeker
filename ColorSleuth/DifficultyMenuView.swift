@@ -56,6 +56,8 @@ struct DifficultyMenuView: View {
 								Button(action: {
 										viewStates.showGameplay = true
 										currentGame.difficulty = .survival
+										
+										// TODO: Set random size here
 										currentGame.gridSize = .large
 										
 										// Will go on until a mistake is made

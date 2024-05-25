@@ -74,8 +74,8 @@ struct GameplayView: View {
 										
 										Spacer()
 										
-										LazyVGrid(columns: Array(repeating: GridItem(.fixed(gridArray[0].size)), count: currentGame.gridSize.rawValue)) {
-												ForEach(0..<currentGame.gridSize.rawValue * currentGame.gridSize.rawValue, id: \.self) { i in
+										LazyVGrid(columns: Array(repeating: GridItem(.fixed(gridArray[0].size)), count: gridArray[0].sqrtSize)) {
+												ForEach(0..<gridArray[0].sqrtSize * gridArray[0].sqrtSize, id: \.self) { i in
 														RoundedRectangle(cornerRadius: gridArray[i].cornerRadius)
 																.frame(width: gridArray[i].size, height: gridArray[i].size)
 																.foregroundStyle(gridArray[i].color)
@@ -102,7 +102,9 @@ struct GameplayView: View {
 																				(currentGame.difficulty == .survival && isAnswer == true) {
 																				// Rebuild grid if game not over
 																				if currentGame.difficulty == .survival {
-																						gridArray = game.buildGrid(currentGame: currentGame)
+																						withAnimation {
+																								gridArray = game.buildGrid(currentGame: currentGame)
+																						}								
 																				} else {
 																						gridArray = game.buildGrid(currentGame: currentGame)
 																				}

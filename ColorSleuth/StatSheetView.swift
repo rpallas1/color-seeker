@@ -37,35 +37,8 @@ struct StatSheetView: View {
 														.foregroundStyle(Color("Primary Gray"))
 										}
 										
-										if statCategory.difficulty == "Survival" {
-												HStack {
-														Text("High Score")
-																.padding(.leading)
-														Spacer()
-														Text(statCategory.highScore == 0 ? "-" : String(statCategory.highScore))
-																.bold()
-												}
-												.padding()
-												.font(.title3)
-												.background {
-														RoundedRectangle(cornerRadius: 15)
-																.foregroundStyle(Color("Primary Gray"))
-												}
-												
-												HStack {
-														Text("Average Score")
-																.padding(.leading)
-														Spacer()
-														Text(statCategory.averageScore == 0 ? "-" : String(statCategory.averageScore))
-																.bold()
-												}
-												.padding()
-												.font(.title3)
-												.background {
-														RoundedRectangle(cornerRadius: 15)
-																.foregroundStyle(Color("Primary Gray"))
-												}
-										} else {
+										if statCategory.difficulty != "Survival" {
+												// Game stats for normal difficulties
 												HStack {
 														Text("Games Won")
 																.padding(.leading)
@@ -107,9 +80,7 @@ struct StatSheetView: View {
 														RoundedRectangle(cornerRadius: 15)
 																.foregroundStyle(Color("Primary Gray"))
 												}
-										}
-										
-										if statCategory.difficulty != "Survival" {
+												
 												HStack {
 														Text("Accuracy")
 																.padding(.leading)
@@ -167,20 +138,43 @@ struct StatSheetView: View {
 										.padding(.horizontal, 24)
 										.padding(.top)
 										.containerRelativeFrame(.horizontal)
-								}
-								
-								// Times section
-								VStack (alignment: .leading, spacing: 20) {
-										Text("Times")
-												.font(.title)
-												.bold()
-										
-										if statCategory.difficulty == "Easy" || 
-												statCategory.difficulty == "Medium" ||
-												statCategory.difficulty == "Hard" ||
-												statCategory.difficulty == "Extreme" {
+								} else {
+										// Best game for survival instead of streaks
+										VStack (alignment: .leading, spacing: 20) {
+												Text("Best Game")
+														.font(.title)
+														.bold()
+												
 												HStack {
-														Text("Best Time")
+														Text("High Score")
+																.padding(.leading)
+														Spacer()
+														Text(statCategory.highScore == 0 ? "-" : String(statCategory.highScore))
+																.bold()
+												}
+												.padding()
+												.font(.title3)
+												.background {
+														RoundedRectangle(cornerRadius: 15)
+																.foregroundStyle(Color("Primary Gray"))
+												}
+												
+												HStack {
+														Text("Time to Tap")
+																.padding(.leading)
+														Spacer()
+														Text(statCategory.bestTimeTapRatioString == "" ? "-" : String(statCategory.bestTimeTapRatioString))
+																.bold()
+												}
+												.padding()
+												.font(.title3)
+												.background {
+														RoundedRectangle(cornerRadius: 15)
+																.foregroundStyle(Color("Primary Gray"))
+												}
+												
+												HStack {
+														Text("Time")
 																.padding(.leading)
 														Spacer()
 														Text(statCategory.bestTimeString == "" ? "-" : String(statCategory.bestTimeString))
@@ -192,14 +186,40 @@ struct StatSheetView: View {
 														RoundedRectangle(cornerRadius: 15)
 																.foregroundStyle(Color("Primary Gray"))
 												}
-										} 
-										
-										if statCategory.difficulty == "Survival" {
+										}
+										.padding(.horizontal, 24)
+										.padding(.top)
+										.containerRelativeFrame(.horizontal)
+								}
+								
+								if statCategory.difficulty != "Survival" {
+										// Times section for normal difficulties
+										VStack (alignment: .leading, spacing: 20) {
+												Text("Times")
+														.font(.title)
+														.bold()
+												
+												if statCategory.difficulty != "Overall" {
+														HStack {
+																Text("Best Time")
+																		.padding(.leading)
+																Spacer()
+																Text(statCategory.bestTimeString == "" ? "-" : String(statCategory.bestTimeString))
+																		.bold()
+														}
+														.padding()
+														.font(.title3)
+														.background {
+																RoundedRectangle(cornerRadius: 15)
+																		.foregroundStyle(Color("Primary Gray"))
+														}
+												}
+												
 												HStack {
-														Text("Average Time to Tap")
+														Text("Average Time")
 																.padding(.leading)
 														Spacer()
-														Text(statCategory.avgTimeTapRatioString == "" ? "-" : statCategory.avgTimeTapRatioString)
+														Text(statCategory.averageTimeString == "" ? "-" : statCategory.averageTimeString)
 																.bold()
 												}
 												.padding()
@@ -209,24 +229,62 @@ struct StatSheetView: View {
 																.foregroundStyle(Color("Primary Gray"))
 												}
 										}
-										
-										HStack {
-												Text("Average Time")
-														.padding(.leading)
-												Spacer()
-												Text(statCategory.averageTimeString == "" ? "-" : statCategory.averageTimeString)
+										.padding(.horizontal, 24)
+										.padding(.top)
+										.containerRelativeFrame(.horizontal)
+								} else {
+										// Averge game for survival round
+										VStack (alignment: .leading, spacing: 20) {
+												Text("Average Game")
+														.font(.title)
 														.bold()
+												
+												HStack {
+														Text("Average Score")
+																.padding(.leading)
+														Spacer()
+														Text(statCategory.averageScore == 0 ? "-" : String(statCategory.averageScore))
+																.bold()
+												}
+												.padding()
+												.font(.title3)
+												.background {
+														RoundedRectangle(cornerRadius: 15)
+																.foregroundStyle(Color("Primary Gray"))
+												}
+												
+												HStack {
+														Text("Average Time to Tap")
+																.padding(.leading)
+														Spacer()
+														Text(statCategory.avgTimeTapRatioString == "" ? "-" : String(statCategory.avgTimeTapRatioString))
+																.bold()
+												}
+												.padding()
+												.font(.title3)
+												.background {
+														RoundedRectangle(cornerRadius: 15)
+																.foregroundStyle(Color("Primary Gray"))
+												}
+												
+												HStack {
+														Text("Average Time")
+																.padding(.leading)
+														Spacer()
+														Text(statCategory.averageTimeString == "" ? "-" : String(statCategory.averageTimeString))
+																.bold()
+												}
+												.padding()
+												.font(.title3)
+												.background {
+														RoundedRectangle(cornerRadius: 15)
+																.foregroundStyle(Color("Primary Gray"))
+												}
 										}
-										.padding()
-										.font(.title3)
-										.background {
-												RoundedRectangle(cornerRadius: 15)
-														.foregroundStyle(Color("Primary Gray"))
-										}
+										.padding(.horizontal, 24)
+										.padding(.top)
+										.containerRelativeFrame(.horizontal)
 								}
-								.padding(.horizontal, 24)
-								.padding(.top)
-								.containerRelativeFrame(.horizontal)
 						}
 				}
 				.padding(.bottom, 24)

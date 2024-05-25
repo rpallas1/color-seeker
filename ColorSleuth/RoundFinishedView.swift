@@ -104,20 +104,32 @@ struct RoundFinishedView: View {
 								let overallStat = overallStat[0]
 								
 								// ROOT STATS
-								stat.gamesPlayed += 1
-								stat.totalTime += currentGame.elapsedTime
+								if currentGame.score == 0 && currentGame.difficulty == .survival {
+										// Don't update games played or total time
+								} else {
+										stat.gamesPlayed += 1
+										stat.totalTime += currentGame.elapsedTime
+								}
+								
 								stat.totalTaps += currentGame.totalTaps
 								stat.correctTaps += currentGame.score
 								
-								stat.averageTime = calc.averageTime(gamesPlayed: stat.gamesPlayed, totalTime: stat.totalTime)
-								stat.averageTimeString = calc.formatTime(elapsedTime: stat.averageTime)
-								
 								if currentGame.difficulty == .survival {
-										stat.highScore = calc.highScore(currentScore: currentGame.score, highScore: stat.highScore)
-										stat.averageScore = calc.averageScore(correctTaps: stat.correctTaps, gamesPlayed: stat.gamesPlayed)
+										if currentGame.score > stat.highScore {
+												stat.highScore = calc.highScore(currentScore: currentGame.score, highScore: stat.highScore)
+												stat.bestTimeTapRatio = calc.currentTimeTapRatio(currentGame: currentGame)
+												stat.bestTimeTapRatioString = calc.formatRatioTime(elapsedTime: stat.bestTimeTapRatio)
+												stat.bestTime = currentGame.elapsedTime
+												stat.bestTimeString = calc.formatTime(elapsedTime: stat.bestTime)
+										}
 										
-										stat.avgTimeTapRatio = calc.avgTimeTapRatio(stats: stat)
-										stat.avgTimeTapRatioString = calc.formatRatioTime(elapsedTime: stat.avgTimeTapRatio)
+										if currentGame.score != 0 {
+												stat.averageScore = calc.averageScore(correctTaps: stat.correctTaps, gamesPlayed: stat.gamesPlayed)
+												stat.avgTimeTapRatio = calc.avgTimeTapRatio(stats: stat)
+												stat.avgTimeTapRatioString = calc.formatRatioTime(elapsedTime: stat.avgTimeTapRatio)
+												stat.averageTime = calc.averageTime(gamesPlayed: stat.gamesPlayed, totalTime: stat.totalTime)
+												stat.averageTimeString = calc.formatTime(elapsedTime: stat.averageTime)
+										}
 								}
 								
 								if currentGame.difficulty != .survival {
@@ -157,6 +169,8 @@ struct RoundFinishedView: View {
 												stat.bestTimeString = calc.formatTime(elapsedTime: stat.bestTime)
 										}
 										
+										stat.averageTime = calc.averageTime(gamesPlayed: stat.gamesPlayed, totalTime: stat.totalTime)
+										stat.averageTimeString = calc.formatTime(elapsedTime: stat.averageTime)
 										overallStat.averageTime = calc.averageTime(gamesPlayed: overallStat.gamesPlayed, totalTime: overallStat.totalTime)
 										overallStat.averageTimeString = calc.formatTime(elapsedTime: overallStat.averageTime)
 								}

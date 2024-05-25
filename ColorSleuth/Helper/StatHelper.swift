@@ -71,6 +71,10 @@ struct CalcStats {
 				}
 		}
 		
+		func currentTimeTapRatio(currentGame: GameplayModel) -> Double {
+				return Double(currentGame.elapsedTime) / Double(currentGame.score)
+		}
+		
 		func averageTime(gamesPlayed: Int, totalTime: TimeInterval) -> Double {
 				return Double(totalTime) / Double(gamesPlayed)
 		}

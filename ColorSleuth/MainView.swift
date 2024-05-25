@@ -44,9 +44,9 @@ struct MainView: View {
 						.onAppear {
 								if allStats.count == 0 {
 										initStats()
-										print(context.sqliteCommand)
+//										print(context.sqliteCommand)
 								} else {
-										print(context.sqliteCommand)
+//										print(context.sqliteCommand)
 								}
 						}
 						.toolbar {

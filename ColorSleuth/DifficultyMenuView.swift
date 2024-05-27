@@ -77,7 +77,7 @@ struct DifficultyMenuView: View {
 												.bold()
 								}
 						}
-						.padding(.bottom, 20)
+						.padding(.bottom, 45)
 						.menuOrder(.fixed)
 						.navigationDestination(isPresented: $viewStates.showGameplay) {
 								GameplayView(currentGame: currentGame, gridArray: game.buildGrid(currentGame: currentGame)

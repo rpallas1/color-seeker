@@ -17,6 +17,7 @@
 		BC7B54122BF7E005001F74B5 /* StatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B54112BF7E005001F74B5 /* StatHelper.swift */; };
 		BC7B54142BF7E2A2001F74B5 /* GameplayModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B54132BF7E2A2001F74B5 /* GameplayModels.swift */; };
 		BCE336D72BFE94C400FEDAFA /* GameHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE336D62BFE94C400FEDAFA /* GameHelper.swift */; };
+		BCE336DE2C052B0000FEDAFA /* FormatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE336DD2C052B0000FEDAFA /* FormatHelper.swift */; };
 		BCE3C7192BF5212B00CB2EAE /* ColorSleuthApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE3C7182BF5212B00CB2EAE /* ColorSleuthApp.swift */; };
 		BCE3C71B2BF5212B00CB2EAE /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE3C71A2BF5212B00CB2EAE /* MainView.swift */; };
 		BCE3C71D2BF5212D00CB2EAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCE3C71C2BF5212D00CB2EAE /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 		BC7B54112BF7E005001F74B5 /* StatHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatHelper.swift; sourceTree = "<group>"; };
 		BC7B54132BF7E2A2001F74B5 /* GameplayModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayModels.swift; sourceTree = "<group>"; };
 		BCE336D62BFE94C400FEDAFA /* GameHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHelper.swift; sourceTree = "<group>"; };
+		BCE336DD2C052B0000FEDAFA /* FormatHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatHelper.swift; sourceTree = "<group>"; };
 		BCE3C7152BF5212B00CB2EAE /* ColorSleuth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorSleuth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCE3C7182BF5212B00CB2EAE /* ColorSleuthApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSleuthApp.swift; sourceTree = "<group>"; };
 		BCE3C71A2BF5212B00CB2EAE /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			children = (
 				BC7B54112BF7E005001F74B5 /* StatHelper.swift */,
 				BCE336D62BFE94C400FEDAFA /* GameHelper.swift */,
+				BCE336DD2C052B0000FEDAFA /* FormatHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				BCE3C7352BF5509F00CB2EAE /* HowToPlayView.swift in Sources */,
 				BC5E20832BFD129A00979123 /* CustomSegmentedControlView.swift in Sources */,
 				BC7B54042BF6A708001F74B5 /* StatModel.swift in Sources */,
+				BCE336DE2C052B0000FEDAFA /* FormatHelper.swift in Sources */,
 				BCE3C7332BF54C5100CB2EAE /* SettingsView.swift in Sources */,
 				BC7B54022BF69691001F74B5 /* GlobalStates.swift in Sources */,
 				BCE336D72BFE94C400FEDAFA /* GameHelper.swift in Sources */,

@@ -27,6 +27,7 @@ struct RoundFinishedView: View {
 		@State var currentGame: GameplayModel
 		@State private var showHome = false
 		private var calc = CalcStats()
+		private var format = FormatHelper()
 		
 		var body: some View {
 				
@@ -44,7 +45,7 @@ struct RoundFinishedView: View {
 												.bold()
 								}
 								
-								Text("\(calc.percentCorrect(currentGame: currentGame))%")
+								Text(format.percent(percent: calc.percentCorrect(currentGame: currentGame)))
 										.font(.title)
 						}
 						
@@ -104,9 +105,7 @@ struct RoundFinishedView: View {
 								let overallStat = overallStat[0]
 								
 								// ROOT STATS
-								if currentGame.score == 0 && currentGame.difficulty == .survival {
-										// Don't update games played or total time
-								} else {
+								if !(currentGame.score == 0 && currentGame.difficulty == .survival) {
 										stat.gamesPlayed += 1
 										stat.totalTime += currentGame.elapsedTime
 								}
@@ -118,17 +117,17 @@ struct RoundFinishedView: View {
 										if currentGame.score > stat.highScore {
 												stat.highScore = calc.highScore(currentScore: currentGame.score, highScore: stat.highScore)
 												stat.bestTimeTapRatio = calc.currentTimeTapRatio(currentGame: currentGame)
-												stat.bestTimeTapRatioString = calc.formatRatioTime(elapsedTime: stat.bestTimeTapRatio)
+												stat.bestTimeTapRatioString = format.time(elapsedTime: stat.bestTimeTapRatio)
 												stat.bestTime = currentGame.elapsedTime
-												stat.bestTimeString = calc.formatTime(elapsedTime: stat.bestTime)
+												stat.bestTimeString = format.time(elapsedTime: stat.bestTime)
 										}
 										
 										if currentGame.score != 0 {
 												stat.averageScore = calc.averageScore(correctTaps: stat.correctTaps, gamesPlayed: stat.gamesPlayed)
 												stat.avgTimeTapRatio = calc.avgTimeTapRatio(stats: stat)
-												stat.avgTimeTapRatioString = calc.formatRatioTime(elapsedTime: stat.avgTimeTapRatio)
+												stat.avgTimeTapRatioString = format.time(elapsedTime: stat.avgTimeTapRatio)
 												stat.averageTime = calc.averageTime(gamesPlayed: stat.gamesPlayed, totalTime: stat.totalTime)
-												stat.averageTimeString = calc.formatTime(elapsedTime: stat.averageTime)
+												stat.averageTimeString = format.time(elapsedTime: stat.averageTime)
 										}
 								}
 								
@@ -166,13 +165,13 @@ struct RoundFinishedView: View {
 										
 										if calc.didPassRound(currentGame: currentGame) {
 												stat.bestTime = calc.bestTime(currentTime: currentGame.elapsedTime, bestTime: stat.bestTime)
-												stat.bestTimeString = calc.formatTime(elapsedTime: stat.bestTime)
+												stat.bestTimeString = format.time(elapsedTime: stat.bestTime)
 										}
 										
 										stat.averageTime = calc.averageTime(gamesPlayed: stat.gamesPlayed, totalTime: stat.totalTime)
-										stat.averageTimeString = calc.formatTime(elapsedTime: stat.averageTime)
+										stat.averageTimeString = format.time(elapsedTime: stat.averageTime)
 										overallStat.averageTime = calc.averageTime(gamesPlayed: overallStat.gamesPlayed, totalTime: overallStat.totalTime)
-										overallStat.averageTimeString = calc.formatTime(elapsedTime: overallStat.averageTime)
+										overallStat.averageTimeString = format.time(elapsedTime: overallStat.averageTime)
 								}
 
 								// Reset current game values

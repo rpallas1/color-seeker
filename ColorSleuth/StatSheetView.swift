@@ -11,7 +11,8 @@ import SwiftData
 struct StatSheetView: View {
 		
 		var statCategory: StatModel
-		
+		var format = FormatHelper()
+
 		var body: some View {
 				ScrollView {
 						// List of all stats belonging to a single difficulty
@@ -71,7 +72,7 @@ struct StatSheetView: View {
 														Text("Win Rate")
 																.padding(.leading)
 														Spacer()
-														Text(statCategory.percentCorrect == 0 ? "-" : "\(String(statCategory.percentCorrect))%")
+														Text(statCategory.percentCorrect == 0 ? "-" : format.percent(percent: statCategory.percentCorrect))
 																.bold()
 												}
 												.padding()
@@ -85,7 +86,7 @@ struct StatSheetView: View {
 														Text("Accuracy")
 																.padding(.leading)
 														Spacer()
-														Text(statCategory.accuracy == 0 ? "-" : "\(String(statCategory.accuracy))%")
+														Text(statCategory.accuracy == 0 ? "-" : format.percent(percent: statCategory.accuracy))
 																.bold()
 												}
 												.padding()
@@ -163,7 +164,7 @@ struct StatSheetView: View {
 														Text("Time to Tap")
 																.padding(.leading)
 														Spacer()
-														Text(statCategory.bestTimeTapRatioString == "" ? "-" : String(statCategory.bestTimeTapRatioString))
+														Text(statCategory.bestTimeTapRatioString == "" ? "-" : statCategory.bestTimeTapRatioString)
 																.bold()
 												}
 												.padding()
@@ -257,7 +258,7 @@ struct StatSheetView: View {
 														Text("Average Time to Tap")
 																.padding(.leading)
 														Spacer()
-														Text(statCategory.avgTimeTapRatioString == "" ? "-" : String(statCategory.avgTimeTapRatioString))
+														Text(statCategory.avgTimeTapRatioString == "" ? "-" : statCategory.avgTimeTapRatioString)
 																.bold()
 												}
 												.padding()

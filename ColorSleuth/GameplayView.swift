@@ -102,9 +102,7 @@ struct GameplayView: View {
 																				(currentGame.difficulty == .survival && isAnswer == true) {
 																				// Rebuild grid if game not over
 																				if currentGame.difficulty == .survival {
-																						withAnimation {
-																								gridArray = game.buildGrid(currentGame: currentGame)
-																						}								
+																						gridArray = game.buildGrid(currentGame: currentGame)
 																				} else {
 																						gridArray = game.buildGrid(currentGame: currentGame)
 																				}

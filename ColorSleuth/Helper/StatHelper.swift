@@ -11,12 +11,12 @@ import SwiftData
 
 struct CalcStats {
 		
-		func percentCorrect(currentGame: GameplayModel) -> Int {
-				return Int((Double(currentGame.score) / Double(currentGame.totalRounds)) * 100)
+		func percentCorrect(currentGame: GameplayModel) -> Double {
+				return (Double(currentGame.score) / Double(currentGame.totalRounds)) * 100
 		}
 		
-		func accuracy(stat: StatModel) -> Int {
-				return Int((Double(stat.correctTaps) / Double(stat.totalTaps)) * 100)
+		func accuracy(stat: StatModel) -> Double {
+				return (Double(stat.correctTaps) / Double(stat.totalTaps)) * 100
 		}
 		
 		func didPassRound(currentGame: GameplayModel) -> Bool {
@@ -55,8 +55,8 @@ struct CalcStats {
 				}
 		}
 		
-		func winRate(stat: StatModel) -> Int {
-				return Int((Double(stat.gamesWon) / Double(stat.gamesPlayed)) * 100)
+		func winRate(stat: StatModel) -> Double {
+				return (Double(stat.gamesWon) / Double(stat.gamesPlayed)) * 100
 		}
 		
 		func bestTime(currentTime: TimeInterval, bestTime: Double) -> Double {
@@ -84,15 +84,5 @@ struct CalcStats {
 				let correctTaps = stats.correctTaps
 				
 				return Double(totalTime) / Double(correctTaps)
-		}
-		
-		func formatTime(elapsedTime: Double) -> String {
-				let minutes = Int(elapsedTime) / 60
-				let seconds = Int(elapsedTime) % 60
-				return String(format: "%02d:%02d", minutes, seconds)
-		}
-		
-		func formatRatioTime(elapsedTime: Double) -> String {
-				return String(format: "%.1f s", elapsedTime)
 		}
 }

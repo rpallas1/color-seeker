@@ -18,10 +18,10 @@ class StatModel: Identifiable {
 		var perfectGames: Int = 0
 		var highScore: Int = 0
 		var averageScore: Int = 0
-		var percentCorrect: Int = 0
+		var percentCorrect: Double = 0
 		var correctTaps: Int = 0
 		var totalTaps: Int = 0
-		var accuracy: Int = 0
+		var accuracy: Double = 0
 		var currentStreak: Int = 0
 		var bestStreak: Int = 0
 		var totalTime: TimeInterval = 0

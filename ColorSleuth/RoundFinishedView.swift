@@ -173,12 +173,13 @@ struct RoundFinishedView: View {
 										overallStat.averageTime = calc.averageTime(gamesPlayed: overallStat.gamesPlayed, totalTime: overallStat.totalTime)
 										overallStat.averageTimeString = format.time(elapsedTime: overallStat.averageTime)
 								}
-
-								// Reset current game values
-								currentGame.resetProperties()
 						} else {
 								print("Error: Returned more than 1 stat difficulty or overall stat")
 						}
+				}
+				.onDisappear {
+						// Reset current game values
+						currentGame.resetProperties()
 				}
 		}
 		

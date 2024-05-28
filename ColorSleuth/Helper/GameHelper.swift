@@ -36,7 +36,7 @@ struct GameHelper {
 				return gridLayout
 		}
 		
-		func assignSquareValues(gridSize: Int, currentIndex: Int, randIndex: Int, randColor: Color, adjustedColor: Color) -> SquareObject {
+		private func assignSquareValues(gridSize: Int, currentIndex: Int, randIndex: Int, randColor: Color, adjustedColor: Color) -> SquareObject {
 				var size: CGFloat {
 						switch gridSize {
 						case 4:
@@ -77,7 +77,7 @@ struct GameHelper {
 				}
 		}
 		
-		func setRandomColor() -> rgbColor {
+		private func setRandomColor() -> rgbColor {
 				let red: Double = Double.random(in: 0...255)
 				let green: Double = Double.random(in: 0...255)
 				let blue: Double = Double.random(in: 0...255)
@@ -85,7 +85,7 @@ struct GameHelper {
 				return rgbColor(red: red, green: green, blue: blue)
 		}
 		
-		func setAdjustedColor(color: rgbColor, difficulty: Difficulty) -> Color {
+		private func setAdjustedColor(color: rgbColor, difficulty: Difficulty) -> Color {
 				let numbers: [Double] = [60, 50, 40, 30, 30, 20, 20, 14, 14]
 				let randNum = numbers.randomElement()!
 		

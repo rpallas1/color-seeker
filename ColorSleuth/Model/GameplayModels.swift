@@ -25,14 +25,14 @@ class SquareObject {
 		
 		var color: Color
 		var isAnswer: Bool
-		var size: CGFloat
+		var dimensions: CGFloat
 		var sqrtSize: Int
 		var cornerRadius: CGFloat
 		
 		init(color: Color, isAnswer: Bool, size: CGFloat, sqrtSize: Int, cornerRadius: CGFloat) {
 				self.color = color
 				self.isAnswer = isAnswer
-				self.size = size
+				self.dimensions = size
 				self.sqrtSize = sqrtSize
 				self.cornerRadius = cornerRadius
 		}

@@ -19,7 +19,11 @@ struct FormatHelper {
 		
 		func time(elapsedTime: Double) -> String {
 				if elapsedTime < 60 {
-						return String(format: "%.1fs", elapsedTime)
+						if elapsedTime.truncatingRemainder(dividingBy: 1) == 0 {
+								return String(format: "%.0f%%", elapsedTime)
+						} else {
+								return String(format: "%.1fs", elapsedTime)
+						}						
 				} else {
 						let minutes = Int(elapsedTime) / 60
 						let seconds = Int(elapsedTime) % 60

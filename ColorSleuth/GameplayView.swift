@@ -74,10 +74,10 @@ struct GameplayView: View {
 										
 										Spacer()
 										
-										LazyVGrid(columns: Array(repeating: GridItem(.fixed(gridArray[0].size)), count: gridArray[0].sqrtSize)) {
+										LazyVGrid(columns: Array(repeating: GridItem(.fixed(gridArray[0].dimensions)), count: gridArray[0].sqrtSize)) {
 												ForEach(0..<gridArray[0].sqrtSize * gridArray[0].sqrtSize, id: \.self) { i in
 														RoundedRectangle(cornerRadius: gridArray[i].cornerRadius)
-																.frame(width: gridArray[i].size, height: gridArray[i].size)
+																.frame(width: gridArray[i].dimensions, height: gridArray[i].dimensions)
 																.foregroundStyle(gridArray[i].color)
 																.onTapGesture {
 																		currentGame.totalTaps += 1
@@ -195,14 +195,14 @@ struct GameplayView: View {
 				}
 		}
 		
-		func formattedTime(currentGame: GameplayModel, elapsedTime: TimeInterval) -> String {
+		private func formattedTime(currentGame: GameplayModel, elapsedTime: TimeInterval) -> String {
 				let minutes = Int(elapsedTime) / 60
 				let seconds = Int(elapsedTime) % 60
 				currentGame.elapsedTimeString = String(format: "%02d:%02d", minutes, seconds)
 				return currentGame.elapsedTimeString
 		}
 		
-		func startTimer() {
+		private func startTimer() {
 				if isPaused {
 						// Resume timer
 						startTime = Date().addingTimeInterval(-pausedTime)
@@ -226,7 +226,7 @@ struct GameplayView: View {
 				timer?.fire()
 		}
 		
-		func stopTimer() {
+		private func stopTimer() {
 				timer?.invalidate()
 				timer = nil
 				
@@ -238,7 +238,7 @@ struct GameplayView: View {
 				isPaused = false
 		}
 		
-		func pauseResumeTimer() {
+		private func pauseResumeTimer() {
 				if isPaused {
 						// Resume timer
 						startTimer()

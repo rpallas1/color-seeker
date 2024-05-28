@@ -52,10 +52,7 @@ struct PauseGameView: View {
 														viewStates.showGameplay = false
 														
 														// Reset current game values when game quit
-														currentGame.score = 0
-														currentGame.totalTaps = 0
-														currentGame.totalRounds = 20
-														currentGame.tapResults = Array(repeating: nil, count: 20)
+														currentGame.resetProperties()
 												}, label: {
 														Text("Quit")
 												})

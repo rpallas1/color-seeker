@@ -33,6 +33,13 @@ class GameplayModel {
 						tapResults[index] = false
 				}
 		}
+		
+		func resetProperties() {
+				self.score = 0
+				self.totalTaps = 0
+				self.totalRounds = 20
+				self.tapResults = Array(repeating: nil, count: 20)
+		}
 }
 
 class SquareObject {

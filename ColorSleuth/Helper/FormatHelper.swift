@@ -20,7 +20,7 @@ struct FormatHelper {
 		func time(elapsedTime: Double) -> String {
 				if elapsedTime < 60 {
 						if elapsedTime.truncatingRemainder(dividingBy: 1) == 0 {
-								return String(format: "%.0f%%", elapsedTime)
+								return String(format: "%.0fs", elapsedTime)
 						} else {
 								return String(format: "%.1fs", elapsedTime)
 						}						

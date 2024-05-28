@@ -59,7 +59,8 @@ struct RoundFinishedView: View {
 						VStack (spacing: 4) {
 								Text("Time")
 										.bold()
-								Text(currentGame.elapsedTimeString)
+//								Text(currentGame.elapsedTimeString)
+								Text(format.time(elapsedTime: Double(currentGame.elapsedTime)))
 						}
 						.font(.title2)
 						

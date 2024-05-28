@@ -26,7 +26,7 @@ struct GameplayView: View {
 		@State private var elapsedTime: TimeInterval = 0
 		@State private var pausedTime: TimeInterval = 0
 		@State private var isPaused: Bool = false
-				
+		
 		var body: some View {
 				
 				@Bindable var viewStates = viewStates
@@ -134,6 +134,7 @@ struct GameplayView: View {
 										ToolbarItem {
 												Button(action: {
 														showSettings = true
+														currentGame.elapsedTime = elapsedTime
 												}, label: {
 														Image(systemName: "gear")
 																.foregroundStyle(Color("Primary Black"))
@@ -145,6 +146,7 @@ struct GameplayView: View {
 														withAnimation {
 																viewStates.showPause.toggle()
 														}
+														currentGame.elapsedTime = elapsedTime
 												}, label: {
 														Image(systemName: viewStates.showPause ? "play.fill" : "pause.fill")
 																.foregroundStyle(Color("Primary Black"))

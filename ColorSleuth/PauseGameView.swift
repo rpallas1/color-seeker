@@ -12,6 +12,7 @@ struct PauseGameView: View {
 		@Environment(GlobalStates.self) var viewStates
 		
 		var currentGame: GameplayModel
+		var format = FormatHelper()
 		
 		var body: some View {
 				
@@ -32,7 +33,8 @@ struct PauseGameView: View {
 														HStack {
 																Text("Time:")
 																		.bold()
-																Text(currentGame.elapsedTimeString)
+//																Text(currentGame.elapsedTimeString)
+																Text(format.time(elapsedTime: Double(currentGame.elapsedTime)))
 														}
 														HStack {
 																Text("Score:")

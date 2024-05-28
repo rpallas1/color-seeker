@@ -121,9 +121,9 @@ struct GameplayView: View {
 																				(currentGame.difficulty == .survival && isAnswer == true) {
 																				// Rebuild grid if game not over
 																				if currentGame.difficulty == .survival {
-																						gridArray = game.buildGrid(currentGame: currentGame)
+																						gridArray = game.buildGrid(currentGame: currentGame, colorScheme: settings.referenceColor(for: settings.colorScheme))
 																				} else {
-																						gridArray = game.buildGrid(currentGame: currentGame)
+																						gridArray = game.buildGrid(currentGame: currentGame, colorScheme: settings.referenceColor(for: settings.colorScheme))
 																				}
 																		}
 																		else {

@@ -52,8 +52,6 @@ struct SettingsView: View {
 												Button("Reset Game Data") {
 														showConfirmation = true
 												}
-//												.foregroundStyle(sortedStats[0].gamesPlayed == 0 ? .gray : .red)
-//												.disabled(sortedStats[0].gamesPlayed == 0)
 												.foregroundStyle(disableRest(stats: sortedStats) ? .gray : .red)
 												.disabled(disableRest(stats: sortedStats))
 										}

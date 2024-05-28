@@ -55,6 +55,17 @@ class Settings {
 				self.hapticsEnabled = Settings.loadHapticsEnabled()
 		}
 		
+		func referenceColor(for scheme: ColorSchemeOption) -> Color {
+				switch scheme {
+				case .light:
+						return .white
+				case .dark:
+						return .black
+				case .system:
+						return UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
+				}
+		}
+		
 		private func saveColorScheme() {
 				UserDefaults.standard.set(colorScheme.rawValue, forKey: "selectedColorScheme")
 		}

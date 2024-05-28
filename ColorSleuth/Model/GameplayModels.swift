@@ -19,6 +19,20 @@ class GameplayModel {
 		var percentNeeded: Double = 85
 		var totalRounds: Int = 20
 		var gridSize: GridSize = .small
+		
+		var tapResults: [Bool?] = Array(repeating: nil, count: 20)
+		
+		func handleCorrectTap() {
+				if let index = tapResults.firstIndex(of: nil) {
+						tapResults[index] = true
+				}
+		}
+		
+		func handleIncorrectTap() {
+				if let index = tapResults.firstIndex(of: nil) {
+						tapResults[index] = false
+				}
+		}
 }
 
 class SquareObject {

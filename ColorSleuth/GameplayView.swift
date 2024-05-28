@@ -19,13 +19,15 @@ struct GameplayView: View {
 		@State private var showSettings: Bool = false
 		@State private var isAnswer = false
 		@State var gridArray: [SquareObject]
-		
+
 		@State private var timeString: String = ""
 		@State private var timer: Timer?
 		@State private var startTime: Date?
 		@State private var elapsedTime: TimeInterval = 0
 		@State private var pausedTime: TimeInterval = 0
 		@State private var isPaused: Bool = false
+		
+		@State var barSegmentColor: Color = .cyan
 		
 		var body: some View {
 				
@@ -72,6 +74,20 @@ struct GameplayView: View {
 												Spacer()
 										}
 										
+										if currentGame.difficulty != .survival {
+												GeometryReader { geometry in
+														HStack(spacing: 0) {
+																ForEach(0..<currentGame.tapResults.count, id: \.self) { index in
+																		Rectangle()
+																				.foregroundStyle(self.colorForSegment(at: index))
+																				.frame(width: geometry.size.width / CGFloat(currentGame.tapResults.count), height: 4)
+																}
+														}
+												}
+												.frame(height: 4)
+												.padding(.top, 6)
+										}
+										
 										Spacer()
 										
 										LazyVGrid(columns: Array(repeating: GridItem(.fixed(gridArray[0].dimensions)), count: gridArray[0].sqrtSize)) {
@@ -81,10 +97,13 @@ struct GameplayView: View {
 																.foregroundStyle(gridArray[i].color)
 																.onTapGesture {
 																		currentGame.totalTaps += 1
+																		
 																		if gridArray[i].isAnswer == true {
 																				currentGame.score += 1
+																				currentGame.handleCorrectTap()
 																				isAnswer = true
 																		} else {
+																				currentGame.handleIncorrectTap()
 																				isAnswer = false
 																				
 																				// End game since they made one mistake in survival mode
@@ -250,6 +269,14 @@ struct GameplayView: View {
 						timer?.invalidate()
 						timer = nil
 						isPaused = true
+				}
+		}
+		
+		private func colorForSegment(at index: Int) -> Color {
+				if let result = currentGame.tapResults[index] {
+						return result ? .cyan : .red
+				} else {
+						return .gray
 				}
 		}
 }

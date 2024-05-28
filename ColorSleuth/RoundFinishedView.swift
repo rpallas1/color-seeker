@@ -179,6 +179,7 @@ struct RoundFinishedView: View {
 								currentGame.score = 0
 								currentGame.totalTaps = 0
 								currentGame.totalRounds = 20
+								currentGame.tapResults = Array(repeating: nil, count: 20)
 						} else {
 								print("Error: Returned more than 1 stat difficulty or overall stat")
 						}

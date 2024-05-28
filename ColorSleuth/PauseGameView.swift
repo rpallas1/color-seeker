@@ -17,10 +17,6 @@ struct PauseGameView: View {
 		var body: some View {
 				
 				@Bindable var viewStates = viewStates
-//				ZStack {
-//						Color.black.opacity(0.4)
-//								.ignoresSafeArea()
-						
 						GroupBox {
 								VStack {
 										HStack {
@@ -33,7 +29,6 @@ struct PauseGameView: View {
 														HStack {
 																Text("Time:")
 																		.bold()
-//																Text(currentGame.elapsedTimeString)
 																Text(format.time(elapsedTime: Double(currentGame.elapsedTime)))
 														}
 														HStack {
@@ -60,6 +55,7 @@ struct PauseGameView: View {
 														currentGame.score = 0
 														currentGame.totalTaps = 0
 														currentGame.totalRounds = 20
+														currentGame.tapResults = Array(repeating: nil, count: 20)
 												}, label: {
 														Text("Quit")
 												})
@@ -79,8 +75,5 @@ struct PauseGameView: View {
 										.font(.largeTitle)
 								}
 						}
-//						.zIndex(2)
-//				}
-				
 		}
 }

@@ -18,6 +18,7 @@
 		BC7B54142BF7E2A2001F74B5 /* GameplayModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B54132BF7E2A2001F74B5 /* GameplayModels.swift */; };
 		BCE336D72BFE94C400FEDAFA /* GameHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE336D62BFE94C400FEDAFA /* GameHelper.swift */; };
 		BCE336DE2C052B0000FEDAFA /* FormatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE336DD2C052B0000FEDAFA /* FormatHelper.swift */; };
+		BCE336E62C078E9D00FEDAFA /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = BCE336E52C078E9D00FEDAFA /* TelemetryDeck */; };
 		BCE3C7192BF5212B00CB2EAE /* ColorSleuthApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE3C7182BF5212B00CB2EAE /* ColorSleuthApp.swift */; };
 		BCE3C71B2BF5212B00CB2EAE /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE3C71A2BF5212B00CB2EAE /* MainView.swift */; };
 		BCE3C71D2BF5212D00CB2EAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCE3C71C2BF5212D00CB2EAE /* Assets.xcassets */; };
@@ -64,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCE336E62C078E9D00FEDAFA /* TelemetryDeck in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +158,9 @@
 			dependencies = (
 			);
 			name = ColorSleuth;
+			packageProductDependencies = (
+				BCE336E52C078E9D00FEDAFA /* TelemetryDeck */,
+			);
 			productName = ColorSleuth;
 			productReference = BCE3C7152BF5212B00CB2EAE /* ColorSleuth.app */;
 			productType = "com.apple.product-type.application";
@@ -184,6 +189,9 @@
 				Base,
 			);
 			mainGroup = BCE3C70C2BF5212B00CB2EAE;
+			packageReferences = (
+				BCE336E42C078E9D00FEDAFA /* XCRemoteSwiftPackageReference "SwiftSDK" */,
+			);
 			productRefGroup = BCE3C7162BF5212B00CB2EAE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -370,8 +378,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -399,8 +407,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -436,6 +444,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BCE336E42C078E9D00FEDAFA /* XCRemoteSwiftPackageReference "SwiftSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TelemetryDeck/SwiftSDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BCE336E52C078E9D00FEDAFA /* TelemetryDeck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BCE336E42C078E9D00FEDAFA /* XCRemoteSwiftPackageReference "SwiftSDK" */;
+			productName = TelemetryDeck;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BCE3C70D2BF5212B00CB2EAE /* Project object */;
 }

@@ -19,7 +19,8 @@ struct FormatHelper {
 		
 		func time(elapsedTime: Double) -> String {
 				if elapsedTime < 60 {
-						let tenthsPlace = Int((elapsedTime * 10).truncatingRemainder(dividingBy: 10))
+						let roundedElapsedTime = (elapsedTime * 10).rounded() / 10
+						let tenthsPlace = Int((roundedElapsedTime * 10).truncatingRemainder(dividingBy: 10))
 						if tenthsPlace == 0 {
 								return String(format: "%.0fs", elapsedTime)
 						} else {

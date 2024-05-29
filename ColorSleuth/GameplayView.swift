@@ -80,11 +80,11 @@ struct GameplayView: View {
 																ForEach(0..<currentGame.tapResults.count, id: \.self) { index in
 																		Rectangle()
 																				.foregroundStyle(self.colorForSegment(at: index))
-																				.frame(width: geometry.size.width / CGFloat(currentGame.tapResults.count), height: 4)
+																				.frame(width: geometry.size.width / CGFloat(currentGame.tapResults.count), height: 5)
 																}
 														}
 												}
-												.frame(height: 4)
+												.frame(height: 5)
 												.padding(.top, 6)
 										}
 										
@@ -276,7 +276,7 @@ struct GameplayView: View {
 				if let result = currentGame.tapResults[index] {
 						return result ? .cyan : .red
 				} else {
-						return .gray
+						return Color("Primary Gray")
 				}
 		}
 }

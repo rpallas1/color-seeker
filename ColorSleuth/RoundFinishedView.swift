@@ -177,63 +177,35 @@ struct RoundFinishedView: View {
 										overallStat.averageTime = calc.averageTime(gamesPlayed: overallStat.gamesPlayed, 
 																															 totalTime: overallStat.totalTime)
 										overallStat.averageTimeString = format.time(elapsedTime: overallStat.averageTime)
-										
-										// Difficulty Stats Updated
-										TelemetryDeck.signal(
-												"roundPlayed",
-												parameters: [
-														"difficulty": "\(stat.difficulty)",
-														"gamesPlayed": "\(stat.gamesPlayed)",
-														"gamesWon": "\(stat.gamesWon)",
-														"perfectGames": "\(stat.perfectGames)",
-														"highScore": "\(stat.highScore)",
-														"averageScore": "\(stat.averageScore)",
-														"percentCorrect": "\(stat.percentCorrect)",
-														"correctTaps": "\(stat.correctTaps)",
-														"totalTaps": "\(stat.totalTaps)",
-														"accuracy": "\(stat.accuracy)",
-														"currentStreak": "\(stat.currentStreak)",
-														"bestStreak": "\(stat.bestStreak)",
-														"totalTime": "\(stat.totalTime)",
-														"bestTime": "\(stat.bestTime)",
-														"bestTime String": "\(stat.bestTimeString)",
-														"bestTime Tap Ratio": "\(stat.bestTimeTapRatio)",
-														"bestTime Tap Ratio String": "\(stat.bestTimeTapRatioString)",
-														"averageTime Tap Ratio": "\(stat.avgTimeTapRatio)",
-														"averageTime Tap Ratio String": "\(stat.avgTimeTapRatioString)",
-														"averageTime": "\(stat.averageTime)",
-														"averageTime String": "\(stat.averageTimeString)"
-												]
-										)
-										
-										// Overall Stats Updated
-//										TelemetryDeck.signal(
-//												"Overall Stats",
-//												parameters: [
-//														"Difficulty": "\(overallStat.difficulty)",
-//														"Games Played": "\(overallStat.gamesPlayed)",
-//														"Games Won": "\(overallStat.gamesWon)",
-//														"Perfect Games": "\(overallStat.perfectGames)",
-//														"High Score": "\(overallStat.highScore)",
-//														"Average Score": "\(overallStat.averageScore)",
-//														"Percent Correct": "\(overallStat.percentCorrect)",
-//														"Correct Taps": "\(overallStat.correctTaps)",
-//														"Total Taps": "\(overallStat.totalTaps)",
-//														"Accuracy": "\(overallStat.accuracy)",
-//														"Current Streak": "\(overallStat.currentStreak)",
-//														"Best Streak": "\(overallStat.bestStreak)",
-//														"Total Time": "\(overallStat.totalTime)",
-//														"Best Time": "\(overallStat.bestTime)",
-//														"Best Time String": "\(overallStat.bestTimeString)",
-//														"Best Time Tap Ratio": "\(overallStat.bestTimeTapRatio)",
-//														"Best Time Tap Ratio String": "\(overallStat.bestTimeTapRatioString)",
-//														"Average Time Tap Ratio": "\(overallStat.avgTimeTapRatio)",
-//														"Average Time Tap Ratio String": "\(overallStat.avgTimeTapRatioString)",
-//														"Average Time": "\(overallStat.averageTime)",
-//														"Average Time String": "\(overallStat.averageTimeString)"
-//												]
-//										)
 								}
+								
+								// Difficulty Stats Updated
+								TelemetryDeck.signal(
+										"roundPlayed",
+										parameters: [
+												"difficulty": "\(stat.difficulty)",
+												"gamesPlayed": "\(stat.gamesPlayed)",
+												"gamesWon": "\(stat.gamesWon)",
+												"perfectGames": "\(stat.perfectGames)",
+												"highScore": "\(stat.highScore)",
+												"averageScore": "\(stat.averageScore)",
+												"percentCorrect": "\(stat.percentCorrect)",
+												"correctTaps": "\(stat.correctTaps)",
+												"totalTaps": "\(stat.totalTaps)",
+												"accuracy": "\(stat.accuracy)",
+												"currentStreak": "\(stat.currentStreak)",
+												"bestStreak": "\(stat.bestStreak)",
+												"totalTime": "\(stat.totalTime)",
+												"bestTime": "\(stat.bestTime)",
+												"bestTime String": "\(stat.bestTimeString)",
+												"bestTime Tap Ratio": "\(stat.bestTimeTapRatio)",
+												"bestTime Tap Ratio String": "\(stat.bestTimeTapRatioString)",
+												"averageTime Tap Ratio": "\(stat.avgTimeTapRatio)",
+												"averageTime Tap Ratio String": "\(stat.avgTimeTapRatioString)",
+												"averageTime": "\(stat.averageTime)",
+												"averageTime String": "\(stat.averageTimeString)"
+										]
+								)
 						} else {
 								print("Error: Returned more than 1 stat difficulty or overall stat")
 						}

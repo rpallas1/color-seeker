@@ -12,6 +12,7 @@ struct GameplayView: View {
 		
 		@Environment(GlobalStates.self) var viewStates
 		@Environment(Settings.self) var settings
+		@Environment(\.scenePhase) private var scenePhase
 		
 		@State var currentGame: GameplayModel
 		
@@ -211,6 +212,19 @@ struct GameplayView: View {
 				.onDisappear {
 						viewStates.showEndRound = false
 						viewStates.showPause = false
+				}
+				.onChange(of: scenePhase) { oldPhase, newPhase in
+						if newPhase == .background || newPhase == .inactive {
+								pauseResumeTimer()
+						} else if newPhase == .active {
+								pauseResumeTimer()
+						}
+				}
+				.onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
+						pauseResumeTimer()
+				}
+				.onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+						pauseResumeTimer()
 				}
 		}
 		

@@ -10,7 +10,9 @@ import Foundation
 struct FormatHelper {
 
 		func percent(percent: Double) -> String {
-				if percent.truncatingRemainder(dividingBy: 1) == 0 {
+				let roundedPercent = (percent * 10).rounded() / 10
+				let tenthsPlace = Int((roundedPercent * 10).truncatingRemainder(dividingBy: 10))
+				if tenthsPlace == 0 {
 						return String(format: "%.0f%%", percent)
 				} else {
 						return String(format: "%.1f%%", percent)

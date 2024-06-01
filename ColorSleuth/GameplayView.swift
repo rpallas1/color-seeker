@@ -20,6 +20,7 @@ struct GameplayView: View {
 		@State private var showSettings: Bool = false
 		@State private var isAnswer = false
 		@State var gridArray: [SquareObject]
+		@State private var isInactive: Bool = false
 
 		@State private var timeString: String = ""
 		@State private var timer: Timer?
@@ -146,6 +147,9 @@ struct GameplayView: View {
 												}
 										}
 										.padding(.bottom, 30)
+										.blur(radius: isInactive ? 3 : 0)
+										.grayscale(isInactive ? 1 : 0)
+										.disabled(isInactive)
 										
 										Spacer()
 								}
@@ -215,15 +219,19 @@ struct GameplayView: View {
 				}
 				.onChange(of: scenePhase) { oldPhase, newPhase in
 						if newPhase == .background || newPhase == .inactive {
+								isInactive = true
 								pauseResumeTimer()
 						} else if newPhase == .active {
+								isInactive = false
 								pauseResumeTimer()
 						}
 				}
 				.onReceive(NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)) { _ in
+						isInactive = true
 						pauseResumeTimer()
 				}
 				.onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+						isInactive = false
 						pauseResumeTimer()
 				}
 		}

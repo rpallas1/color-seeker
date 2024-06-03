@@ -23,6 +23,7 @@ struct FullDescriptionView: View {
 						Text(format.fullDescripiton(group: group, goal: goal))
 								.font(.title3)
 				}
+				.padding(.horizontal)
 				.multilineTextAlignment(.center)
     }
 }

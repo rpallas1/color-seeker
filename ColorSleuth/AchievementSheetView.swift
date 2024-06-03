@@ -17,7 +17,6 @@ struct AchievementSheetView: View {
 		@Binding var selectedGoal: Goal?
 		
 		let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
-
 		
     var body: some View {
 				
@@ -25,13 +24,13 @@ struct AchievementSheetView: View {
 				
 				ScrollView {
 						VStack(spacing: 28) {
-								ForEach(achievementCategory.groups.sorted(by: {$0.index < $1.index})) { group in
+								ForEach(sortedGroups) { group in
 										VStack(alignment: .leading, spacing: 20) {
 												Text(group.name)
 														.font(.title)
 														.bold()
 												LazyVGrid(columns: columns) {
-														ForEach(group.goals.sorted(by: {$0.value < $1.value})) { goal in
+														ForEach(sortedGoal(for: group)) { goal in
 																GoalView(group: group, goal: goal)
 																		.padding(.bottom)
 																		.onTapGesture {
@@ -55,6 +54,20 @@ struct AchievementSheetView: View {
 				.scrollIndicators(.hidden)
 				.containerRelativeFrame(.horizontal)
     }
+		
+		var sortedGroups: [GroupModel] {
+				achievementCategory.groups.sorted(by: {$0.index < $1.index})
+		}
+		
+		func sortedGoal(for group: GroupModel) -> [Goal] {
+				group.goals.sorted (by: {
+						if $0.time != $1.time {
+								return $0.time < $1.time
+						} else {
+								return $0.value < $1.value
+						}
+				})
+		}
 }
 
 struct GoalView: View {
@@ -72,8 +85,10 @@ struct GoalView: View {
 						Text(format.title(group: group, goal: goal))
 								.font(.subheadline)
 								.bold()
-						Text(format.previewDescription(group: group, goal: goal))
-								.font(.caption)
+						if !goal.isComplete {
+								Text(format.previewDescription(group: group, goal: goal))
+										.font(.caption)
+						}
 				}
 				.multilineTextAlignment(.center)
 		}

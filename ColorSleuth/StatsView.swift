@@ -10,7 +10,6 @@ import SwiftData
 
 struct StatsView: View {
 		
-		@Environment(\.modelContext) var context
 		@Environment(GlobalStates.self) var viewStates
 		
 		@Query(sort: \StatModel.index)

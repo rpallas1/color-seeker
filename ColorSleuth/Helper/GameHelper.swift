@@ -79,14 +79,6 @@ struct GameHelper {
 				}
 		}
 		
-		//		private func setRandomColor() -> rgbColor {
-		//				let red: Double = Double.random(in: 0...255)
-		//				let green: Double = Double.random(in: 0...255)
-		//				let blue: Double = Double.random(in: 0...255)
-		//
-		//				return rgbColor(red: red, green: green, blue: blue)
-		//		}
-		
 		private func setRandomColor(withMinimumContrastRatio minContrastRatio: CGFloat, referenceColor: Color) -> rgbColor {
 				func luminance(for color: rgbColor) -> CGFloat {
 						let r = CGFloat(color.red)

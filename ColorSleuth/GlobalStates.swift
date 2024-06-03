@@ -15,6 +15,7 @@ class GlobalStates {
 		var showPause = false
 		var showGameplay = false
 		var showEndRound = false
+		var showFullDescription = false
 }
 
 @Observable

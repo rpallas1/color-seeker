@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class AchievementModel: Identifiable {
+class AchievementModel: Identifiable, ModelProtocal {
 		
 		var difficulty: String
 		var index: Int

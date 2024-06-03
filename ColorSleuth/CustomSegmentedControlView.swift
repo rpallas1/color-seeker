@@ -10,7 +10,7 @@ import SwiftUI
 struct CustomSegmentedControlView: View {
 		
 		@Binding var selectedTab: Int
-		let segments: [StatModel]
+		let segments: [ModelProtocal]
 		
     var body: some View {
 				ScrollViewReader { proxy in
@@ -38,4 +38,8 @@ struct CustomSegmentedControlView: View {
 						}
 				}
     }
+}
+
+protocol ModelProtocal {
+		var difficulty: String { get }
 }

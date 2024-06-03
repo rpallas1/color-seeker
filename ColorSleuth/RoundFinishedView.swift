@@ -24,6 +24,17 @@ struct RoundFinishedView: View {
 				stat.difficulty == "Overall"
 		})
 		private var overallStat: [StatModel]
+		
+		@Query(filter: #Predicate<AchievementModel> { achievement in
+				achievement.difficulty == "Medium"
+		})
+		private var difficultyAchievement: [AchievementModel]
+		
+		@Query(filter: #Predicate<AchievementModel> { achievement in
+				achievement.difficulty == "Overall"
+		})
+		private var overallAchievement: [AchievementModel]
+		
 				
 		@State var currentGame: GameplayModel
 		@State private var showHome = false
@@ -104,7 +115,11 @@ struct RoundFinishedView: View {
 								
 								let stat = difficultyStat[0]
 								let overallStat = overallStat[0]
-								
+								let achievement = difficultyAchievement[0]
+								let sortedGroups = achievement.groups.sorted(by: {$0.index < $1.index})
+								let overallAchievement = overallAchievement[0]
+								let sortedOverallGroups = overallAchievement.groups.sorted(by: {$0.index < $1.index})
+
 								// ROOT STATS
 								if !(currentGame.score == 0 && currentGame.difficulty == .survival) {
 										stat.gamesPlayed += 1
@@ -113,6 +128,10 @@ struct RoundFinishedView: View {
 								
 								stat.totalTaps += currentGame.totalTaps
 								stat.correctTaps += currentGame.score
+								sortedGroups[0].progress += 1
+								sortedOverallGroups[0].progress += 1
+								
+								
 								
 								if currentGame.difficulty == .survival {
 										if currentGame.score > stat.highScore {
@@ -178,32 +197,32 @@ struct RoundFinishedView: View {
 								}
 								
 								// Difficulty Stats Updated
-								TelemetryDeck.signal(
-										"roundPlayed",
-										parameters: [
-												"difficulty": "\(stat.difficulty)",
-												"gamesPlayed": "\(stat.gamesPlayed)",
-												"gamesWon": "\(stat.gamesWon)",
-												"perfectGames": "\(stat.perfectGames)",
-												"highScore": "\(stat.highScore)",
-												"averageScore": "\(stat.averageScore)",
-												"percentCorrect": "\(stat.percentCorrect)",
-												"correctTaps": "\(stat.correctTaps)",
-												"totalTaps": "\(stat.totalTaps)",
-												"accuracy": "\(stat.accuracy)",
-												"currentStreak": "\(stat.currentStreak)",
-												"bestStreak": "\(stat.bestStreak)",
-												"totalTime": "\(stat.totalTime)",
-												"bestTime": "\(stat.bestTime)",
-												"bestTime String": "\(stat.bestTimeString)",
-												"bestTime Tap Ratio": "\(stat.bestTimeTapRatio)",
-												"bestTime Tap Ratio String": "\(stat.bestTimeTapRatioString)",
-												"averageTime Tap Ratio": "\(stat.avgTimeTapRatio)",
-												"averageTime Tap Ratio String": "\(stat.avgTimeTapRatioString)",
-												"averageTime": "\(stat.averageTime)",
-												"averageTime String": "\(stat.averageTimeString)"
-										]
-								)
+//								TelemetryDeck.signal(
+//										"roundPlayed",
+//										parameters: [
+//												"difficulty": "\(stat.difficulty)",
+//												"gamesPlayed": "\(stat.gamesPlayed)",
+//												"gamesWon": "\(stat.gamesWon)",
+//												"perfectGames": "\(stat.perfectGames)",
+//												"highScore": "\(stat.highScore)",
+//												"averageScore": "\(stat.averageScore)",
+//												"percentCorrect": "\(stat.percentCorrect)",
+//												"correctTaps": "\(stat.correctTaps)",
+//												"totalTaps": "\(stat.totalTaps)",
+//												"accuracy": "\(stat.accuracy)",
+//												"currentStreak": "\(stat.currentStreak)",
+//												"bestStreak": "\(stat.bestStreak)",
+//												"totalTime": "\(stat.totalTime)",
+//												"bestTime": "\(stat.bestTime)",
+//												"bestTime String": "\(stat.bestTimeString)",
+//												"bestTime Tap Ratio": "\(stat.bestTimeTapRatio)",
+//												"bestTime Tap Ratio String": "\(stat.bestTimeTapRatioString)",
+//												"averageTime Tap Ratio": "\(stat.avgTimeTapRatio)",
+//												"averageTime Tap Ratio String": "\(stat.avgTimeTapRatioString)",
+//												"averageTime": "\(stat.averageTime)",
+//												"averageTime String": "\(stat.averageTimeString)"
+//										]
+//								)
 						} else {
 								print("Error: Returned more than 1 stat difficulty or overall stat")
 						}
@@ -221,25 +240,45 @@ struct RoundFinishedView: View {
 						_difficultyStat = Query(filter: #Predicate<StatModel> { stat in
 								stat.difficulty == "Easy"
 						})
+						
+						_difficultyAchievement = Query(filter: #Predicate<AchievementModel> { achievement in
+								achievement.difficulty == "Easy"
+						})
 				}
 				else if currentGame.difficulty == Difficulty.medium {
 						_difficultyStat = Query(filter: #Predicate<StatModel> { stat in
 								stat.difficulty == "Medium"
+						})
+						
+						_difficultyAchievement = Query(filter: #Predicate<AchievementModel> { achievement in
+								achievement.difficulty == "Medium"
 						})
 				}
 				else if currentGame.difficulty == Difficulty.hard {
 						_difficultyStat = Query(filter: #Predicate<StatModel> { stat in
 								stat.difficulty == "Hard"
 						})
+						
+						_difficultyAchievement = Query(filter: #Predicate<AchievementModel> { achievement in
+								achievement.difficulty == "Hard"
+						})
 				}
 				else if currentGame.difficulty == Difficulty.extreme {
 						_difficultyStat = Query(filter: #Predicate<StatModel> { stat in
 								stat.difficulty == "Extreme"
 						})
+						
+						_difficultyAchievement = Query(filter: #Predicate<AchievementModel> { achievement in
+								achievement.difficulty == "Extreme"
+						})
 				}
 				else if currentGame.difficulty == Difficulty.survival {
 						_difficultyStat = Query(filter: #Predicate<StatModel> { stat in
 								stat.difficulty == "Survival"
+						})
+						
+						_difficultyAchievement = Query(filter: #Predicate<AchievementModel> { achievement in
+								achievement.difficulty == "Survival"
 						})
 				}
 				

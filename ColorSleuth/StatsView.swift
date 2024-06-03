@@ -13,7 +13,7 @@ struct StatsView: View {
 		@Environment(\.modelContext) var context
 		@Environment(GlobalStates.self) var viewStates
 		
-		@Query(sort: \StatModel.position)
+		@Query(sort: \StatModel.index)
 		private var sortedStats: [StatModel]
 		
 		@State private var showSettings = false

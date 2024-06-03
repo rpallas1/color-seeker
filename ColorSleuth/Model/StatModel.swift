@@ -11,8 +11,8 @@ import SwiftData
 @Model
 class StatModel: Identifiable {
 		
-		@Attribute(.unique) var difficulty: String
-		@Attribute(.unique) var position: Int
+		var difficulty: String
+		@Attribute(originalName: "position") var index: Int
 		var gamesPlayed: Int = 0
 		var gamesWon: Int = 0
 		var perfectGames: Int = 0
@@ -34,9 +34,9 @@ class StatModel: Identifiable {
 		var averageTime: Double = 0
 		var averageTimeString: String = ""
 		
-		init(difficuly: String, position: Int) {
+		init(difficuly: String, index: Int) {
 				self.difficulty = difficuly
-				self.position = position
+				self.index = index
 		}
 }
 

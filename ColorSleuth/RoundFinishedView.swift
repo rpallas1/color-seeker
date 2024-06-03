@@ -238,7 +238,21 @@ struct RoundFinishedView: View {
 										overallStat.averageTimeString = format.time(elapsedTime: overallStat.averageTime)
 								}
 								
-								// TODO: Check the progress of all achievements and update if complete
+								for group in sortedGroups {
+										for goal in group.goals {
+												if check.isComplete(group: group, goal: goal) {
+														goal.isComplete = true
+												}
+										}
+								}
+								
+								for group in sortedOverallGroups {
+										for goal in group.goals {
+												if check.isComplete(group: group, goal: goal) {
+														goal.isComplete = true
+												}
+										}
+								}
 								
 								// Difficulty Stats Updated
 								//								TelemetryDeck.signal(

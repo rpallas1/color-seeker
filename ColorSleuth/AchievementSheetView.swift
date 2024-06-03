@@ -88,6 +88,8 @@ struct GoalView: View {
 						if !goal.isComplete {
 								Text(format.previewDescription(group: group, goal: goal))
 										.font(.caption)
+						} else {
+								Text("")
 						}
 				}
 				.multilineTextAlignment(.center)

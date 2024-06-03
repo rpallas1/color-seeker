@@ -53,6 +53,9 @@ struct FormatHelper {
 		
 		func previewDescription(group: GroupModel, goal: Goal) -> String {
 				if goal.isComplete == false {
+						if goal.time != 0 {
+								return "\(goal.progress) of \(goal.value)"
+						}
 						return "\(group.progress) of \(goal.value)"
 				} else {
 						return "\(goal.value) of \(goal.value)"

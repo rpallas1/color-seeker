@@ -62,7 +62,7 @@ struct AchievementSheetView: View {
 		func sortedGoal(for group: GroupModel) -> [Goal] {
 				group.goals.sorted (by: {
 						if $0.time != $1.time {
-								return $0.time < $1.time
+								return $0.time > $1.time
 						} else {
 								return $0.value < $1.value
 						}

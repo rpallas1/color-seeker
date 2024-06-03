@@ -46,10 +46,12 @@ class Goal: Identifiable {
 		var value: Int
 		var time: Int
 		var isComplete: Bool
+		var progress: Int
 		
-		init(value: Int, time: Int = 0, isComplete: Bool) {
+		init(value: Int, time: Int = 0, isComplete: Bool, progress: Int = 0) {
 				self.value = value
 				self.time = time
 				self.isComplete = isComplete
+				self.progress = progress
 		}
 }

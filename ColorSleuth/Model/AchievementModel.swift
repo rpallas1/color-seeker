@@ -44,11 +44,11 @@ class GroupModel: Identifiable {
 class Goal: Identifiable {
 		
 		var value: Int
-		var time: Int
+		var time: Double
 		var isComplete: Bool
 		var progress: Int
 		
-		init(value: Int, time: Int = 0, isComplete: Bool, progress: Int = 0) {
+		init(value: Int, time: Double = 0, isComplete: Bool, progress: Int = 0) {
 				self.value = value
 				self.time = time
 				self.isComplete = isComplete

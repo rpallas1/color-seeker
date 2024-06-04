@@ -63,7 +63,11 @@ struct FormatHelper {
 		}
 		
 		func title(group: GroupModel, goal: Goal) -> String {
+				
 				if goal.time != 0 {
+						if goal.value == 1 {
+								return "Under \(goal.time)s"
+						}
 						return "\(goal.value)\nunder \(goal.time)s"
 				}
 				

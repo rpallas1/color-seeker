@@ -25,7 +25,7 @@ struct AchievementHelper {
 		}
 		
 		func timeProgress(currentGame: GameplayModel, goal: Goal) -> Bool {
-				if Int(currentGame.elapsedTime) < goal.time {
+				if Double(currentGame.elapsedTime) < goal.time {
 						return true
 				}
 				

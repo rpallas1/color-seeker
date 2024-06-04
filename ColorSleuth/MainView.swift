@@ -48,6 +48,7 @@ struct MainView: View {
 										initAchievemnets()
 //										print(context.sqliteCommand)
 								} else {
+										// TODO: re-init achievements for on-device
 //										print(context.sqliteCommand)
 								}
 						}
@@ -120,9 +121,9 @@ struct MainView: View {
 																															 Goal(value: 500, time: 15, isComplete: false),
 																															 Goal(value: 1000, time: 15, isComplete: false),
 																															 Goal(value: 2500, time: 15, isComplete: false),
-																															 Goal(value: 250, time: 10, isComplete: false),
-																															 Goal(value: 500, time: 10, isComplete: false),
-																															 Goal(value: 1000, time: 10, isComplete: false)]),
+																															 Goal(value: 250, time: 11, isComplete: false),
+																															 Goal(value: 500, time: 11, isComplete: false),
+																															 Goal(value: 1000, time: 11, isComplete: false)]),
 																								 GroupModel(name: "Best Time",
 																														index: 4,
 																														descriptionString: "Win _ game under - seconds",
@@ -292,34 +293,34 @@ struct MainView: View {
 																											 index: 3,
 																											 descriptionString: "Win _ games under - seconds",
 																											 progress: 0,
-																											 goals: [Goal(value: 250, time: 20, isComplete: false),
-																															 Goal(value: 500, time: 20, isComplete: false),
-																															 Goal(value: 1000, time: 20, isComplete: false),
-																															 Goal(value: 100, time: 17, isComplete: false),
-																															 Goal(value: 250, time: 17, isComplete: false),
-																															 Goal(value: 500, time: 17, isComplete: false)])]))
+																											 goals: [Goal(value: 250, time: 22, isComplete: false),
+																															 Goal(value: 500, time: 22, isComplete: false),
+																															 Goal(value: 1000, time: 22, isComplete: false),
+																															 Goal(value: 100, time: 19, isComplete: false),
+																															 Goal(value: 250, time: 19, isComplete: false),
+																															 Goal(value: 500, time: 19, isComplete: false)])]))
 				context.insert(AchievementModel(difficulty: "Survival",
 																				index: 5,
 																				groups: [GroupModel(name: "Games Played",
 																											 index: 0,
 																											 descriptionString: "Play _ games",
 																											 progress: 0,
-																											 goals: [Goal(value: 25, isComplete: false),
+																											 goals: [Goal(value: 50, isComplete: false),
 																															 Goal(value: 100, isComplete: false),
 																															 Goal(value: 250, isComplete: false),
 																															 Goal(value: 500, isComplete: false),
 																															 Goal(value: 1000, isComplete: false),
-																															 Goal(value: 5000, isComplete: false)]),
+																															 Goal(value: 1500, isComplete: false)]),
 																								 GroupModel(name: "High Scores",
 																											 index: 3,
 																											 descriptionString: "Get a high score of _",
 																											 progress: 0,
-																											 goals: [Goal(value: 100, isComplete: false),
-																															 Goal(value: 200, isComplete: false),
-																															 Goal(value: 300, isComplete: false),
+																											 goals: [Goal(value: 250, isComplete: false),
 																															 Goal(value: 500, isComplete: false),
-																															 Goal(value: 800, isComplete: false),
-																															 Goal(value: 1500, isComplete: false)])]))
+																															 Goal(value: 750, isComplete: false),
+																															 Goal(value: 1000, isComplete: false),
+																															 Goal(value: 1500, isComplete: false),
+																															 Goal(value: 2000, isComplete: false)])]))
 		}
 }
 

@@ -133,7 +133,7 @@ struct GameHelper {
 						randNum = numbers.randomElement()!
 				}
 				
-				let increaseValue: Bool = Bool.random()
+				var increaseValue: Bool = Bool.random()
 				
 				var adjustedBy: Double {
 						switch difficulty {
@@ -154,15 +154,64 @@ struct GameHelper {
 				var green = color.green
 				var blue = color.blue
 				
-				if increaseValue {
-						red += adjustedBy
-						green += adjustedBy
-						blue += adjustedBy
-				} else {
-						red -= adjustedBy
-						green -= adjustedBy
-						blue -= adjustedBy
+				func adjust() {
+						if increaseValue {
+								red += adjustedBy
+								green += adjustedBy
+								blue += adjustedBy
+						} else {
+								red -= adjustedBy
+								green -= adjustedBy
+								blue -= adjustedBy
+						}
 				}
+				
+				func toLinear(_ value: Double) -> Double {
+						return (value <= 0.03928) ? (value / 12.92) : pow((value + 0.055) / 1.055, 2.4)
+				}
+				
+				func relativeLuminance(of color: rgbColor) -> Double {
+						let r = toLinear(color.red / 255.0)
+						let g = toLinear(color.green / 255.0)
+						let b = toLinear(color.blue / 255.0)
+						return 0.2126 * r + 0.7152 * g + 0.0722 * b
+				}
+				
+				func checkContrast(reference: rgbColor, color: rgbColor) {
+						// If the contrast between the two is too low then adjust the other direction (toggle increase value)
+						let luminance1 = relativeLuminance(of: reference)
+						let luminance2 = relativeLuminance(of: color)
+						var contrast: Double
+						var minContrast: Double {
+								switch difficulty {
+								case .easy:
+										return 1.88
+								case .medium:
+										return 1.47
+								case .hard:
+										return 1.32
+								case .extreme:
+										return 1.12
+								case .survival:
+										return randNum
+								}
+						}
+						
+						if luminance1 > luminance2 {
+								contrast = (luminance1 + 0.05) / (luminance2 + 0.05)
+						} else {
+								contrast = (luminance2 + 0.05) / (luminance1 + 0.05)
+						}
+												
+						if contrast < minContrast {
+								increaseValue.toggle()
+								adjust()
+								adjust()
+						}
+				}
+				
+				adjust()
+				checkContrast(reference: color, color: rgbColor(red: red, green: green, blue: blue))
 				
 				return buildColor(colorValues: rgbColor(red: red, green: green, blue: blue))
 		}

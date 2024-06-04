@@ -79,8 +79,7 @@ struct DifficultyMenuView: View {
 						.padding(.bottom, 45)
 						.menuOrder(.fixed)
 						.navigationDestination(isPresented: $viewStates.showGameplay) {
-								GameplayView(currentGame: currentGame, gridArray: game.buildGrid(currentGame: currentGame, colorScheme: settings.referenceColor(for: settings.colorScheme))
-)
+								GameplayView(currentGame: currentGame, gridArray: game.buildGrid(currentGame: currentGame, colorScheme: settings.referenceColor(for: settings.colorScheme)))
 										.navigationBarBackButtonHidden()
 										.toolbar(.hidden, for: .tabBar)
 						}

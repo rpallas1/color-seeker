@@ -22,7 +22,6 @@
 		BC87332F2C0E61E50028BBF9 /* AchievementHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC87332E2C0E61E50028BBF9 /* AchievementHelper.swift */; };
 		BCE336D72BFE94C400FEDAFA /* GameHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE336D62BFE94C400FEDAFA /* GameHelper.swift */; };
 		BCE336DE2C052B0000FEDAFA /* FormatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE336DD2C052B0000FEDAFA /* FormatHelper.swift */; };
-		BCE336E62C078E9D00FEDAFA /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = BCE336E52C078E9D00FEDAFA /* TelemetryDeck */; };
 		BCE3C7192BF5212B00CB2EAE /* ColorSleuthApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE3C7182BF5212B00CB2EAE /* ColorSleuthApp.swift */; };
 		BCE3C71B2BF5212B00CB2EAE /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE3C71A2BF5212B00CB2EAE /* MainView.swift */; };
 		BCE3C71D2BF5212D00CB2EAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCE3C71C2BF5212D00CB2EAE /* Assets.xcassets */; };
@@ -69,7 +68,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCE336E62C078E9D00FEDAFA /* TelemetryDeck in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,7 +163,6 @@
 			);
 			name = ColorSleuth;
 			packageProductDependencies = (
-				BCE336E52C078E9D00FEDAFA /* TelemetryDeck */,
 			);
 			productName = ColorSleuth;
 			productReference = BCE3C7152BF5212B00CB2EAE /* ColorSleuth.app */;
@@ -196,7 +193,6 @@
 			);
 			mainGroup = BCE3C70C2BF5212B00CB2EAE;
 			packageReferences = (
-				BCE336E42C078E9D00FEDAFA /* XCRemoteSwiftPackageReference "SwiftSDK" */,
 			);
 			productRefGroup = BCE3C7162BF5212B00CB2EAE /* Products */;
 			projectDirPath = "";
@@ -452,25 +448,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		BCE336E42C078E9D00FEDAFA /* XCRemoteSwiftPackageReference "SwiftSDK" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/TelemetryDeck/SwiftSDK";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		BCE336E52C078E9D00FEDAFA /* TelemetryDeck */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BCE336E42C078E9D00FEDAFA /* XCRemoteSwiftPackageReference "SwiftSDK" */;
-			productName = TelemetryDeck;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BCE3C70D2BF5212B00CB2EAE /* Project object */;
 }

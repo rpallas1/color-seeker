@@ -7,12 +7,11 @@
 
 import SwiftUI
 import SwiftData
-import TelemetryDeck
+//import TelemetryDeck
 
 struct RoundFinishedView: View {
 		
 		@Environment(GlobalStates.self) var viewStates
-		@Environment(\.modelContext) private var context
 		@Environment(\.dismiss) var dismiss
 		
 		@Query(filter: #Predicate<StatModel> { stat in
@@ -35,9 +34,7 @@ struct RoundFinishedView: View {
 		})
 		private var overallAchievement: [AchievementModel]
 		
-		
 		@State var currentGame: GameplayModel
-		@State private var showHome = false
 		private var calc = CalcStats()
 		private var format = FormatHelper()
 		private var check = AchievementHelper()
@@ -112,189 +109,9 @@ struct RoundFinishedView: View {
 				}
 				.onAppear {
 						//Update all stats
-						if difficultyStat.count == 1 && overallStat.count == 1 {
-								let stat = difficultyStat[0]
-								let overallStat = overallStat[0]
-								let achievement = difficultyAchievement[0]
-								let sortedGroups = achievement.groups.sorted(by: {$0.index < $1.index})
-								let overallAchievement = overallAchievement[0]
-								let sortedOverallGroups = overallAchievement.groups.sorted(by: {$0.index < $1.index})
-								var sortedTimeGoals: [Goal] {
-										if currentGame.difficulty != .survival {
-												return sortedGroups[3].goals.sorted(by: {
-														if $0.time != $1.time {
-																return $0.time > $1.time
-														} else {
-																return $0.value < $1.value
-														}
-												})
-										} else {
-												return [Goal]()
-										}
-								}
-								let sortedOverallTimeGoals = sortedOverallGroups[3].goals.sorted(by: {
-										if $0.time != $1.time {
-												return $0.time > $1.time
-										} else {
-												return $0.value < $1.value
-										}
-								})
-								let sortedBestTimeGoals = sortedOverallGroups[4].goals.sorted(by: {
-										if $0.time != $1.time {
-												return $0.time > $1.time
-										} else {
-												return $0.value < $1.value
-										}
-								})
-								
-								// ROOT STATS
-								if !(currentGame.score == 0 && currentGame.difficulty == .survival) {
-										stat.gamesPlayed += 1
-										stat.totalTime += currentGame.elapsedTime
-										sortedOverallGroups[0].progress += 1
-								}
-								
-								stat.totalTaps += currentGame.totalTaps
-								stat.correctTaps += currentGame.score
-								
-								sortedGroups[0].progress = stat.gamesPlayed
-												
-								if currentGame.difficulty == .survival {
-										if currentGame.score > stat.highScore {
-												stat.highScore = calc.highScore(currentScore: currentGame.score, highScore: stat.highScore)
-												stat.bestTimeTapRatio = calc.currentTimeTapRatio(currentGame: currentGame)
-												stat.bestTimeTapRatioString = format.time(elapsedTime: stat.bestTimeTapRatio)
-												stat.bestTime = currentGame.elapsedTime
-												stat.bestTimeString = format.time(elapsedTime: stat.bestTime)
-										}
-										
-										if currentGame.score != 0 {
-												stat.averageScore = calc.averageScore(correctTaps: stat.correctTaps, gamesPlayed: stat.gamesPlayed)
-												stat.avgTimeTapRatio = calc.avgTimeTapRatio(stats: stat)
-												stat.avgTimeTapRatioString = format.time(elapsedTime: stat.avgTimeTapRatio)
-												stat.averageTime = calc.averageTime(gamesPlayed: stat.gamesPlayed, totalTime: stat.totalTime)
-												stat.averageTimeString = format.time(elapsedTime: stat.averageTime)
-										}
-										
-										sortedGroups[1].progress = stat.highScore
-								}
-								
-								if currentGame.difficulty != .survival {
-										// ROOT STATS
-										overallStat.gamesPlayed += 1
-										overallStat.totalTime += currentGame.elapsedTime
-										overallStat.totalTaps += currentGame.totalTaps
-										overallStat.correctTaps += currentGame.score
-										
-										if calc.didPassRound(currentGame: currentGame) {
-												stat.gamesWon += 1
-												overallStat.gamesWon += 1
-												
-												stat.currentStreak += 1
-												overallStat.currentStreak += 1
-												
-												for goal in sortedTimeGoals {
-														if check.timeProgress(currentGame: currentGame, goal: goal) {
-																goal.progress += 1
-														}
-												}
-												
-												for goal in sortedOverallTimeGoals {
-														if check.timeProgress(currentGame: currentGame, goal: goal) {
-																goal.progress += 1
-														}
-												}
-												
-												for goal in sortedBestTimeGoals {
-														if check.timeProgress(currentGame: currentGame, goal: goal) {
-																goal.progress += 1
-														}
-												}
-												
-										} else {
-												stat.currentStreak = 0
-												overallStat.currentStreak = 0
-										}
-										
-										sortedGroups[2].progress = stat.currentStreak
-										sortedOverallGroups[2].progress = overallStat.currentStreak
-										
-										if calc.isPerfectRound(currentGame: currentGame) {
-												stat.perfectGames += 1
-												overallStat.perfectGames += 1
-												
-												sortedGroups[1].progress = stat.perfectGames
-												sortedOverallGroups[1].progress = overallStat.perfectGames
-										}
-										
-										stat.percentCorrect = calc.winRate(stat: stat)
-										overallStat.percentCorrect = calc.winRate(stat: overallStat)
-										
-										stat.accuracy = calc.accuracy(stat: stat)
-										overallStat.accuracy = calc.accuracy(stat: overallStat)
-										
-										stat.bestStreak = calc.bestStreak(currentStreak: stat.currentStreak, bestStreak: stat.bestStreak)
-										overallStat.bestStreak = calc.bestStreak(currentStreak: overallStat.currentStreak,
-																														 bestStreak: overallStat.bestStreak)
-										
-										if calc.didPassRound(currentGame: currentGame) {
-												stat.bestTime = calc.bestTime(currentTime: currentGame.elapsedTime, bestTime: stat.bestTime)
-												stat.bestTimeString = format.time(elapsedTime: stat.bestTime)
-										}
-										
-										stat.averageTime = calc.averageTime(gamesPlayed: stat.gamesPlayed, totalTime: stat.totalTime)
-										stat.averageTimeString = format.time(elapsedTime: stat.averageTime)
-										overallStat.averageTime = calc.averageTime(gamesPlayed: overallStat.gamesPlayed,
-																															 totalTime: overallStat.totalTime)
-										overallStat.averageTimeString = format.time(elapsedTime: overallStat.averageTime)
-								}
-								
-								for group in sortedGroups {
-										for goal in group.goals {
-												if check.isComplete(group: group, goal: goal) {
-														goal.isComplete = true
-												}
-										}
-								}
-								
-								for group in sortedOverallGroups {
-										for goal in group.goals {
-												if check.isComplete(group: group, goal: goal) {
-														goal.isComplete = true
-												}
-										}
-								}
-								
-								// Difficulty Stats Updated
-								//								TelemetryDeck.signal(
-								//										"roundPlayed",
-								//										parameters: [
-								//												"difficulty": "\(stat.difficulty)",
-								//												"gamesPlayed": "\(stat.gamesPlayed)",
-								//												"gamesWon": "\(stat.gamesWon)",
-								//												"perfectGames": "\(stat.perfectGames)",
-								//												"highScore": "\(stat.highScore)",
-								//												"averageScore": "\(stat.averageScore)",
-								//												"percentCorrect": "\(stat.percentCorrect)",
-								//												"correctTaps": "\(stat.correctTaps)",
-								//												"totalTaps": "\(stat.totalTaps)",
-								//												"accuracy": "\(stat.accuracy)",
-								//												"currentStreak": "\(stat.currentStreak)",
-								//												"bestStreak": "\(stat.bestStreak)",
-								//												"totalTime": "\(stat.totalTime)",
-								//												"bestTime": "\(stat.bestTime)",
-								//												"bestTime String": "\(stat.bestTimeString)",
-								//												"bestTime Tap Ratio": "\(stat.bestTimeTapRatio)",
-								//												"bestTime Tap Ratio String": "\(stat.bestTimeTapRatioString)",
-								//												"averageTime Tap Ratio": "\(stat.avgTimeTapRatio)",
-								//												"averageTime Tap Ratio String": "\(stat.avgTimeTapRatioString)",
-								//												"averageTime": "\(stat.averageTime)",
-								//												"averageTime String": "\(stat.averageTimeString)"
-								//										]
-								//								)
-						} else {
-								print("Error: Returned more than 1 stat difficulty or overall stat")
-						}
+						updateStats()
+						
+						// TODO: Check for new best scores, times, or achievements earned
 				}
 				.onDisappear {
 						// Reset current game values
@@ -352,6 +169,192 @@ struct RoundFinishedView: View {
 				}
 				
 				self.currentGame = currentGame
+		}
+		
+		private func updateStats() {
+				if difficultyStat.count == 1 && overallStat.count == 1 {
+						let stat = difficultyStat[0]
+						let overallStat = overallStat[0]
+						let achievement = difficultyAchievement[0]
+						let sortedGroups = achievement.groups.sorted(by: {$0.index < $1.index})
+						let overallAchievement = overallAchievement[0]
+						let sortedOverallGroups = overallAchievement.groups.sorted(by: {$0.index < $1.index})
+						var sortedTimeGoals: [Goal] {
+								if currentGame.difficulty != .survival {
+										return sortedGroups[3].goals.sorted(by: {
+												if $0.time != $1.time {
+														return $0.time > $1.time
+												} else {
+														return $0.value < $1.value
+												}
+										})
+								} else {
+										return [Goal]()
+								}
+						}
+						let sortedOverallTimeGoals = sortedOverallGroups[3].goals.sorted(by: {
+								if $0.time != $1.time {
+										return $0.time > $1.time
+								} else {
+										return $0.value < $1.value
+								}
+						})
+						let sortedBestTimeGoals = sortedOverallGroups[4].goals.sorted(by: {
+								if $0.time != $1.time {
+										return $0.time > $1.time
+								} else {
+										return $0.value < $1.value
+								}
+						})
+						
+						// ROOT STATS
+						if !(currentGame.score == 0 && currentGame.difficulty == .survival) {
+								stat.gamesPlayed += 1
+								stat.totalTime += currentGame.elapsedTime
+								sortedOverallGroups[0].progress += 1
+						}
+						
+						stat.totalTaps += currentGame.totalTaps
+						stat.correctTaps += currentGame.score
+						
+						sortedGroups[0].progress = stat.gamesPlayed
+										
+						if currentGame.difficulty == .survival {
+								if currentGame.score > stat.highScore {
+										stat.highScore = calc.highScore(currentScore: currentGame.score, highScore: stat.highScore)
+										stat.bestTimeTapRatio = calc.currentTimeTapRatio(currentGame: currentGame)
+										stat.bestTimeTapRatioString = format.time(elapsedTime: stat.bestTimeTapRatio)
+										stat.bestTime = currentGame.elapsedTime
+										stat.bestTimeString = format.time(elapsedTime: stat.bestTime)
+								}
+								
+								if currentGame.score != 0 {
+										stat.averageScore = calc.averageScore(correctTaps: stat.correctTaps, gamesPlayed: stat.gamesPlayed)
+										stat.avgTimeTapRatio = calc.avgTimeTapRatio(stats: stat)
+										stat.avgTimeTapRatioString = format.time(elapsedTime: stat.avgTimeTapRatio)
+										stat.averageTime = calc.averageTime(gamesPlayed: stat.gamesPlayed, totalTime: stat.totalTime)
+										stat.averageTimeString = format.time(elapsedTime: stat.averageTime)
+								}
+								
+								sortedGroups[1].progress = stat.highScore
+						}
+						
+						if currentGame.difficulty != .survival {
+								// ROOT STATS
+								overallStat.gamesPlayed += 1
+								overallStat.totalTime += currentGame.elapsedTime
+								overallStat.totalTaps += currentGame.totalTaps
+								overallStat.correctTaps += currentGame.score
+								
+								if calc.didPassRound(currentGame: currentGame) {
+										stat.gamesWon += 1
+										overallStat.gamesWon += 1
+										
+										stat.currentStreak += 1
+										overallStat.currentStreak += 1
+										
+										for goal in sortedTimeGoals {
+												if check.timeProgress(currentGame: currentGame, goal: goal) {
+														goal.progress += 1
+												}
+										}
+										
+										for goal in sortedOverallTimeGoals {
+												if check.timeProgress(currentGame: currentGame, goal: goal) {
+														goal.progress += 1
+												}
+										}
+										
+										for goal in sortedBestTimeGoals {
+												if check.timeProgress(currentGame: currentGame, goal: goal) {
+														goal.progress += 1
+												}
+										}
+										
+								} else {
+										stat.currentStreak = 0
+										overallStat.currentStreak = 0
+								}
+								
+								sortedGroups[2].progress = stat.currentStreak
+								sortedOverallGroups[2].progress = overallStat.currentStreak
+								
+								if calc.isPerfectRound(currentGame: currentGame) {
+										stat.perfectGames += 1
+										overallStat.perfectGames += 1
+										
+										sortedGroups[1].progress = stat.perfectGames
+										sortedOverallGroups[1].progress = overallStat.perfectGames
+								}
+								
+								stat.percentCorrect = calc.winRate(stat: stat)
+								overallStat.percentCorrect = calc.winRate(stat: overallStat)
+								
+								stat.accuracy = calc.accuracy(stat: stat)
+								overallStat.accuracy = calc.accuracy(stat: overallStat)
+								
+								stat.bestStreak = calc.bestStreak(currentStreak: stat.currentStreak, bestStreak: stat.bestStreak)
+								overallStat.bestStreak = calc.bestStreak(currentStreak: overallStat.currentStreak,
+																												 bestStreak: overallStat.bestStreak)
+								
+								if calc.didPassRound(currentGame: currentGame) {
+										stat.bestTime = calc.bestTime(currentTime: currentGame.elapsedTime, bestTime: stat.bestTime)
+										stat.bestTimeString = format.time(elapsedTime: stat.bestTime)
+								}
+								
+								stat.averageTime = calc.averageTime(gamesPlayed: stat.gamesPlayed, totalTime: stat.totalTime)
+								stat.averageTimeString = format.time(elapsedTime: stat.averageTime)
+								overallStat.averageTime = calc.averageTime(gamesPlayed: overallStat.gamesPlayed,
+																													 totalTime: overallStat.totalTime)
+								overallStat.averageTimeString = format.time(elapsedTime: overallStat.averageTime)
+						}
+						
+						for group in sortedGroups {
+								for goal in group.goals {
+										if check.isComplete(group: group, goal: goal) {
+												goal.isComplete = true
+										}
+								}
+						}
+						
+						for group in sortedOverallGroups {
+								for goal in group.goals {
+										if check.isComplete(group: group, goal: goal) {
+												goal.isComplete = true
+										}
+								}
+						}
+						
+						// Difficulty Stats Updated
+						//								TelemetryDeck.signal(
+						//										"roundPlayed",
+						//										parameters: [
+						//												"difficulty": "\(stat.difficulty)",
+						//												"gamesPlayed": "\(stat.gamesPlayed)",
+						//												"gamesWon": "\(stat.gamesWon)",
+						//												"perfectGames": "\(stat.perfectGames)",
+						//												"highScore": "\(stat.highScore)",
+						//												"averageScore": "\(stat.averageScore)",
+						//												"percentCorrect": "\(stat.percentCorrect)",
+						//												"correctTaps": "\(stat.correctTaps)",
+						//												"totalTaps": "\(stat.totalTaps)",
+						//												"accuracy": "\(stat.accuracy)",
+						//												"currentStreak": "\(stat.currentStreak)",
+						//												"bestStreak": "\(stat.bestStreak)",
+						//												"totalTime": "\(stat.totalTime)",
+						//												"bestTime": "\(stat.bestTime)",
+						//												"bestTime String": "\(stat.bestTimeString)",
+						//												"bestTime Tap Ratio": "\(stat.bestTimeTapRatio)",
+						//												"bestTime Tap Ratio String": "\(stat.bestTimeTapRatioString)",
+						//												"averageTime Tap Ratio": "\(stat.avgTimeTapRatio)",
+						//												"averageTime Tap Ratio String": "\(stat.avgTimeTapRatioString)",
+						//												"averageTime": "\(stat.averageTime)",
+						//												"averageTime String": "\(stat.averageTimeString)"
+						//										]
+						//								)
+				} else {
+						print("Error: Returned more than 1 stat difficulty or overall stat")
+				}
 		}
 }
 

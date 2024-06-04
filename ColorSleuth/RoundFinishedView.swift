@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SwiftData
-import TelemetryDeck
+//import TelemetryDeck
 
 struct RoundFinishedView: View {
 		

@@ -32,7 +32,8 @@ struct AchievementSheetView: View {
 												LazyVGrid(columns: columns) {
 														ForEach(sortedGoal(for: group)) { goal in
 																GoalView(group: group, goal: goal)
-																		.padding(.bottom)
+//																		.padding(.bottom)
+																		.padding()
 																		.onTapGesture {
 																				selectedGroup = group
 																				selectedGoal = goal
@@ -40,7 +41,10 @@ struct AchievementSheetView: View {
 																		}
 														}
 												}
-												
+												.background {
+														RoundedRectangle(cornerRadius: 15)
+																.foregroundStyle(Color("Primary Gray"))
+												}
 												
 										}
 										.padding(.horizontal, 24)

@@ -37,6 +37,7 @@ struct FormatHelper {
 		
 		func fullDescripiton(group: GroupModel, goal: Goal) -> String {
 				var description = ""
+				let time = time(elapsedTime: goal.time)
 				
 				if goal.isComplete {
 						description = group.descriptionString.replacingOccurrences(of: "_", with: String(goal.value))
@@ -45,7 +46,7 @@ struct FormatHelper {
 				}
 				
 				if goal.time != 0 {
-						description = description.replacingOccurrences(of: "-", with: String(goal.time))
+						description = description.replacingOccurrences(of: "-", with: time.dropLast())
 				}
 				
 				return description
@@ -64,11 +65,13 @@ struct FormatHelper {
 		
 		func title(group: GroupModel, goal: Goal) -> String {
 				
+				let time = time(elapsedTime: goal.time)
+				
 				if goal.time != 0 {
 						if goal.value == 1 {
-								return "Under \(goal.time)s"
+								return "Under\n\(time)"
 						}
-						return "\(goal.value)\nunder \(goal.time)s"
+						return "\(goal.value)\nunder \(time)"
 				}
 				
 				return String(goal.value)

@@ -94,7 +94,7 @@ struct RoundFinishedView: View {
 								ZStack {
 										RoundedRectangle(cornerRadius: 100)
 												.frame(width: 239, height: 50)
-												.foregroundStyle(.cyan)
+												.foregroundStyle(.accent)
 										
 										Text("Play Again")
 												.foregroundStyle(.white)
@@ -144,16 +144,14 @@ struct RoundFinishedView: View {
 								if !(currentGame.score == 0 && currentGame.difficulty == .survival) {
 										stat.gamesPlayed += 1
 										stat.totalTime += currentGame.elapsedTime
+										sortedOverallGroups[0].progress += 1
 								}
 								
 								stat.totalTaps += currentGame.totalTaps
 								stat.correctTaps += currentGame.score
 								
-								sortedGroups[0].progress += 1
-								sortedOverallGroups[0].progress += 1
-								
-								
-								
+								sortedGroups[0].progress = stat.gamesPlayed
+												
 								if currentGame.difficulty == .survival {
 										if currentGame.score > stat.highScore {
 												stat.highScore = calc.highScore(currentScore: currentGame.score, highScore: stat.highScore)

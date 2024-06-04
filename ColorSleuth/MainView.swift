@@ -29,7 +29,7 @@ struct MainView: View {
 								
 								StatsView()
 										.tabItem {
-												Label("Stats", systemImage: "square.stack.3d.up")
+												Label("Stats", systemImage: "chart.bar.fill")
 										}
 										.tag(Tabs.stats)
 								

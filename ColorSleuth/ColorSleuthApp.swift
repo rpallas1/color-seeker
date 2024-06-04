@@ -11,10 +11,11 @@ import SwiftData
 
 @main
 struct ColorSleuthApp: App {
-		
+				
 		@State var viewStates = GlobalStates()
 		@State private var settings = Settings()
-		
+		@AppStorage("needsOnboarding") var needsOnboarding: Bool = true
+
 //		init() {
 //				let config = TelemetryDeck.Config(appID: "81C31ED3-4AB5-4765-BE71-9345960BB4DA")
 //				TelemetryDeck.initialize(config: config)
@@ -22,11 +23,17 @@ struct ColorSleuthApp: App {
 		
     var body: some Scene {
         WindowGroup {
-            MainView()
+						MainView()
 								.environment(viewStates)
 								.environment(settings)
 								.modelContainer(for: [StatModel.self, AchievementModel.self, GroupModel.self, Goal.self])
 								.preferredColorScheme(settings.colorScheme.colorScheme)
+								.fullScreenCover(isPresented: $needsOnboarding, onDismiss: {
+										needsOnboarding = false
+								}, content: {
+										HowToPlayView(throughSettings: false)
+								})
+
         }
     }
 }

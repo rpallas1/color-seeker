@@ -37,7 +37,6 @@ struct StatsView: View {
 								}
 								.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
 						}
-						.navigationTitle("Stats")
 						.navigationBarTitleDisplayMode(.inline)
 				}
 		}

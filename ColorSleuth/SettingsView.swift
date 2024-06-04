@@ -32,7 +32,7 @@ struct SettingsView: View {
 														Text("How to Play")
 														Spacer()
 														NavigationLink {
-																HowToPlayView()
+																HowToPlayView(throughSettings: true)
 														} label: {}
 												}
 												
@@ -69,7 +69,7 @@ struct SettingsView: View {
 								})
 						}
 						.confirmationDialog("Reseting data includes all stats and achievements. Are you sure you want to reset all game data? ", isPresented: $showConfirmation, titleVisibility: .visible) {
-								Button("Delete Game Data", role: .destructive) {
+								Button("Reset Game Data", role: .destructive) {
 										
 										do {
 												try context.delete(model: StatModel.self)

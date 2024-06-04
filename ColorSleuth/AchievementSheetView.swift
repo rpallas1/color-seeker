@@ -34,7 +34,6 @@ struct AchievementSheetView: View {
 																GoalView(group: group, goal: goal)
 																		.padding(.bottom)
 																		.onTapGesture {
-																				// TODO: Show sheet with full description
 																				selectedGroup = group
 																				selectedGoal = goal
 																				viewStates.showFullDescription = true
@@ -80,7 +79,7 @@ struct GoalView: View {
 								
 				VStack (spacing: 6) {
 						Image(systemName: goal.isComplete ? "trophy.fill" : "trophy")
-								.foregroundStyle(goal.isComplete ? .cyan : .gray)
+								.foregroundStyle(goal.isComplete ? .accent : .gray)
 								.font(Font.system(size: 50))
 						Text(format.title(group: group, goal: goal))
 								.font(.subheadline)
@@ -89,7 +88,8 @@ struct GoalView: View {
 								Text(format.previewDescription(group: group, goal: goal))
 										.font(.caption)
 						} else {
-								Text("")
+								Text("Complete")
+										.font(.caption)
 						}
 				}
 				.multilineTextAlignment(.center)

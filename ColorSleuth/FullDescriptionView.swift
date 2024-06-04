@@ -16,7 +16,7 @@ struct FullDescriptionView: View {
     var body: some View {
 				VStack(spacing: 8) {
 						Image(systemName: goal.isComplete ? "trophy.fill" : "trophy")
-								.foregroundStyle(goal.isComplete ? .cyan : .gray)
+								.foregroundStyle(goal.isComplete ? .accent : .gray)
 								.font(Font.system(size: 100))
 						Text(format.previewDescription(group: group, goal: goal))
 								.font(.subheadline)

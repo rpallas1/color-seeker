@@ -68,7 +68,7 @@ struct DifficultyMenuView: View {
 								ZStack {
 										RoundedRectangle(cornerRadius: 100)
 												.frame(width: 239, height: 50)
-												.foregroundStyle(.cyan)
+												.foregroundStyle(.accent)
 										
 										Text("New Game")
 												.foregroundStyle(.white)

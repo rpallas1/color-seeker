@@ -28,7 +28,7 @@ struct GameplayView: View {
 		@State private var pausedTime: TimeInterval = 0
 		@State private var isPaused: Bool = false
 		
-		@State var barSegmentColor: Color = .cyan
+		@State var barSegmentColor: Color = .accent
 		
 		var body: some View {
 				
@@ -43,7 +43,7 @@ struct GameplayView: View {
 												VStack {
 														Text("Difficulty")
 																.bold()
-																.foregroundStyle(.cyan)
+																.foregroundStyle(.accent)
 														Text(currentGame.difficulty.rawValue)
 												}
 												
@@ -52,7 +52,7 @@ struct GameplayView: View {
 												VStack {
 														Text("Score")
 																.bold()
-																.foregroundStyle(.cyan)
+																.foregroundStyle(.accent)
 														
 														if currentGame.difficulty == .survival {
 																Text(String(currentGame.score))
@@ -66,7 +66,7 @@ struct GameplayView: View {
 												VStack {
 														Text("Time")
 																.bold()
-																.foregroundStyle(.cyan)
+																.foregroundStyle(.accent)
 														Text(formattedTime(currentGame: currentGame, elapsedTime: elapsedTime))
 												}
 												.frame(maxWidth: 60)
@@ -285,7 +285,7 @@ struct GameplayView: View {
 		
 		private func colorForSegment(at index: Int) -> Color {
 				if let result = currentGame.tapResults[index] {
-						return result ? .cyan : .red
+						return result ? .accent : .red
 				} else {
 						return Color("Primary Gray")
 				}

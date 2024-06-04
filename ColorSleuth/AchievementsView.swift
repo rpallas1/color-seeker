@@ -40,7 +40,6 @@ struct AchievementsView: View {
 								}
 								.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
 						}
-						.navigationTitle("Stats")
 						.navigationBarTitleDisplayMode(.inline)
 				}
 				.sheet(isPresented: $viewStates.showFullDescription) {

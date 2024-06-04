@@ -47,7 +47,7 @@ struct PauseGameView: View {
 										}
 										.padding(.trailing, 100)
 										
-										VStack (spacing: 16) {
+										VStack (spacing: 20) {
 												Button(action: {
 														viewStates.showGameplay = false
 														
@@ -55,6 +55,8 @@ struct PauseGameView: View {
 														currentGame.resetProperties()
 												}, label: {
 														Text("Quit")
+																.padding(.horizontal, 48)
+																.foregroundStyle(.red)
 												})
 												
 												Button(action: {
@@ -68,6 +70,7 @@ struct PauseGameView: View {
 																.bold()
 												})
 												.buttonStyle(.bordered)
+												.tint(.accent)
 										}
 										.font(.largeTitle)
 								}

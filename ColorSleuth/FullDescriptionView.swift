@@ -18,8 +18,14 @@ struct FullDescriptionView: View {
 						Image(systemName: goal.isComplete ? "trophy.fill" : "trophy")
 								.foregroundStyle(goal.isComplete ? .accent : .gray)
 								.font(Font.system(size: 100))
-						Text(format.previewDescription(group: group, goal: goal))
-								.font(.subheadline)
+						if goal.isComplete {
+								Text("Complete")
+										.font(.subheadline)
+						} else {
+								Text(format.previewDescription(group: group, goal: goal))
+										.font(.subheadline)
+						}
+						
 						Text(format.fullDescripiton(group: group, goal: goal))
 								.font(.title3)
 				}

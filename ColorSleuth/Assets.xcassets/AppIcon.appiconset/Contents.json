@@ -1,12 +1,14 @@
 {
   "images" : [
     {
+      "filename" : "40x40.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
+      "filename" : "60x60.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "3x",
@@ -41,12 +43,14 @@
       "size" : "38x38"
     },
     {
+      "filename" : "80x80.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
+      "filename" : "120x120 1.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "3x",
@@ -67,30 +71,35 @@
       "size" : "60x60"
     },
     {
+      "filename" : "128x128.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",
       "size" : "64x64"
     },
     {
+      "filename" : "192x192.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "3x",
       "size" : "64x64"
     },
     {
+      "filename" : "136x136.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",
       "size" : "68x68"
     },
     {
+      "filename" : "152x152.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",
       "size" : "76x76"
     },
     {
+      "filename" : "167x167.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",

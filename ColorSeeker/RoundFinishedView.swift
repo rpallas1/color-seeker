@@ -192,20 +192,34 @@ struct RoundFinishedView: View {
 										return [Goal]()
 								}
 						}
-						let sortedOverallTimeGoals = sortedOverallGroups[3].goals.sorted(by: {
-								if $0.time != $1.time {
-										return $0.time > $1.time
+						var sortedBestTimeGoals: [Goal] {
+								if currentGame.difficulty != .survival {
+										return sortedGroups[4].goals.sorted(by: {
+												if $0.time != $1.time {
+														return $0.time > $1.time
+												} else {
+														return $0.value < $1.value
+												}
+										})
 								} else {
-										return $0.value < $1.value
+										return [Goal]()
 								}
-						})
-						let sortedBestTimeGoals = sortedOverallGroups[4].goals.sorted(by: {
-								if $0.time != $1.time {
-										return $0.time > $1.time
-								} else {
-										return $0.value < $1.value
-								}
-						})
+						}
+						
+//						let sortedOverallTimeGoals = sortedOverallGroups[3].goals.sorted(by: {
+//								if $0.time != $1.time {
+//										return $0.time > $1.time
+//								} else {
+//										return $0.value < $1.value
+//								}
+//						})
+//						let sortedBestTimeGoals = sortedOverallGroups[4].goals.sorted(by: {
+//								if $0.time != $1.time {
+//										return $0.time > $1.time
+//								} else {
+//										return $0.value < $1.value
+//								}
+//						})
 						
 						// ROOT STATS
 						if !(currentGame.score == 0 && currentGame.difficulty == .survival) {
@@ -259,17 +273,23 @@ struct RoundFinishedView: View {
 												}
 										}
 										
-										for goal in sortedOverallTimeGoals {
-												if check.timeProgress(currentGame: currentGame, goal: goal) {
-														goal.progress += 1
-												}
-										}
-										
 										for goal in sortedBestTimeGoals {
 												if check.timeProgress(currentGame: currentGame, goal: goal) {
 														goal.progress += 1
 												}
 										}
+										
+//										for goal in sortedOverallTimeGoals {
+//												if check.timeProgress(currentGame: currentGame, goal: goal) {
+//														goal.progress += 1
+//												}
+//										}
+										
+//										for goal in sortedBestTimeGoals {
+//												if check.timeProgress(currentGame: currentGame, goal: goal) {
+//														goal.progress += 1
+//												}
+//										}
 										
 								} else {
 										stat.currentStreak = 0

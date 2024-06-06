@@ -29,7 +29,7 @@ struct MainView: View {
 								
 								StatsView()
 										.tabItem {
-												Label("Stats", systemImage: "chart.bar.fill")
+												Label("Stats", systemImage: "chart.bar.xaxis")
 										}
 										.tag(Tabs.stats)
 								
@@ -48,7 +48,7 @@ struct MainView: View {
 										initAchievemnets()
 //										print(context.sqliteCommand)
 								} else {
-										// TODO: re-init achievements for on-device
+										// TODO: Delete and re-init achievements for on-device
 //										print(context.sqliteCommand)
 								}
 						}

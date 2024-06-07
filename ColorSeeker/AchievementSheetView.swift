@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 
 struct AchievementSheetView: View {
 		
@@ -15,10 +16,11 @@ struct AchievementSheetView: View {
 		var achievementCategory: AchievementModel
 		@Binding var selectedGroup: GroupModel?
 		@Binding var selectedGoal: Goal?
+		var tip = AchievemetTip()
 		
 		let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
 		
-    var body: some View {
+		var body: some View {
 				
 				@Bindable var viewStates = viewStates
 				
@@ -29,10 +31,14 @@ struct AchievementSheetView: View {
 												Text(group.name)
 														.font(.title)
 														.bold()
+												
+												if group.index == 0 && achievementCategory.index == 0 {
+														TipView(tip, arrowEdge: .bottom)
+												}
+												
 												LazyVGrid(columns: columns) {
 														ForEach(sortedGoal(for: group)) { goal in
 																GoalView(group: group, goal: goal)
-//																		.padding(.bottom)
 																		.padding()
 																		.onTapGesture {
 																				selectedGroup = group
@@ -52,11 +58,11 @@ struct AchievementSheetView: View {
 										.containerRelativeFrame(.horizontal)
 								}
 						}
+						.padding(.bottom, 24)
 				}
-				.padding(.bottom, 24)
 				.scrollIndicators(.hidden)
 				.containerRelativeFrame(.horizontal)
-    }
+		}
 		
 		var sortedGroups: [GroupModel] {
 				achievementCategory.groups.sorted(by: {$0.index < $1.index})
@@ -74,13 +80,13 @@ struct AchievementSheetView: View {
 }
 
 struct GoalView: View {
-				
+		
 		var group : GroupModel
 		var goal: Goal
 		var format = FormatHelper()
 		
 		var body: some View {
-								
+				
 				VStack (spacing: 6) {
 						Image(systemName: goal.isComplete ? "trophy.fill" : "trophy")
 								.foregroundStyle(goal.isComplete ? .accent : .gray)
@@ -97,5 +103,19 @@ struct GoalView: View {
 						}
 				}
 				.multilineTextAlignment(.center)
+		}
+}
+
+struct AchievemetTip: Tip {
+		var title: Text {
+				Text("Tap for More Details")
+		}
+		
+		var message: Text? {
+				Text("Tap on an achievement to see more details")
+		}
+		
+		var image: Image? {
+				Image(systemName: "trophy.fill")
 		}
 }

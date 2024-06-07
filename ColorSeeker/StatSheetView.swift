@@ -232,6 +232,7 @@ struct StatSheetView: View {
 										}
 										.padding(.horizontal, 24)
 										.padding(.top)
+										.padding(.bottom, 24)
 										.containerRelativeFrame(.horizontal)
 								} else {
 										// Averge game for survival round
@@ -284,11 +285,11 @@ struct StatSheetView: View {
 										}
 										.padding(.horizontal, 24)
 										.padding(.top)
+										.padding(.bottom, 24)
 										.containerRelativeFrame(.horizontal)
 								}
 						}
 				}
-				.padding(.bottom, 24)
 				.scrollIndicators(.hidden)
 				.containerRelativeFrame(.horizontal)
 		}		

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import TipKit
 //import TelemetryDeck
 
 @main
@@ -33,7 +34,12 @@ struct ColorSeekerApp: App {
 								}, content: {
 										HowToPlayView(throughSettings: false)
 								})
-
+								.task {
+										try? Tips.configure([
+												.displayFrequency(.immediate),
+												.datastoreLocation(.applicationDefault)
+										])
+								}
         }
     }
 }

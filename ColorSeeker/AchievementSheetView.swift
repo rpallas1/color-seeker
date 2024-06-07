@@ -34,6 +34,7 @@ struct AchievementSheetView: View {
 												
 												if group.index == 0 && achievementCategory.index == 0 {
 														TipView(tip, arrowEdge: .bottom)
+																.tipViewStyle(AchievementTipViewStyle())
 												}
 												
 												LazyVGrid(columns: columns) {
@@ -117,5 +118,35 @@ struct AchievemetTip: Tip {
 		
 		var image: Image? {
 				Image(systemName: "trophy.fill")
+		}
+}
+
+struct AchievementTipViewStyle: TipViewStyle {
+		func makeBody(configuration: TipViewStyle.Configuration) -> some View {
+				VStack(alignment: .leading) {
+						HStack {
+								Spacer()
+								Button(action: { configuration.tip.invalidate(reason: .tipClosed)}) {
+										Image(systemName: "xmark").scaledToFit()
+												.foregroundStyle(.gray)
+								}
+						}
+						
+						HStack(alignment: .top) {
+								configuration.image?
+										.resizable()
+										.aspectRatio(contentMode: .fit)
+										.frame(width: 48, height: 48)
+										.foregroundStyle(.accent)
+								
+								VStack(alignment: .leading, spacing: 8.0) {
+										configuration.title?
+												.font(.headline)
+										configuration.message?
+												.font(.subheadline)
+								}
+						}
+				}
+				.padding()
 		}
 }

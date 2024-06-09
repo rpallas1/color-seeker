@@ -31,15 +31,17 @@ struct PauseGameView: View {
 																		.bold()
 																Text(format.time(elapsedTime: Double(currentGame.elapsedTime)))
 														}
+														if currentGame.difficulty != .survival {
+																HStack {
+																		Text("Round:")
+																				.bold()
+																		Text("\(currentGame.totalTaps)/\(currentGame.totalRounds)")
+																}
+														}
 														HStack {
 																Text("Score:")
 																		.bold()
-																
-																if currentGame.difficulty == .survival {
-																		Text("\(String(currentGame.score))")
-																} else {
-																		Text("\(String(currentGame.score))/\(currentGame.totalRounds)")
-																}
+																Text("\(currentGame.score)")
 														}
 												}
 												.padding(.bottom, 32)

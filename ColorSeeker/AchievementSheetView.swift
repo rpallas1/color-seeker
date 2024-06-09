@@ -132,7 +132,7 @@ struct AchievementTipViewStyle: TipViewStyle {
 								}
 						}
 						
-						HStack(alignment: .top) {
+						HStack(alignment: .top, spacing: 20) {
 								configuration.image?
 										.resizable()
 										.aspectRatio(contentMode: .fit)

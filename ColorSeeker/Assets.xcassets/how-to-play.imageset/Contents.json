@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "how-to-play.svg",
+      "filename" : "how-to-play-light.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,12 +12,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "how-to-play-dark.svg",
+      "filename" : "how-to-dark.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "how-to-play@2x.svg",
+      "filename" : "how-to-play-light@2x.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -28,12 +28,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "how-to-play-dark@2x.svg",
+      "filename" : "how-to-dark@2x.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "how-to-play@3x.svg",
+      "filename" : "how-to-play-light@3x.svg",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -44,7 +44,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "how-to-play-dark@3x.svg",
+      "filename" : "how-to-dark@3x.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

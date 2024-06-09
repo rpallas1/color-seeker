@@ -196,6 +196,7 @@ struct MainView: View {
 																											 index: 3,
 																											 descriptionString: "Win _ games under - seconds",
 																											 progress: 0,
+																														// 12s and 10s
 																											 goals: [Goal(value: 250, time: 14, isComplete: false),
 																															 Goal(value: 500, time: 14, isComplete: false),
 																															 Goal(value: 1000, time: 14, isComplete: false),
@@ -206,6 +207,7 @@ struct MainView: View {
 																														index: 4,
 																														descriptionString: "Win _ game under - seconds",
 																														progress: 0,
+																														// 9.7s, 9.4s, 9s
 																														goals: [Goal(value: 1, time: 10, isComplete: false),
 																																		Goal(value: 1, time: 9.7, isComplete: false),
 																																		Goal(value: 1, time: 9.4, isComplete: false)])]))

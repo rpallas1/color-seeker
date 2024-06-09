@@ -53,11 +53,17 @@ struct GameplayView: View {
 														Text("Score")
 																.bold()
 																.foregroundStyle(.accent)
+														Text("\(currentGame.score)")
+												}
+												
+												if currentGame.difficulty != .survival {
+														Spacer()
 														
-														if currentGame.difficulty == .survival {
-																Text(String(currentGame.score))
-														} else {
-																Text("\(String(currentGame.score))/\(currentGame.totalRounds)")
+														VStack {
+																Text("Round")
+																		.bold()
+																		.foregroundStyle(.accent)
+																Text("\(currentGame.totalTaps)/\(currentGame.totalRounds)")
 														}
 												}
 												

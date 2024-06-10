@@ -71,6 +71,14 @@ struct CalcStats {
 				}
 		}
 		
+		func newBestTime(currentTime: TimeInterval, bestTime: Double) -> Bool {
+				if Double(currentTime) < bestTime || bestTime == 0 {
+						return true
+				} else {
+						return false
+				}
+		}
+		
 		func currentTimeTapRatio(currentGame: GameplayModel) -> Double {
 				return Double(currentGame.elapsedTime) / Double(currentGame.score)
 		}

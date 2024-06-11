@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftData
-//import TelemetryDeck
 
 struct RoundFinishedView: View {
 		
@@ -381,34 +380,6 @@ struct RoundFinishedView: View {
 										}
 								}
 						}
-						
-						// Difficulty Stats Updated
-						//								TelemetryDeck.signal(
-						//										"roundPlayed",
-						//										parameters: [
-						//												"difficulty": "\(stat.difficulty)",
-						//												"gamesPlayed": "\(stat.gamesPlayed)",
-						//												"gamesWon": "\(stat.gamesWon)",
-						//												"perfectGames": "\(stat.perfectGames)",
-						//												"highScore": "\(stat.highScore)",
-						//												"averageScore": "\(stat.averageScore)",
-						//												"percentCorrect": "\(stat.percentCorrect)",
-						//												"correctTaps": "\(stat.correctTaps)",
-						//												"totalTaps": "\(stat.totalTaps)",
-						//												"accuracy": "\(stat.accuracy)",
-						//												"currentStreak": "\(stat.currentStreak)",
-						//												"bestStreak": "\(stat.bestStreak)",
-						//												"totalTime": "\(stat.totalTime)",
-						//												"bestTime": "\(stat.bestTime)",
-						//												"bestTime String": "\(stat.bestTimeString)",
-						//												"bestTime Tap Ratio": "\(stat.bestTimeTapRatio)",
-						//												"bestTime Tap Ratio String": "\(stat.bestTimeTapRatioString)",
-						//												"averageTime Tap Ratio": "\(stat.avgTimeTapRatio)",
-						//												"averageTime Tap Ratio String": "\(stat.avgTimeTapRatioString)",
-						//												"averageTime": "\(stat.averageTime)",
-						//												"averageTime String": "\(stat.averageTimeString)"
-						//										]
-						//								)
 				} else {
 						print("Error: Returned more than 1 stat difficulty or overall stat")
 				}

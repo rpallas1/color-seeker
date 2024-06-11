@@ -22,6 +22,7 @@
 		BC87332B2C0E361F0028BBF9 /* AchievementSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC87332A2C0E361F0028BBF9 /* AchievementSheetView.swift */; };
 		BC87332D2C0E50030028BBF9 /* FullDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC87332C2C0E50030028BBF9 /* FullDescriptionView.swift */; };
 		BC87332F2C0E61E50028BBF9 /* AchievementHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC87332E2C0E61E50028BBF9 /* AchievementHelper.swift */; };
+		BCA0DCD22C1903A6007508C9 /* DefaultDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA0DCD12C1903A6007508C9 /* DefaultDataHelper.swift */; };
 		BCE336D72BFE94C400FEDAFA /* GameHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE336D62BFE94C400FEDAFA /* GameHelper.swift */; };
 		BCE336DE2C052B0000FEDAFA /* FormatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE336DD2C052B0000FEDAFA /* FormatHelper.swift */; };
 		BCE3C7192BF5212B00CB2EAE /* ColorSeekerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCE3C7182BF5212B00CB2EAE /* ColorSeekerApp.swift */; };
@@ -52,6 +53,7 @@
 		BC87332A2C0E361F0028BBF9 /* AchievementSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementSheetView.swift; sourceTree = "<group>"; };
 		BC87332C2C0E50030028BBF9 /* FullDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullDescriptionView.swift; sourceTree = "<group>"; };
 		BC87332E2C0E61E50028BBF9 /* AchievementHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementHelper.swift; sourceTree = "<group>"; };
+		BCA0DCD12C1903A6007508C9 /* DefaultDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDataHelper.swift; sourceTree = "<group>"; };
 		BCE336D62BFE94C400FEDAFA /* GameHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHelper.swift; sourceTree = "<group>"; };
 		BCE336DD2C052B0000FEDAFA /* FormatHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatHelper.swift; sourceTree = "<group>"; };
 		BCE3C7152BF5212B00CB2EAE /* ColorSeeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorSeeker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +140,7 @@
 				BCE336D62BFE94C400FEDAFA /* GameHelper.swift */,
 				BCE336DD2C052B0000FEDAFA /* FormatHelper.swift */,
 				BC87332E2C0E61E50028BBF9 /* AchievementHelper.swift */,
+				BCA0DCD12C1903A6007508C9 /* DefaultDataHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				BCE3C73B2BF673FF00CB2EAE /* StatSheetView.swift in Sources */,
 				BCE3C7292BF522F900CB2EAE /* StatsView.swift in Sources */,
 				BC7B54142BF7E2A2001F74B5 /* GameplayModels.swift in Sources */,
+				BCA0DCD22C1903A6007508C9 /* DefaultDataHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

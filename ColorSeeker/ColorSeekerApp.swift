@@ -12,16 +12,25 @@ import TipKit
 @main
 struct ColorSeekerApp: App {
 				
+		let modelContainer: ModelContainer
 		@State var viewStates = GlobalStates()
 		@State private var settings = Settings()
 		@AppStorage("needsOnboarding") var needsOnboarding: Bool = true
+		
+		init() {
+				let schema = Schema([StatModel.self, AchievementModel.self, GroupModel.self, Goal.self])
+				do {
+						modelContainer = try ModelContainer(for: schema)
+				} catch let error {
+						fatalError("Cannot set up modelContainer: \(error.localizedDescription)")
+				}
+		}
 		
     var body: some Scene {
         WindowGroup {
 						MainView()
 								.environment(viewStates)
 								.environment(settings)
-								.modelContainer(for: [StatModel.self, AchievementModel.self, GroupModel.self, Goal.self])
 								.preferredColorScheme(settings.colorScheme.colorScheme)
 								.fullScreenCover(isPresented: $needsOnboarding, onDismiss: {
 										needsOnboarding = false
@@ -35,5 +44,6 @@ struct ColorSeekerApp: App {
 										])
 								}
         }
+				.modelContainer(modelContainer)
     }
 }

@@ -41,101 +41,117 @@ struct RoundFinishedView: View {
 		@State private var newHighScore = false
 		@State private var newBestTime = false
 		@State private var didPassRound = false
+		@State private var newAchievements = [NewAchievement]()
+		@State private var screenWidth: CGFloat = 0.0
 		private var trailingPadding: CGFloat = 0.75
 		
 		var body: some View {
 				
 				@Bindable var viewStates = viewStates
-				GeometryReader { proxy in
-						VStack(spacing: 20) {
-								Spacer()
-								
-								if currentGame.difficulty != .survival {
-										VStack {
-												if didPassRound {
-														Text("Round Complete!")
-																.font(.largeTitle)
-																.bold()
-												} else {
-														Text("Round Failed")
-																.font(.largeTitle)
-																.bold()
-												}
-												
-												Text("\(format.percent(percent: calc.percentCorrect(currentGame: currentGame)))")
+				
+				VStack(spacing: 20) {
+						Spacer()
+						
+						if currentGame.difficulty != .survival {
+								VStack {
+										if didPassRound {
+												Text("Round Complete!")
 														.font(.largeTitle)
-										}
-								}
-								
-								VStack (alignment: .leading, spacing: 16) {
-										HStack (spacing: 8) {
-												Text("Difficulty:")
 														.bold()
-												Text(currentGame.difficulty.rawValue)
-												Spacer()
+										} else {
+												Text("Round Failed")
+														.font(.largeTitle)
+														.bold()
 										}
-										.font(.title2)
 										
-										HStack (spacing: 8) {
-												Text("Time:")
-														.bold()
-												Text(format.time(elapsedTime: Double(currentGame.elapsedTime)))
-												Spacer()
-										}
-										.font(.title2)
-										
-										HStack (spacing: 8) {
-												Text("Score:")
-														.bold()
-												
-												if currentGame.difficulty == .survival {
-														Text(String(currentGame.score))
-												} else {
-														Text("\(String(currentGame.score))/\(currentGame.totalRounds)")
-												}
-												Spacer()
-										}
-										.font(.title2)
+										Text("\(format.percent(percent: calc.percentCorrect(currentGame: currentGame)))")
+												.font(.largeTitle)
 								}
-								.frame(width: proxy.size.width * trailingPadding)
-								.padding([.vertical, .leading])
-								.background {
-										RoundedRectangle(cornerRadius: 12)
-												.foregroundStyle(Color("Primary Gray"))
-												.shadow(radius: 6)
-								}
-								
-								if newHighScore {
-										NewBestView(currentGame: currentGame, newHighScore: newHighScore, width: proxy.size.width)
-								}
-								
-								if newBestTime && didPassRound {
-										NewBestView(currentGame: currentGame, newBestTime: newBestTime, width: proxy.size.width)
-								}
-								
-								Spacer()
-								
-								Button(action: {
-										viewStates.showGameplay = false
-								}, label: {
-										ZStack {
-												RoundedRectangle(cornerRadius: 100)
-														.frame(width: 239, height: 50)
-														.foregroundStyle(.accent)
-												
-												Text("Play Again")
-														.foregroundStyle(.white)
-														.font(.title2)
-														.bold()
-										}
-								})
-								.padding(.bottom, 65)
 						}
-						.frame(width: proxy.size.width, height: proxy.size.height)
+						
+						VStack (alignment: .leading, spacing: 16) {
+								HStack (spacing: 8) {
+										Text("Difficulty:")
+												.bold()
+										Text(currentGame.difficulty.rawValue)
+										Spacer()
+								}
+								.font(.title2)
+								
+								HStack (spacing: 8) {
+										Text("Time:")
+												.bold()
+										Text(format.time(elapsedTime: Double(currentGame.elapsedTime)))
+										Spacer()
+								}
+								.font(.title2)
+								
+								HStack (spacing: 8) {
+										Text("Score:")
+												.bold()
+										
+										if currentGame.difficulty == .survival {
+												Text(String(currentGame.score))
+										} else {
+												Text("\(String(currentGame.score))/\(currentGame.totalRounds)")
+										}
+										Spacer()
+								}
+								.font(.title2)
+						}
+						.frame(width: screenWidth * trailingPadding)
+						.padding([.vertical, .leading])
+						.background {
+								RoundedRectangle(cornerRadius: 12)
+										.foregroundStyle(Color("Primary Gray"))
+										.shadow(radius: 6)
+						}
+						
+						if newHighScore {
+								NewBestView(currentGame: currentGame, newHighScore: newHighScore, width: screenWidth)
+						}
+						
+						if newBestTime && didPassRound {
+								NewBestView(currentGame: currentGame, newBestTime: newBestTime, width: screenWidth)
+						}
+						
+						if newAchievements.count > 0 {
+								ScrollView(.horizontal) {
+										HStack {
+												ForEach(newAchievements) { achievement in
+														NewAchievementsView(achievement: achievement, width: screenWidth, count: newAchievements.count)
+																.containerRelativeFrame(.horizontal, count: 1, spacing: 16)
+												}
+										}
+										.scrollTargetLayout()
+								}
+								.scrollIndicators(.hidden)
+								.contentMargins(screenWidth * 0.13, for: .scrollContent)
+								.scrollTargetBehavior(.viewAligned)
+						}
+						
+						Spacer()
+						
+						Button(action: {
+								viewStates.showGameplay = false
+						}, label: {
+								ZStack {
+										RoundedRectangle(cornerRadius: 100)
+												.frame(width: 239, height: 50)
+												.foregroundStyle(.accent)
+										
+										Text("Play Again")
+												.foregroundStyle(.white)
+												.font(.title2)
+												.bold()
+								}
+						})
+						.padding(.bottom, 65)
 				}
 				.onAppear {
 						//Update all stats
 						updateStats()
+						screenWidth = UIScreen.main.bounds.width
 				}
 				.onDisappear {
 						// Reset current game values
@@ -331,17 +347,27 @@ struct RoundFinishedView: View {
 								overallStat.averageTimeString = format.time(elapsedTime: overallStat.averageTime)
 						}
 						
+						// Check if any difficulty achievements were earned
 						for group in sortedGroups {
 								for goal in group.goals {
 										if check.isComplete(group: group, goal: goal) {
+												if goal.isComplete == false {
+														newAchievements.append(NewAchievement(difficulty: currentGame.difficulty.rawValue, group: group, goal: goal))
+												}
+												
 												goal.isComplete = true
 										}
 								}
 						}
 						
+						// Check if any overall achievements were earned
 						for group in sortedOverallGroups {
 								for goal in group.goals {
 										if check.isComplete(group: group, goal: goal) {
+												if goal.isComplete == false {
+														newAchievements.append(NewAchievement(difficulty: "Overall", group: group, goal: goal))
+												}
+												
 												goal.isComplete = true
 										}
 								}
@@ -380,3 +406,9 @@ struct RoundFinishedView: View {
 		}
 }
 
+struct NewAchievement: Identifiable {
+		internal var id: UUID = UUID()
+		var difficulty: String
+		var group: GroupModel
+		var goal: Goal
+}

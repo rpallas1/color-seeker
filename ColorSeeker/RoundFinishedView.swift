@@ -53,7 +53,7 @@ struct RoundFinishedView: View {
 						Spacer()
 						
 						if currentGame.difficulty != .survival {
-								VStack {
+								VStack (spacing: 8) {
 										if didPassRound {
 												Text("Round Complete!")
 														.font(.largeTitle)
@@ -116,18 +116,27 @@ struct RoundFinishedView: View {
 						}
 						
 						if newAchievements.count > 0 {
-								ScrollView(.horizontal) {
-										HStack {
-												ForEach(newAchievements) { achievement in
-														NewAchievementsView(achievement: achievement, width: screenWidth, count: newAchievements.count)
-																.containerRelativeFrame(.horizontal, count: 1, spacing: 16)
+								
+								VStack {
+										Text("Achievements Earned")
+												.foregroundStyle(.gray)
+												.fontWeight(.medium)
+												.frame(maxWidth: (screenWidth * trailingPadding) + 16, alignment: .leading)
+										
+										ScrollView(.horizontal) {
+												HStack(spacing: 16) {
+														ForEach(newAchievements) { achievement in
+																NewAchievementsView(achievement: achievement, width: screenWidth, count: newAchievements.count)
+																		.containerRelativeFrame(.horizontal, count: 1, spacing: 16)
+														}
 												}
+												.scrollTargetLayout()
 										}
-										.scrollTargetLayout()
+										.scrollIndicators(.hidden)
+										.contentMargins(.horizontal, screenWidth * 0.13, for: .scrollContent)
+										.scrollTargetBehavior(.viewAligned)
 								}
-								.scrollIndicators(.hidden)
-								.contentMargins(screenWidth * 0.13, for: .scrollContent)
-								.scrollTargetBehavior(.viewAligned)
+								.padding(.top, 16)
 						}
 						
 						Spacer()

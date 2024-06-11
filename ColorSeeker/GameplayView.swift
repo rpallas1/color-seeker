@@ -80,6 +80,7 @@ struct GameplayView: View {
 												
 												Spacer()
 										}
+										.padding(.top, 16)
 										
 										if currentGame.difficulty != .survival {
 												GeometryReader { geometry in

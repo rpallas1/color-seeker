@@ -16,12 +16,15 @@ struct NewAchievementsView: View {
 		private let format = FormatHelper()
 		
     var body: some View {
-				VStack(alignment: .leading, spacing: 8) {
+				VStack(alignment: .leading, spacing: 10) {
 						HStack {
 								Text(achievement.difficulty)
 										.font(.title2)
 										.bold()
 								Spacer()
+								Text("Complete")
+										.foregroundStyle(.gray)
+										.bold()
 						}
 						
 						HStack(spacing: 8) {
@@ -30,11 +33,13 @@ struct NewAchievementsView: View {
 										.foregroundStyle(.accent)
 								Text(format.fullDescripiton(group: achievement.group, goal: achievement.goal))
 										.font(.title2)
+										.fixedSize(horizontal: false, vertical: true)
 								Spacer()
 						}
 				}
 				.frame(width: width * trailingPadding)
-				.padding([.vertical, .leading])
+				.padding(.horizontal, 16)
+				.padding(.vertical, 8)
 				.background {
 						RoundedRectangle(cornerRadius: 12)
 								.foregroundStyle(Color("Primary Gray"))

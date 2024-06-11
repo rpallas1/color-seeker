@@ -193,7 +193,6 @@
 			);
 			mainGroup = BCE3C70C2BF5212B00CB2EAE;
 			packageReferences = (
-				BCE336E42C078E9D00FEDAFA /* XCRemoteSwiftPackageReference "SwiftSDK" */,
 			);
 			productRefGroup = BCE3C7162BF5212B00CB2EAE /* Products */;
 			projectDirPath = "";
@@ -449,17 +448,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		BCE336E42C078E9D00FEDAFA /* XCRemoteSwiftPackageReference "SwiftSDK" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/TelemetryDeck/SwiftSDK";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = BCE3C70D2BF5212B00CB2EAE /* Project object */;
 }

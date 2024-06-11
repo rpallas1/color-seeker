@@ -54,11 +54,11 @@ struct RoundFinishedView: View {
 						if currentGame.difficulty != .survival {
 								VStack (spacing: 8) {
 										if didPassRound {
-												Text("Round Complete!")
+												Text("Game Complete!")
 														.font(.largeTitle)
 														.bold()
 										} else {
-												Text("Round Failed")
+												Text("Game Failed")
 														.font(.largeTitle)
 														.bold()
 										}

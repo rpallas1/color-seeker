@@ -12,7 +12,7 @@
 		BC5E20832BFD129A00979123 /* CustomSegmentedControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5E20822BFD129A00979123 /* CustomSegmentedControlView.swift */; };
 		BC72DB4C2BFBD783000A32C7 /* DifficultyMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC72DB4B2BFBD783000A32C7 /* DifficultyMenuView.swift */; };
 		BC7B53FC2BF677BB001F74B5 /* PauseGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B53FB2BF677BB001F74B5 /* PauseGameView.swift */; };
-		BC7B53FE2BF677D1001F74B5 /* RoundFinishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B53FD2BF677D1001F74B5 /* RoundFinishedView.swift */; };
+		BC7B53FE2BF677D1001F74B5 /* GameFinishedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B53FD2BF677D1001F74B5 /* GameFinishedView.swift */; };
 		BC7B54002BF677F2001F74B5 /* GameplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B53FF2BF677F2001F74B5 /* GameplayView.swift */; };
 		BC7B54022BF69691001F74B5 /* GlobalStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B54012BF69691001F74B5 /* GlobalStates.swift */; };
 		BC7B54042BF6A708001F74B5 /* StatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B54032BF6A708001F74B5 /* StatModel.swift */; };
@@ -43,7 +43,7 @@
 		BC5E20822BFD129A00979123 /* CustomSegmentedControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControlView.swift; sourceTree = "<group>"; };
 		BC72DB4B2BFBD783000A32C7 /* DifficultyMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifficultyMenuView.swift; sourceTree = "<group>"; };
 		BC7B53FB2BF677BB001F74B5 /* PauseGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseGameView.swift; sourceTree = "<group>"; };
-		BC7B53FD2BF677D1001F74B5 /* RoundFinishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundFinishedView.swift; sourceTree = "<group>"; };
+		BC7B53FD2BF677D1001F74B5 /* GameFinishedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFinishedView.swift; sourceTree = "<group>"; };
 		BC7B53FF2BF677F2001F74B5 /* GameplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayView.swift; sourceTree = "<group>"; };
 		BC7B54012BF69691001F74B5 /* GlobalStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStates.swift; sourceTree = "<group>"; };
 		BC7B54032BF6A708001F74B5 /* StatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatModel.swift; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 				BC5E20822BFD129A00979123 /* CustomSegmentedControlView.swift */,
 				BC7B53FF2BF677F2001F74B5 /* GameplayView.swift */,
 				BC7B53FB2BF677BB001F74B5 /* PauseGameView.swift */,
-				BC7B53FD2BF677D1001F74B5 /* RoundFinishedView.swift */,
+				BC7B53FD2BF677D1001F74B5 /* GameFinishedView.swift */,
 				BC128D7C2C175085004ADCD9 /* NewBestView.swift */,
 				BC128D7E2C175208004ADCD9 /* NewAchievementsView.swift */,
 				BCE3C7322BF54C5100CB2EAE /* SettingsView.swift */,
@@ -245,7 +245,7 @@
 				BC8733292C0E11F10028BBF9 /* AchievementModel.swift in Sources */,
 				BCE3C7192BF5212B00CB2EAE /* ColorSeekerApp.swift in Sources */,
 				BC128D7D2C175085004ADCD9 /* NewBestView.swift in Sources */,
-				BC7B53FE2BF677D1001F74B5 /* RoundFinishedView.swift in Sources */,
+				BC7B53FE2BF677D1001F74B5 /* GameFinishedView.swift in Sources */,
 				BC7B54002BF677F2001F74B5 /* GameplayView.swift in Sources */,
 				BC72DB4C2BFBD783000A32C7 /* DifficultyMenuView.swift in Sources */,
 				BC7B54122BF7E005001F74B5 /* StatHelper.swift in Sources */,

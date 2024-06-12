@@ -37,7 +37,6 @@ struct NewBestView: View {
 						.background {
 								RoundedRectangle(cornerRadius: 12)
 										.foregroundStyle(Color("Primary Gray"))
-										.shadow(radius: 6)
 						}
 				}
 				
@@ -61,7 +60,6 @@ struct NewBestView: View {
 						.background {
 								RoundedRectangle(cornerRadius: 12)
 										.foregroundStyle(Color("Primary Gray"))
-										.shadow(radius: 6)
 						}
 				}
 		}

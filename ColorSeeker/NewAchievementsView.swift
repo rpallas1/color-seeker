@@ -43,7 +43,6 @@ struct NewAchievementsView: View {
 				.background {
 						RoundedRectangle(cornerRadius: 12)
 								.foregroundStyle(Color("Primary Gray"))
-								.shadow(radius: 6)
 				}
 				.scrollTransition(axis: .horizontal) { content, phase in
 						content

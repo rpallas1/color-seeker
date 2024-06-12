@@ -18,6 +18,8 @@ struct AchievementsView: View {
 		
 		@State private var showSettings = false
 		@State private var selectedTab = 0
+		@State private var screenWidth: CGFloat = 0.0
+		@State private var minWidth: CGFloat = 380
 		
 		@State private var selectedGroup: GroupModel?
 		@State private var selectedGoal: Goal?
@@ -42,10 +44,13 @@ struct AchievementsView: View {
 						}
 						.navigationBarTitleDisplayMode(.inline)
 				}
+				.onAppear {
+						screenWidth = UIScreen.main.bounds.width
+				}
 				.sheet(isPresented: $viewStates.showFullDescription) {
 						if selectedGroup != nil && selectedGoal != nil {
 								FullDescriptionView(group: selectedGroup!, goal: selectedGoal!)
-										.presentationDetents([.fraction(0.3)])
+										.presentationDetents([.fraction(screenWidth < minWidth ? 0.35 : 0.3)])
 						}
 						
 				}

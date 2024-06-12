@@ -27,14 +27,19 @@ struct FormatHelper {
 								return String(format: "%.0fs", elapsedTime)
 						} else {
 								return String(format: "%.1fs", elapsedTime)
-						}						
-				} else {
+						}
+				} else if elapsedTime < 3600 {
 						let minutes = Int(elapsedTime) / 60
 						let seconds = Int(elapsedTime) % 60
-						return String(format: "%02d:%02d", minutes, seconds)
+						return String(format: "%d:%02d", minutes, seconds)
+				} else {
+						let hours = Int(elapsedTime) / 3600
+						let minutes = (Int(elapsedTime) % 3600) / 60
+						let seconds = Int(elapsedTime) % 60
+						return String(format: "%d:%02d:%02d", hours, minutes, seconds)
 				}
 		}
-		
+
 		func fullDescripiton(group: GroupModel, goal: Goal) -> String {
 				var description = ""
 				let time = time(elapsedTime: goal.time)
@@ -76,4 +81,9 @@ struct FormatHelper {
 				
 				return String(goal.value)
 		}
+}
+
+enum timeFormat {
+		case gameplay
+		case stats
 }

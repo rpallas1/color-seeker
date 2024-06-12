@@ -98,6 +98,7 @@ struct GoalView: View {
 						if !goal.isComplete {
 								Text(format.previewDescription(group: group, goal: goal))
 										.font(.caption)
+										.fixedSize(horizontal: true, vertical: true)
 						} else {
 								Text("Complete")
 										.font(.caption)

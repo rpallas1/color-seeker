@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct RoundFinishedView: View {
+struct GameFinishedView: View {
 		
 		@Environment(GlobalStates.self) var viewStates
 		@Environment(\.dismiss) var dismiss
@@ -42,13 +42,14 @@ struct RoundFinishedView: View {
 		@State private var didPassRound = false
 		@State private var newAchievements = [NewAchievement]()
 		@State private var screenWidth: CGFloat = 0.0
+		@State private var minWidth: CGFloat = 380
 		private var trailingPadding: CGFloat = 0.75
 		
 		var body: some View {
 				
 				@Bindable var viewStates = viewStates
 				
-				VStack(spacing: 20) {
+				VStack(spacing: screenWidth < minWidth ? 10 : 20) {
 						Spacer()
 						
 						if currentGame.difficulty != .survival {
@@ -103,7 +104,6 @@ struct RoundFinishedView: View {
 						.background {
 								RoundedRectangle(cornerRadius: 12)
 										.foregroundStyle(Color("Primary Gray"))
-										.shadow(radius: 6)
 						}
 						
 						if newHighScore {
@@ -135,7 +135,7 @@ struct RoundFinishedView: View {
 										.contentMargins(.horizontal, screenWidth * 0.13, for: .scrollContent)
 										.scrollTargetBehavior(.viewAligned)
 								}
-								.padding(.top, 16)
+								.padding(.top, screenWidth < minWidth ? 12 : 16)
 						}
 						
 						Spacer()

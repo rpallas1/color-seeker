@@ -16,6 +16,7 @@ struct HomeView: View {
 		@State private var showGameplay = false
 		@State private var showSettings = false
 		@State private var currentGame = GameplayModel()
+		@State private var dimensions: Double = 0.0
 		
 		var body: some View {
 				
@@ -33,17 +34,17 @@ struct HomeView: View {
 										Grid {
 												GridRow {
 														RoundedRectangle(cornerRadius: 12)
-																.frame(width: 136, height: 136)
+																.frame(width: dimensions, height: dimensions)
 														RoundedRectangle(cornerRadius: 12)
-																.frame(width: 136, height: 136)
+																.frame(width: dimensions, height: dimensions)
 																.opacity(0.7)
 												}
 												
 												GridRow {
 														RoundedRectangle(cornerRadius: 12)
-																.frame(width: 136, height: 136)
+																.frame(width: dimensions, height: dimensions)
 														RoundedRectangle(cornerRadius: 12)
-																.frame(width: 136, height: 136)
+																.frame(width: dimensions, height: dimensions)
 												}
 										}
 										.foregroundStyle(.orange)
@@ -53,6 +54,9 @@ struct HomeView: View {
 										
 										DifficultyMenuView(currentGame: $currentGame)
 								}
+						}
+						.onAppear {
+								dimensions = UIScreen.main.bounds.width * 0.316
 						}
 				}
 		}

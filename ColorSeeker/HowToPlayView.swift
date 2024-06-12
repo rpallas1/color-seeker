@@ -11,57 +11,67 @@ struct HowToPlayView: View {
 		
 		@Environment(\.dismiss) private var dismiss
 		@State var throughSettings: Bool
+		@State private var screenWidth: CGFloat = 0.0
+		@State private var largeVSpacing: CGFloat = 0.0
+		@State private var smallVSpacing: CGFloat = 0.0
+		@State private var hSpacing: CGFloat = 0.0
+		@State private var iconSize: CGFloat = 0.0
+		@State private var minWidth: CGFloat = 380
 		
     var body: some View {
 				NavigationStack {
-						VStack (spacing: 36) {
+						VStack (spacing: largeVSpacing) {
 								if throughSettings {
 										Spacer()
 								}
 								
-								VStack (alignment: .leading, spacing: 20) {
-										HStack (spacing: 18) {
+								VStack (alignment: .leading, spacing: smallVSpacing) {
+										HStack (spacing: hSpacing) {
 												Image("square.grid.2x2")
 														.foregroundStyle(.accent)
-														.font(.system(size: 26, weight: .semibold))
+														.font(.system(size: iconSize, weight: .semibold))
 												Text("Tap the color that's different.")
 										}
 										
-										HStack (spacing: 18) {
+										HStack (spacing: hSpacing) {
 												Image(systemName: "checkmark")
 														.foregroundStyle(.green)
-														.font(.system(size: 26, weight: .semibold))
+														.font(.system(size: iconSize, weight: .semibold))
 												Text("Get at least 85% correct to complete a game")
 										}
 										
-										HStack (spacing: 18) {
+										HStack (spacing: hSpacing) {
 												Image(systemName: "clock")
 														.foregroundStyle(.accent)
-														.font(.system(size: 26, weight: .semibold))
+														.font(.system(size: iconSize, weight: .semibold))
 												Text("See how fast you can complete a game.")
 										}
 										
-										HStack (spacing: 18) {
+										HStack (spacing: hSpacing) {
 												Image(systemName: "line.diagonal.arrow")
 														.foregroundStyle(.orange)
-														.font(.system(size: 26, weight: .semibold))
+														.font(.system(size: iconSize, weight: .semibold))
 												Text("The harder the difficulty, the more similar the colors will be.")
 										}
 										
-										HStack (spacing: 18) {
+										HStack (spacing: hSpacing) {
 												Image(systemName: "heart")
 														.foregroundStyle(.red)
-														.font(.system(size: 26, weight: .semibold))
+														.font(.system(size: iconSize, weight: .semibold))
 												Text("Try Survival Mode to see how far you can make it without a mistake!")
 										}
 								}
-								.padding(.horizontal, 24)
+								.fixedSize(horizontal: false, vertical: true)
+								.padding(.horizontal, screenWidth * 0.056)
 								
-								if throughSettings {
+								if throughSettings && screenWidth > minWidth {
 										Spacer()
 								}
 								
 								Image("how-to-play")
+										.resizable()
+										.aspectRatio(contentMode: .fit)
+										.frame(width: screenWidth > minWidth ? screenWidth * 0.6 : screenWidth * 0.47)
 								
 								if throughSettings {
 										Spacer()
@@ -86,6 +96,13 @@ struct HowToPlayView: View {
 						}
 						.navigationTitle("How to Play")
 						.navigationBarTitleDisplayMode(.inline)
+						.onAppear {
+								screenWidth = UIScreen.main.bounds.width
+								largeVSpacing = UIScreen.main.bounds.width * 0.084
+								smallVSpacing = UIScreen.main.bounds.width * 0.046
+								hSpacing = UIScreen.main.bounds.width * 0.042
+								iconSize = UIScreen.main.bounds.width * 0.06
+						}
 				}
     }
 }

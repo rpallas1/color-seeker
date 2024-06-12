@@ -13,6 +13,7 @@ struct PauseGameView: View {
 		
 		var currentGame: GameplayModel
 		var format = FormatHelper()
+		@State private var screenWidth: CGFloat = 0.0
 		
 		var body: some View {
 				
@@ -47,7 +48,7 @@ struct PauseGameView: View {
 												.padding(.bottom, 32)
 												.font(.title)
 										}
-										.padding(.trailing, 100)
+										.padding(.trailing, screenWidth * 0.233)
 										
 										VStack (spacing: 20) {
 												Button(action: {
@@ -76,6 +77,9 @@ struct PauseGameView: View {
 										}
 										.font(.largeTitle)
 								}
+						}
+						.onAppear {
+								screenWidth = UIScreen.main.bounds.width
 						}
 		}
 }

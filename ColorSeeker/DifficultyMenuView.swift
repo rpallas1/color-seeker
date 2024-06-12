@@ -83,6 +83,10 @@ struct DifficultyMenuView: View {
 										.navigationBarBackButtonHidden()
 										.toolbar(.hidden, for: .tabBar)
 						}
+						.onAppear {
+								game.screenWidth = UIScreen.main.bounds.width
+								game.screenHeight = UIScreen.main.bounds.height
+						}
 				}
     }
 }

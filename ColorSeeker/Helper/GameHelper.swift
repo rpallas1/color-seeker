@@ -13,6 +13,9 @@ struct GameHelper {
 		
 		@Environment(Settings.self) var settings
 		
+		var screenWidth: CGFloat = 0.0
+		var screenHeight: CGFloat = 0.0
+		
 		func buildGrid(currentGame: GameplayModel, colorScheme: Color) -> [SquareObject] {
 				var gridLayout = [SquareObject]()
 				
@@ -42,11 +45,11 @@ struct GameHelper {
 				var size: CGFloat {
 						switch gridSize {
 						case 4:
-								return 136
+								return screenWidth * 0.316
 						case 9:
-								return 100
+								return screenWidth * 0.233
 						default:
-								return 85
+								return screenWidth * 0.198
 						}
 				}
 				

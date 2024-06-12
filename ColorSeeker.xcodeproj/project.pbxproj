@@ -18,6 +18,7 @@
 		BC7B54042BF6A708001F74B5 /* StatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B54032BF6A708001F74B5 /* StatModel.swift */; };
 		BC7B54122BF7E005001F74B5 /* StatHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B54112BF7E005001F74B5 /* StatHelper.swift */; };
 		BC7B54142BF7E2A2001F74B5 /* GameplayModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7B54132BF7E2A2001F74B5 /* GameplayModels.swift */; };
+		BC7DCD452C1A0CBF00516C01 /* TelemetryDeck in Frameworks */ = {isa = PBXBuildFile; productRef = BC7DCD442C1A0CBF00516C01 /* TelemetryDeck */; };
 		BC8733292C0E11F10028BBF9 /* AchievementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8733282C0E11F10028BBF9 /* AchievementModel.swift */; };
 		BC87332B2C0E361F0028BBF9 /* AchievementSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC87332A2C0E361F0028BBF9 /* AchievementSheetView.swift */; };
 		BC87332D2C0E50030028BBF9 /* FullDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC87332C2C0E50030028BBF9 /* FullDescriptionView.swift */; };
@@ -49,6 +50,7 @@
 		BC7B54032BF6A708001F74B5 /* StatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatModel.swift; sourceTree = "<group>"; };
 		BC7B54112BF7E005001F74B5 /* StatHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatHelper.swift; sourceTree = "<group>"; };
 		BC7B54132BF7E2A2001F74B5 /* GameplayModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayModels.swift; sourceTree = "<group>"; };
+		BC7DCD482C1A2C5100516C01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC8733282C0E11F10028BBF9 /* AchievementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementModel.swift; sourceTree = "<group>"; };
 		BC87332A2C0E361F0028BBF9 /* AchievementSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementSheetView.swift; sourceTree = "<group>"; };
 		BC87332C2C0E50030028BBF9 /* FullDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullDescriptionView.swift; sourceTree = "<group>"; };
@@ -74,12 +76,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC7DCD452C1A0CBF00516C01 /* TelemetryDeck in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC7DCD492C1A4FB000516C01 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BCE3C71A2BF5212B00CB2EAE /* MainView.swift */,
+				BCE3C72C2BF523D500CB2EAE /* HomeView.swift */,
+				BC72DB4B2BFBD783000A32C7 /* DifficultyMenuView.swift */,
+				BCE3C7282BF522F900CB2EAE /* StatsView.swift */,
+				BCE3C73A2BF673FF00CB2EAE /* StatSheetView.swift */,
+				BCE3C72A2BF5230300CB2EAE /* AchievementsView.swift */,
+				BC87332A2C0E361F0028BBF9 /* AchievementSheetView.swift */,
+				BC87332C2C0E50030028BBF9 /* FullDescriptionView.swift */,
+				BC5E20822BFD129A00979123 /* CustomSegmentedControlView.swift */,
+				BC7B53FF2BF677F2001F74B5 /* GameplayView.swift */,
+				BC7B53FB2BF677BB001F74B5 /* PauseGameView.swift */,
+				BC7B53FD2BF677D1001F74B5 /* GameFinishedView.swift */,
+				BC128D7C2C175085004ADCD9 /* NewBestView.swift */,
+				BC128D7E2C175208004ADCD9 /* NewAchievementsView.swift */,
+				BCE3C7322BF54C5100CB2EAE /* SettingsView.swift */,
+				BCE3C7342BF5509F00CB2EAE /* HowToPlayView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		BCE3C70C2BF5212B00CB2EAE = {
 			isa = PBXGroup;
 			children = (
@@ -99,25 +125,11 @@
 		BCE3C7172BF5212B00CB2EAE /* ColorSeeker */ = {
 			isa = PBXGroup;
 			children = (
+				BC7DCD482C1A2C5100516C01 /* Info.plist */,
 				BCE3C7182BF5212B00CB2EAE /* ColorSeekerApp.swift */,
-				BCE3C71A2BF5212B00CB2EAE /* MainView.swift */,
-				BCE3C72C2BF523D500CB2EAE /* HomeView.swift */,
-				BC72DB4B2BFBD783000A32C7 /* DifficultyMenuView.swift */,
-				BCE3C7282BF522F900CB2EAE /* StatsView.swift */,
-				BCE3C73A2BF673FF00CB2EAE /* StatSheetView.swift */,
-				BCE3C72A2BF5230300CB2EAE /* AchievementsView.swift */,
-				BC87332A2C0E361F0028BBF9 /* AchievementSheetView.swift */,
-				BC87332C2C0E50030028BBF9 /* FullDescriptionView.swift */,
-				BC5E20822BFD129A00979123 /* CustomSegmentedControlView.swift */,
-				BC7B53FF2BF677F2001F74B5 /* GameplayView.swift */,
-				BC7B53FB2BF677BB001F74B5 /* PauseGameView.swift */,
-				BC7B53FD2BF677D1001F74B5 /* GameFinishedView.swift */,
-				BC128D7C2C175085004ADCD9 /* NewBestView.swift */,
-				BC128D7E2C175208004ADCD9 /* NewAchievementsView.swift */,
-				BCE3C7322BF54C5100CB2EAE /* SettingsView.swift */,
-				BCE3C7342BF5509F00CB2EAE /* HowToPlayView.swift */,
-				BCE3C7272BF5218800CB2EAE /* Model */,
-				BCE3C7262BF5218200CB2EAE /* Helper */,
+				BC7DCD492C1A4FB000516C01 /* Views */,
+				BCE3C7272BF5218800CB2EAE /* Models */,
+				BCE3C7262BF5218200CB2EAE /* Helpers */,
 				BC7B54012BF69691001F74B5 /* GlobalStates.swift */,
 				BCE3C71C2BF5212D00CB2EAE /* Assets.xcassets */,
 				BCE3C71E2BF5212D00CB2EAE /* Preview Content */,
@@ -133,7 +145,7 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		BCE3C7262BF5218200CB2EAE /* Helper */ = {
+		BCE3C7262BF5218200CB2EAE /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				BC7B54112BF7E005001F74B5 /* StatHelper.swift */,
@@ -142,17 +154,17 @@
 				BC87332E2C0E61E50028BBF9 /* AchievementHelper.swift */,
 				BCA0DCD12C1903A6007508C9 /* DefaultDataHelper.swift */,
 			);
-			path = Helper;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
-		BCE3C7272BF5218800CB2EAE /* Model */ = {
+		BCE3C7272BF5218800CB2EAE /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				BC7B54032BF6A708001F74B5 /* StatModel.swift */,
 				BC8733282C0E11F10028BBF9 /* AchievementModel.swift */,
 				BC7B54132BF7E2A2001F74B5 /* GameplayModels.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,6 +184,7 @@
 			);
 			name = ColorSeeker;
 			packageProductDependencies = (
+				BC7DCD442C1A0CBF00516C01 /* TelemetryDeck */,
 			);
 			productName = ColorSleuth;
 			productReference = BCE3C7152BF5212B00CB2EAE /* ColorSeeker.app */;
@@ -202,6 +215,7 @@
 			);
 			mainGroup = BCE3C70C2BF5212B00CB2EAE;
 			packageReferences = (
+				BC7DCD432C1A0CBF00516C01 /* XCRemoteSwiftPackageReference "SwiftSDK" */,
 			);
 			productRefGroup = BCE3C7162BF5212B00CB2EAE /* Products */;
 			projectDirPath = "";
@@ -391,6 +405,7 @@
 				DEVELOPMENT_TEAM = H9NV7QU2Z4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ColorSeeker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Color Seeker";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -423,6 +438,7 @@
 				DEVELOPMENT_TEAM = H9NV7QU2Z4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ColorSeeker/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Color Seeker";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.puzzle-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -466,6 +482,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BC7DCD432C1A0CBF00516C01 /* XCRemoteSwiftPackageReference "SwiftSDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TelemetryDeck/SwiftSDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BC7DCD442C1A0CBF00516C01 /* TelemetryDeck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC7DCD432C1A0CBF00516C01 /* XCRemoteSwiftPackageReference "SwiftSDK" */;
+			productName = TelemetryDeck;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BCE3C70D2BF5212B00CB2EAE /* Project object */;
 }

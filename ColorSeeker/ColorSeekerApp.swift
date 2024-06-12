@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import TipKit
+import TelemetryDeck
 
 @main
 struct ColorSeekerApp: App {
@@ -24,11 +25,14 @@ struct ColorSeekerApp: App {
 				} catch let error {
 						fatalError("Cannot set up modelContainer: \(error.localizedDescription)")
 				}
+				
+				let config = TelemetryDeck.Config(appID: "81C31ED3-4AB5-4765-BE71-9345960BB4DA")
+				TelemetryDeck.initialize(config: config)
 		}
 		
     var body: some Scene {
         WindowGroup {
-						MainView()
+						ContentView()
 								.environment(viewStates)
 								.environment(settings)
 								.preferredColorScheme(settings.colorScheme.colorScheme)

@@ -82,8 +82,3 @@ struct FormatHelper {
 				return String(goal.value)
 		}
 }
-
-enum timeFormat {
-		case gameplay
-		case stats
-}

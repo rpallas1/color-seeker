@@ -30,10 +30,6 @@ struct GameplayView: View {
 		
 		@State var barSegmentColor: Color = .accent
 		
-//		@State private var customIncrement: TimeInterval = 0
-//		@State private var isTesting: Bool = false
-		
-		
 		var body: some View {
 				
 				@Bindable var viewStates = viewStates
@@ -202,9 +198,6 @@ struct GameplayView: View {
 				.onAppear {
 						game.screenWidth = UIScreen.main.bounds.width
 						game.screenHeight = UIScreen.main.bounds.height
-						
-//						setElapsedTime(to: 32400)
-//						startTimer(withCustomIncrement: 3658)
 						startTimer()
 				}
 				.sheet(isPresented: $showSettings, content: {
@@ -239,85 +232,6 @@ struct GameplayView: View {
 						viewStates.showPause = true
 				}
 		}
-		
-//		private func setElapsedTime(to time: TimeInterval) {
-//				self.elapsedTime = time
-//				self.customIncrement = 0
-//				self.isTesting = true
-//		}
-//		
-//		private func startTimer(withCustomIncrement increment: TimeInterval? = nil) {
-//				if let increment = increment {
-//						customIncrement = increment
-//						startTime = nil
-//						isTesting = true
-//				} else {
-//						customIncrement = 0
-//						isTesting = false
-//						if isPaused {
-//								// Resume timer
-//								startTime = Date().addingTimeInterval(-pausedTime)
-//								isPaused = false
-//						} else {
-//								// Start new timer
-//								startTime = Date()
-//								elapsedTime = 0
-//								pausedTime = 0
-//						}
-//				}
-//				
-//				timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-//						if self.isTesting {
-//								self.elapsedTime += self.customIncrement
-//						} else if let start = self.startTime {
-//								self.elapsedTime = Date().timeIntervalSince(start)
-//						}
-//						
-//						let dateFormatter = DateFormatter()
-//						dateFormatter.timeStyle = .medium
-//						self.timeString = dateFormatter.string(from: Date())
-//				}
-//				timer?.fire()
-//		}
-//		
-//		private func stopTimer() {
-//				timer?.invalidate()
-//				timer = nil
-//				if !isTesting {
-//						if let start = startTime {
-//								elapsedTime = Date().timeIntervalSince(start)
-//						}
-//				}
-//				startTime = nil
-//				pausedTime = 0
-//				isPaused = false
-//				isTesting = false
-//		}
-//		
-//		private func pauseResumeTimer() {
-//				if isPaused {
-//						// Resume timer
-//						startTimer()
-//				} else {
-//						// Pause timer
-//						if !isTesting, let start = startTime {
-//								pausedTime = Date().timeIntervalSince(start)
-//						}
-//						timer?.invalidate()
-//						timer = nil
-//						isPaused = true
-//				}
-//		}
-
-
-		
-
-//		private func formattedTime(currentGame: GameplayModel, elapsedTime: TimeInterval) -> String {
-//				let minutes = Int(elapsedTime) / 60
-//				let seconds = Int(elapsedTime) % 60
-//				currentGame.elapsedTimeString = String(format: "%02d:%02d", minutes, seconds)
-//				return currentGame.elapsedTimeString
-//		}
 		
 		private func formattedTime(currentGame: GameplayModel, elapsedTime: TimeInterval) -> String {
 				let hours = Int(elapsedTime) / 3600

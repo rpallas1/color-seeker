@@ -12,7 +12,7 @@ import TelemetryDeck
 
 @main
 struct ColorSeekerApp: App {
-				
+
 		let modelContainer: ModelContainer
 		@State var viewStates = GlobalStates()
 		@State private var settings = Settings()

@@ -60,9 +60,9 @@ struct ContentView: View {
 						.onAppear {
 								defaultData = DefaultDataHelper(context: context)
 								
-								if !globalStates.sentAnalytics {
-										TelemetryDeck.signal("userData", parameters: setSignalData())
-								}
+								if globalStates.deviceColorScheme == nil {
+										globalStates.deviceColorScheme = deviceColorScheme
+								}								
 								
 								if allStats.count == 0 && allAchievements.count == 0 {
 										defaultData!.initStats()
@@ -72,6 +72,11 @@ struct ContentView: View {
 										// TODO: Delete and re-init achievements for on-device
 //										print(context.sqliteCommand)
 								}
+								
+								if !globalStates.sentAnalytics {
+										TelemetryDeck.signal("userData", parameters: setSignalData())
+								}
+								
 						}
 						.toolbar {
 								ToolbarItem {
@@ -96,6 +101,7 @@ struct ContentView: View {
 				let hardStat = sortedStats[3]
 				let extremeStat = sortedStats[4]
 				let survivalStat = sortedStats[5]
+				let haptics = settings.hapticsEnabled
 
 				var preferredColorScheme: String {
 						switch settings.colorScheme {
@@ -202,7 +208,8 @@ struct ContentView: View {
 																				 "survival-average-time": "\(survivalStat.averageTime)",
 																				 "survival-average-time-string": "\(survivalStat.averageTimeString)",
 																				 "color-scheme-system": "\(systemColorScheme)",
-																				 "color-scheme-preferred": "\(preferredColorScheme)"
+																				 "color-scheme-preferred": "\(preferredColorScheme)",
+																				 "haptics-enables": "\(haptics)"
 																				]
 				
 				globalStates.sentAnalytics = true

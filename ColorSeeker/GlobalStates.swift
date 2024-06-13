@@ -10,13 +10,12 @@ import SwiftUI
 
 @Observable
 class GlobalStates {
-		
-		// View States
 		var showPause = false
 		var showGameplay = false
 		var showEndRound = false
 		var showFullDescription = false
 		var sentAnalytics = false
+		var deviceColorScheme: ColorScheme? = nil
 }
 
 @Observable

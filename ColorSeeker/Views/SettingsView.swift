@@ -11,9 +11,11 @@ import SwiftData
 struct SettingsView: View {
 		
 		@Environment(\.dismiss) private var dismiss
-		@Environment(Settings.self) var settings
 		@Environment(\.modelContext) private var context
-		
+		@Environment(\.colorScheme) private var colorScheme
+		@Environment(Settings.self) var settings
+		@Environment(GlobalStates.self) private var globalStates
+
 		@Query private var allStats: [StatModel]
 		@Query(sort: \StatModel.index)
 		private var sortedStats: [StatModel]
@@ -65,7 +67,7 @@ struct SettingsView: View {
 						}
 						.navigationTitle("Settings")
 						.navigationBarTitleDisplayMode(.inline)
-						.preferredColorScheme(settings.colorScheme.colorScheme)
+						.preferredColorScheme(settings.colorScheme.colorScheme == nil ? globalStates.deviceColorScheme : settings.colorScheme.colorScheme)
 						.toolbar {
 								Button(action: {
 										dismiss()

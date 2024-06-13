@@ -148,7 +148,7 @@ struct GameFinishedView: View {
 												.frame(width: 239, height: 50)
 												.foregroundStyle(.accent)
 										
-										Text("Play Again")
+										Text("Done")
 												.foregroundStyle(.white)
 												.font(.title2)
 												.bold()

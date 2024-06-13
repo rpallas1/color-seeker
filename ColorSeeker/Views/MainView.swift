@@ -118,7 +118,6 @@ struct ContentView: View {
 						}
 				}
 		
-				// Send User Data
 				let signal: [String : String] = ["overall-games-played": "\(overallStat.gamesPlayed)",
 																				 "overall-games-won": "\(overallStat.gamesWon)",
 																				 "overall-perfect-games": "\(overallStat.perfectGames)",

@@ -14,6 +14,7 @@ struct ContentView: View {
 		
 		@Environment(\.modelContext) private var context
 		@Environment(\.scenePhase) private var scenePhase
+		@Environment(\.colorScheme) var deviceColorScheme
 		@Environment(Settings.self) var settings
 		@Environment(GlobalStates.self) var globalStates
 		
@@ -60,7 +61,7 @@ struct ContentView: View {
 								defaultData = DefaultDataHelper(context: context)
 								
 								if !globalStates.sentAnalytics {
-										TelemetryDeck.signal("userStatsAchievements", parameters: setSignalData())
+										TelemetryDeck.signal("userData", parameters: setSignalData())
 								}
 								
 								if allStats.count == 0 && allAchievements.count == 0 {
@@ -95,6 +96,27 @@ struct ContentView: View {
 				let hardStat = sortedStats[3]
 				let extremeStat = sortedStats[4]
 				let survivalStat = sortedStats[5]
+
+				var preferredColorScheme: String {
+						switch settings.colorScheme {
+						case .light:
+								return "Light Mode"
+						case .dark:
+								return "Dark Mode"
+						case .system:
+								return "Using System Color Scheme"
+						}
+				}
+				var systemColorScheme: String {
+						switch deviceColorScheme {
+						case .light:
+								return "Light Mode"
+						case .dark:
+								return "Dark Mode"
+						@unknown default:
+								return "Unknown Device Color Scheme"
+						}
+				}
 		
 				let signal: [String : String] = ["overall-games-played": "\(overallStat.gamesPlayed)",
 																				 "overall-games-won": "\(overallStat.gamesWon)",
@@ -178,7 +200,9 @@ struct ContentView: View {
 																				 "survival-avg-time-tap-ratio": "\(survivalStat.avgTimeTapRatio)",
 																				 "survival-avg-time-tap-ratio-string": "\(survivalStat.avgTimeTapRatioString)",
 																				 "survival-average-time": "\(survivalStat.averageTime)",
-																				 "survival-average-time-string": "\(survivalStat.averageTimeString)"
+																				 "survival-average-time-string": "\(survivalStat.averageTimeString)",
+																				 "color-scheme-system": "\(systemColorScheme)",
+																				 "color-scheme-preferred": "\(preferredColorScheme)"
 																				]
 				
 				globalStates.sentAnalytics = true

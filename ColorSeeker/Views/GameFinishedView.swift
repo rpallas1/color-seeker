@@ -357,7 +357,7 @@ struct GameFinishedView: View {
 						
 						// Check if any difficulty achievements were earned
 						for group in sortedGroups {
-								for goal in group.goals {
+								for goal in sortTimeGoals(group: group, goals: group.goals) {
 										if check.isComplete(group: group, goal: goal) {
 												if goal.isComplete == false {
 														newAchievements.append(NewAchievement(difficulty: currentGame.difficulty.rawValue, group: group, goal: goal))
@@ -370,7 +370,7 @@ struct GameFinishedView: View {
 						
 						// Check if any overall achievements were earned
 						for group in sortedOverallGroups {
-								for goal in group.goals {
+								for goal in sortTimeGoals(group: group, goals: group.goals) {
 										if check.isComplete(group: group, goal: goal) {
 												if goal.isComplete == false {
 														newAchievements.append(NewAchievement(difficulty: "Overall", group: group, goal: goal))
@@ -382,6 +382,22 @@ struct GameFinishedView: View {
 						}
 				} else {
 						print("Error: Returned more than 1 stat difficulty or overall stat")
+				}
+		}
+		
+		private func sortTimeGoals(group: GroupModel, goals: [Goal]) -> [Goal] {
+				if group.name == "Times" || group.name == "Best Time" {
+						// Means it is on a time group
+						return goals.sorted(by: {
+								if $0.time != $1.time {
+										return $0.time > $1.time
+								} else {
+										return $0.value < $1.value
+								}
+						})
+				} else {
+						// Sort non-time goals by their value (goal)
+						return goals.sorted(by: {$0.value < $1.value})
 				}
 		}
 }

@@ -26,7 +26,6 @@ struct StatSheetView: View {
 										
 										HStack {
 												Text("Games Played")
-														.padding(.leading)
 												Spacer()
 												Text(statCategory.gamesPlayed == 0 ? "-" : String(statCategory.gamesPlayed))
 														.bold()
@@ -42,7 +41,6 @@ struct StatSheetView: View {
 												// Game stats for normal difficulties
 												HStack {
 														Text("Games Won")
-																.padding(.leading)
 														Spacer()
 														Text(statCategory.gamesWon == 0 ? "-" : String(statCategory.gamesWon))
 																.bold()
@@ -56,7 +54,6 @@ struct StatSheetView: View {
 												
 												HStack {
 														Text("Perfect Games")
-																.padding(.leading)
 														Spacer()
 														Text(statCategory.perfectGames == 0 ? "-" : String(statCategory.perfectGames))
 																.bold()
@@ -70,7 +67,6 @@ struct StatSheetView: View {
 												
 												HStack {
 														Text("Win Rate")
-																.padding(.leading)
 														Spacer()
 														Text(statCategory.percentCorrect == 0 ? "-" : format.percent(percent: statCategory.percentCorrect))
 																.bold()
@@ -84,7 +80,6 @@ struct StatSheetView: View {
 												
 												HStack {
 														Text("Accuracy")
-																.padding(.leading)
 														Spacer()
 														Text(statCategory.accuracy == 0 ? "-" : format.percent(percent: statCategory.accuracy))
 																.bold()
@@ -110,7 +105,6 @@ struct StatSheetView: View {
 												
 												HStack {
 														Text("Current Win Streak")
-																.padding(.leading)
 														Spacer()
 														Text(statCategory.currentStreak == 0 ? "-" : String(statCategory.currentStreak))
 																.bold()
@@ -124,7 +118,6 @@ struct StatSheetView: View {
 												
 												HStack {
 														Text("Longest Win Streak")
-																.padding(.leading)
 														Spacer()
 														Text(statCategory.bestStreak == 0 ? "-" : String(statCategory.bestStreak))
 																.bold()
@@ -148,7 +141,6 @@ struct StatSheetView: View {
 												
 												HStack {
 														Text("High Score")
-																.padding(.leading)
 														Spacer()
 														Text(statCategory.highScore == 0 ? "-" : String(statCategory.highScore))
 																.bold()
@@ -162,7 +154,6 @@ struct StatSheetView: View {
 												
 												HStack {
 														Text("Time to Tap")
-																.padding(.leading)
 														Spacer()
 														Text(statCategory.bestTimeTapRatioString == "" ? "-" : statCategory.bestTimeTapRatioString)
 																.bold()
@@ -176,7 +167,6 @@ struct StatSheetView: View {
 												
 												HStack {
 														Text("Time")
-																.padding(.leading)
 														Spacer()
 														Text(statCategory.bestTimeString == "" ? "-" : String(statCategory.bestTimeString))
 																.bold()
@@ -203,7 +193,6 @@ struct StatSheetView: View {
 												if statCategory.difficulty != "Overall" {
 														HStack {
 																Text("Best Time")
-																		.padding(.leading)
 																Spacer()
 																Text(statCategory.bestTimeString == "" ? "-" : String(statCategory.bestTimeString))
 																		.bold()
@@ -218,7 +207,6 @@ struct StatSheetView: View {
 												
 												HStack {
 														Text("Average Time")
-																.padding(.leading)
 														Spacer()
 														Text(statCategory.averageTimeString == "" ? "-" : statCategory.averageTimeString)
 																.bold()
@@ -243,7 +231,6 @@ struct StatSheetView: View {
 												
 												HStack {
 														Text("Average Score")
-																.padding(.leading)
 														Spacer()
 														Text(statCategory.averageScore == 0 ? "-" : String(statCategory.averageScore))
 																.bold()
@@ -257,7 +244,6 @@ struct StatSheetView: View {
 												
 												HStack {
 														Text("Average Time to Tap")
-																.padding(.leading)
 														Spacer()
 														Text(statCategory.avgTimeTapRatioString == "" ? "-" : statCategory.avgTimeTapRatioString)
 																.bold()
@@ -271,7 +257,6 @@ struct StatSheetView: View {
 												
 												HStack {
 														Text("Average Time")
-																.padding(.leading)
 														Spacer()
 														Text(statCategory.averageTimeString == "" ? "-" : String(statCategory.averageTimeString))
 																.bold()

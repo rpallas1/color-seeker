@@ -50,7 +50,6 @@
 		BC7B54032BF6A708001F74B5 /* StatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatModel.swift; sourceTree = "<group>"; };
 		BC7B54112BF7E005001F74B5 /* StatHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatHelper.swift; sourceTree = "<group>"; };
 		BC7B54132BF7E2A2001F74B5 /* GameplayModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameplayModels.swift; sourceTree = "<group>"; };
-		BC7DCD482C1A2C5100516C01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC8733282C0E11F10028BBF9 /* AchievementModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementModel.swift; sourceTree = "<group>"; };
 		BC87332A2C0E361F0028BBF9 /* AchievementSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementSheetView.swift; sourceTree = "<group>"; };
 		BC87332C2C0E50030028BBF9 /* FullDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullDescriptionView.swift; sourceTree = "<group>"; };
@@ -125,7 +124,6 @@
 		BCE3C7172BF5212B00CB2EAE /* ColorSeeker */ = {
 			isa = PBXGroup;
 			children = (
-				BC7DCD482C1A2C5100516C01 /* Info.plist */,
 				BCE3C7182BF5212B00CB2EAE /* ColorSeekerApp.swift */,
 				BC7DCD492C1A4FB000516C01 /* Views */,
 				BCE3C7272BF5218800CB2EAE /* Models */,

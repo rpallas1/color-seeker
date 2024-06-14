@@ -21,12 +21,12 @@ struct FormatHelper {
 		
 		func time(elapsedTime: Double) -> String {
 				if elapsedTime < 60 {
-						let roundedElapsedTime = (elapsedTime * 10).rounded() / 10
-						let tenthsPlace = Int((roundedElapsedTime * 10).truncatingRemainder(dividingBy: 10))
+						let truncatedElapsedTime = floor(elapsedTime * 10) / 10
+						let tenthsPlace = Int((truncatedElapsedTime * 10).truncatingRemainder(dividingBy: 10))
 						if tenthsPlace == 0 {
-								return String(format: "%.0fs", elapsedTime)
+								return String(format: "%.0fs", truncatedElapsedTime)
 						} else {
-								return String(format: "%.1fs", elapsedTime)
+								return String(format: "%.1fs", truncatedElapsedTime)
 						}
 				} else if elapsedTime < 3600 {
 						let minutes = Int(elapsedTime) / 60

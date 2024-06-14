@@ -25,7 +25,7 @@ struct HomeView: View {
 				NavigationStack {
 						ZStack {
 								VStack {
-										Text("Color Seeker")
+										Text("Color Seek")
 												.font(.largeTitle)
 												.bold()
 										

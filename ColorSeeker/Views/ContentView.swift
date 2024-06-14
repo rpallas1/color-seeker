@@ -17,6 +17,8 @@ struct ContentView: View {
 		@Environment(\.colorScheme) var deviceColorScheme
 		@Environment(Settings.self) var settings
 		@Environment(GlobalStates.self) var globalStates
+		@AppStorage("isLightMode") var isLightMode: Bool = false
+		@AppStorage("savedDeviceColorScheme") var savedDeviceColorScheme: Bool = false
 		
 		@Query private var allStats: [StatModel]
 		@Query private var allAchievements: [AchievementModel]
@@ -59,10 +61,27 @@ struct ContentView: View {
 						})
 						.onAppear {
 								defaultData = DefaultDataHelper(context: context)
+
+								// If the color scheme hasnt been saved, means the app is being launched for the first time
+								if savedDeviceColorScheme == false {
+										// Then get the current color scheme and set isLightMode based off it and it doesn't change unless app is deleted and reinstalled
+										if deviceColorScheme == .light {
+												// Light mode is device color scheme
+												isLightMode = true
+										} else {
+												// Dark mode is device color scheme
+												isLightMode = false
+										}
+										
+										savedDeviceColorScheme = true
+								}
 								
-								if globalStates.deviceColorScheme == nil {
-										globalStates.deviceColorScheme = deviceColorScheme
-								}								
+								// Read results of isLightMode and set the global state based off of it
+								if isLightMode {
+										globalStates.deviceColorScheme = .light
+								} else {
+										globalStates.deviceColorScheme = .dark
+								}
 								
 								if allStats.count == 0 && allAchievements.count == 0 {
 										defaultData!.initStats()

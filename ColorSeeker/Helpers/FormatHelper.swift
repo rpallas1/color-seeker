@@ -1,6 +1,6 @@
 //
 //  FormatHelper.swift
-//  ColorSleuth
+//  ColorSeeker
 //
 //  Created by Ryan Pallas on 5/27/24.
 //

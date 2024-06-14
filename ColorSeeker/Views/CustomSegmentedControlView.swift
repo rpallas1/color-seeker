@@ -1,6 +1,6 @@
 //
 //  CustomSegmentedControlView.swift
-//  ColorSleuth
+//  ColorSeeker
 //
 //  Created by Ryan Pallas on 5/21/24.
 //

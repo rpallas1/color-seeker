@@ -1,6 +1,6 @@
 //
 //  AchievementModel.swift
-//  ColorSleuth
+//  ColorSeeker
 //
 //  Created by Ryan Pallas on 6/3/24.
 //

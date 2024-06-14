@@ -1,6 +1,6 @@
 //
 //  ViewStates.swift
-//  ColorSleuth
+//  ColorSeeker
 //
 //  Created by Ryan Pallas on 5/16/24.
 //

@@ -1,6 +1,6 @@
 //
 //  DifficultyMenuView.swift
-//  ColorSleuth
+//  ColorSeeker
 //
 //  Created by Ryan Pallas on 5/20/24.
 //

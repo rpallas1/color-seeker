@@ -1,6 +1,6 @@
 //
-//  ColorSleuthApp.swift
-//  ColorSleuth
+//  ColorSeekerApp.swift
+//  ColorSeeker
 //
 //  Created by Ryan Pallas on 5/15/24.
 //
